@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bootstrap demo</title>
+  <link rel="stylesheet" href="../css/bootstrap-bundle.css">
+  <script src="../js/bootstrap.bundle.js"></script>
+  <script src="../js/bootstrap.bundle.min.js"></script>
+  <link rel="stylesheet" href="../style/style.css">
+</head>
+
+<body>
+  <div class="container text-center">
+    <div class="col-12 rounded-3" id="centro">
+      <div class="container" id="navbar">
+        <header class="d-flex justify-content-center py-3">
+          <ul class="nav nav-pills">
+            <li class="nav-item"><a href="index.html" class="nav-link active bg-success" aria-current="page">Home</a></li>
+            <li class="nav-item"><a href="urbanism.html" class="nav-link text-success">Urbanism</a></li>
+            <li class="nav-item"><a href="transport.html" class="nav-link text-success">Public Transport</a></li>
+            <li class="nav-item"><a href="literature.html" class="nav-link text-success">Literature</a></li>
+          </ul>
+        </header>
+      </div>
+
+
+
+      <div class="col-12" id="textHome">
+        <div class="container py-4">
+          <header class="pb-3 mb-4 border-bottom">
+            <span class="fs-2">Urbanism and sustainability</span>
+          </header>
+          <p>
+            Urbanism is and important and often overlooked subject when talking about sustainability. The way we
+            organize our cities has a great impact in the emissions. Our goal is to spread awareness about this subject
+            and educate people about subjects like car dependency, walkability, mass public transport and other subjects
+            that are important to create a new and better world.
+          </p>
+          <div class="p-3 mb-4 bg-success rounded-3">
+            <div class="container-fluid py-5 text-white" id="carDivHome">
+              <h2 class="display-12 fw-bold">Car dependency</h2>
+              <p class="col-md-12 fs-5">One of the biggest problems society needs to change is the over-dependency in
+                cars and the high emission that comes with it.</p>
+              <button class="btn btn-primary btn-lg bg-dark border-success" type="button"><a
+                  href="urbanism.html">Learn more</a></button>
+            </div>
+          </div>
+
+          <img class="img-fluid rounded-3" id="carsImg" src="../img/cars.jpg" alt="Cars in traffic">
+
+          <p>
+            To combat the over-dependency on cars and the high emissions that come with it, the sustainable urbanism movement advocates to changes in 2 main directions: <b>Urban planning</b> that relies less on the use of the car and instead allows people to walk or bike short distances to meet their needs and high quality <b>public transport</b> that allow for medium to high distance travel at a fraction of environmental impact that an individual car has.
+          </p>
+
+          <div class="row align-items-md-stretch">
+            <div class="col-md-6">
+              <div class="h-100 p-5 text-bg-dark rounded-3">
+                <h2>Creating new cities</h2>
+                <p>The center and perifery model for cities is deprecated and unsustainable. We advocate for medium
+                  density cities where people don't have to travel long distances(and therefore, use lots of energy) to
+                  meet their needs</p>
+                <button class="btn btn-outline-light" type="button"><a href="urbanism.html">Learn more about sustainable urban planning</a></button>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="h-100 p-5 bg-light border rounded-3">
+                <h2>Moving along together</h2>
+                <p>One of the best solutions to combat climate change is to reduce emissions by using public transport
+                  as away to move from and to places. Here you'll learn how different kinds of public transport help us
+                  be more sustainable</p>
+                <button class="btn btn-outline-secondary text-bg-dark" type="button"><a href="transport.html">Learn more about public transport</a></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+          <div class="col-md-6 d-flex align-items-center">
+            <a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
+              <svg class="bi" width="30" height="24">
+                <use xlink:href="#bootstrap" />
+              </svg>
+            </a>
+            <span class="mb-3 mb-md-0 text-muted">&copy; 2022 sustainable urbanism movement</span>
+          </div>
+
+        </footer>
+      </div>
+    </div>
+</body>
+
+</html>
