@@ -1,6 +1,6 @@
-
-CREATE DATABASE IF NOT EXISTS canteen_database;
-USE canteen_database;
+DROP DATABASE IF EXISTS canteen;
+CREATE DATABASE IF NOT EXISTS canteen;
+USE canteen;
 
 CREATE TABLE IF NOT EXISTS role(
     id_role INTEGER(5) NOT NULL AUTO_INCREMENT,
@@ -9,12 +9,14 @@ CREATE TABLE IF NOT EXISTS role(
     PRIMARY KEY(id_role)
 );
 
+
 CREATE TABLE IF NOT EXISTS user(
     id_user INTEGER(7) NOT NULL AUTO_INCREMENT,
     name VARCHAR(50) NOT NULL,
     surname VARCHAR(50) NOT NULL,
     email VARCHAR(50) NOT NULL,
-    username VARCHAR(15) NOT NULL,
+    hash_password VARCHAR(200) NOT NULL,
+    username VARCHAR(15) NOT NULL UNIQUE,
     birthdate DATE NOT NULL,
     id_role INTEGER(5) NOT NULL,
     balance FLOAT(7, 2),
@@ -22,6 +24,7 @@ CREATE TABLE IF NOT EXISTS user(
     PRIMARY KEY(id_user),
     FOREIGN KEY(id_role) REFERENCES role(id_role)
 );
+
 
 CREATE TABLE IF NOT EXISTS allergies(
     id_allergy INTEGER(6) NOT NULL AUTO_INCREMENT,
@@ -80,6 +83,17 @@ CREATE TABLE IF NOT EXISTS reserve(
 );
 
 
+CREATE TABLE IF NOT EXISTS transactions(
+    id_transaction INTEGER(7) NOT NULL AUTO_INCREMENT,
+    id_user INTEGER(7) NOT NULL,
+    transaction_quantity FLOAT(7,2) NOT NULL,
+    transaction_date DATE NOT NULL,
+    transaction_method VARCHAR(100) NOT NULL,
+
+    FOREIGN KEY(id_user) REFERENCES user(id_user),
+    PRIMARY KEY(id_transaction)
+);
+
 
 
 -- INSERTS for the 14 mandatory allergens
@@ -88,3 +102,6 @@ VALUES ("Gluten"), ("Crustaceans"), ("Eggs"), ("Fish"), ("Peanuts"),
     ("Soy"), ("Dairy"), ("Celery"), ("Mustard"), ("Sesame"), ("Sulphites"),
     ("Lupines"), ("Mollusks"), ("Shelled fruits");
 
+-- INSERTS for the items available in the menus
+-- INSERT INTO items(item_description, id_allergy)
+-- VALUES("Macarrones a la boloñesa")
