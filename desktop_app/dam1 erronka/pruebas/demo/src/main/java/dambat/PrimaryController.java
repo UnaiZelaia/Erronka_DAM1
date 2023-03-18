@@ -27,7 +27,7 @@ public class PrimaryController implements Initializable{
     @FXML private TableColumn<Usuario, String> clmApellido;
     @FXML private TableColumn<Usuario, String> clmEmail;
     @FXML private TableColumn<Usuario, Date> clmfecha;
-    @FXML private TableColumn<Usuario, Rol> clmIdRoll;
+/*     @FXML private TableColumn<Usuario, Rol> clmIdRoll; no funciona */
     //componentes interfaz grafica
         //Text
     @FXML private TextField tId;
