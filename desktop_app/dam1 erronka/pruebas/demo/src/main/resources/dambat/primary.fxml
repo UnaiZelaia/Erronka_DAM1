@@ -81,8 +81,8 @@
                         <TextField fx:id="tNombre" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                         <TextField fx:id="tApellido" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                         <TextField fx:id="tEmail" prefHeight="25.0" prefWidth="217.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                        <TextField GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                        <TextField GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                        <TextField fx:id="tUsername" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <TextField fx:id="tMony" GridPane.columnIndex="1" GridPane.rowIndex="7" />
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
                            <children>
                               <ComboBox fx:id="tablaName" prefWidth="150.0" />
@@ -103,13 +103,15 @@
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="398.0" prefWidth="333.0">
                <children>
-                  <TableView fx:id="tablaUsuario">
+                  <TableView fx:id="tablaUsuario" layoutY="-1.0" prefHeight="400.0" prefWidth="455.0">
                     <columns>
                       <TableColumn fx:id="clmNombre" prefWidth="88.0" text="Name" />
                       <TableColumn fx:id="clmApellido" prefWidth="86.0" text="Surname" />
-                     <TableColumn fx:id="clmEmail" prefWidth="169.0" text="Email" />
-                        <TableColumn fx:id="clmfecha" minWidth="8.0" prefWidth="42.0" text="Age" />
-                        <TableColumn fx:id="clmIdRoll" prefWidth="69.0" text="Role" />
+                        <TableColumn fx:id="clmUsername" prefWidth="86.0" text="Username" />
+                     <TableColumn fx:id="clmEmail" prefWidth="77.0" text="Email" />
+                        <TableColumn fx:id="clmfecha" minWidth="8.0" prefWidth="57.0" text="Age" />
+                        <TableColumn fx:id="clmIdRoll" prefWidth="61.0" text="Role" />
+                        <TableColumn fx:id="clmBalance" prefWidth="59.0" text="Balance" />
                     </columns>
                   </TableView>
                </children>

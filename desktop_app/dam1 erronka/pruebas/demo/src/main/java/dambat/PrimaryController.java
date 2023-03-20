@@ -27,7 +27,9 @@ public class PrimaryController implements Initializable{
     @FXML private TableColumn<Usuario, String> clmApellido;
     @FXML private TableColumn<Usuario, String> clmEmail;
     @FXML private TableColumn<Usuario, Date> clmfecha;
-/*     @FXML private TableColumn<Usuario, Rol> clmIdRoll; no funciona */
+    @FXML private TableColumn<Usuario, Rol> clmIdRoll; 
+    @FXML private TableColumn<Usuario, String> clmUsername; 
+    @FXML private TableColumn<Usuario, String> clmBalance; 
     //componentes interfaz grafica
         //Text
     @FXML private TextField tId;
@@ -65,7 +67,9 @@ public class PrimaryController implements Initializable{
         clmApellido.setCellValueFactory(new PropertyValueFactory<Usuario, String>("apellidoUsuario"));
         clmEmail.setCellValueFactory(new PropertyValueFactory<Usuario, String>("emailUsuario"));
         clmfecha.setCellValueFactory(new PropertyValueFactory<Usuario, Date>("fechaNacimiento"));
-        //clmIdRoll.setCellValueFactory(new PropertyValueFactory<Usuario, Rol>("idRol"));  no funciona
+        clmUsername.setCellValueFactory(new PropertyValueFactory<Usuario, String>("username"));
+        clmBalance.setCellValueFactory(new PropertyValueFactory<Usuario, String>("balance"));
+/*         clmIdRoll.setCellValueFactory(new PropertyValueFactory<Usuario, Rol>("idRol")); no funciona*/
         gestionarEventos();
         conexion.cerrarConexion();
     }
@@ -76,13 +80,15 @@ public class PrimaryController implements Initializable{
             @Override
             public void changed(ObservableValue<? extends Usuario> arg0, Usuario valorAnterior, Usuario valorSeleccionado) {
                 String strId = Integer.toString(valorSeleccionado.getIdUsuario());
+                String strMony = Double.toString(valorSeleccionado.getBalance());
                 tId.setText(strId);
                 tNombre.setText(valorSeleccionado.getNombreUsuario());
                 tApellido.setText(valorSeleccionado.getApellidoUsuario());
                 tEmail.setText(valorSeleccionado.getEmailUsuario());
                 tUsername.setText(valorSeleccionado.getUsername());
- /*                tEdad.setPromptText(String.valueOf(valorSeleccionado.getEmailUsuario()));
- */
+                strMony.setText(valorSeleccionado.getBalance());
+                tEdad.setPromptText(String.valueOf(valorSeleccionado.getFechaNacimiento()));
+
 
             }
             

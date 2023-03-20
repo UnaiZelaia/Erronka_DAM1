@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="401.0" prefWidth="766.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dambat.PrimaryController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="401.0" prefWidth="766.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dambat.SecondaryController">
    <children>
       <SplitPane dividerPositions="0.4005235602094241" prefHeight="400.0" prefWidth="766.0">
         <items>
@@ -77,12 +77,12 @@
                               <Insets right="5.0" />
                            </padding>
                         </Label>
-                        <TextField fx:id="tId" prefHeight="25.0" prefWidth="69.0" GridPane.columnIndex="1" />
-                        <TextField fx:id="tNombre" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <TextField fx:id="tApellido" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                        <TextField fx:id="tEmail" prefHeight="25.0" prefWidth="217.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                        <TextField fx:id="tUsername" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                        <TextField fx:id="tMony" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                        <TextField prefHeight="25.0" prefWidth="69.0" GridPane.columnIndex="1" />
+                        <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <TextField prefHeight="25.0" prefWidth="217.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <TextField GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <TextField GridPane.columnIndex="1" GridPane.rowIndex="7" />
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
                            <children>
                               <ComboBox fx:id="tablaName" prefWidth="150.0" />
@@ -96,22 +96,20 @@
                         <Button mnemonicParsing="false" text="SAVE" />
                         <Button mnemonicParsing="false" text="REFRESH" />
                         <Button mnemonicParsing="false" text="DELETE" />
-                        <Button mnemonicParsing="false" onAction="#pasoPag" text="PASO" />
+                        <Button mnemonicParsing="false" text="NEW" />
                      </children>
                   </HBox>
                </children>
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="398.0" prefWidth="333.0">
                <children>
-                  <TableView fx:id="tablaUsuario" layoutY="-1.0" prefHeight="400.0" prefWidth="455.0">
+                  <TableView prefHeight="398.0" prefWidth="455.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <columns>
-                      <TableColumn fx:id="clmNombre" prefWidth="88.0" text="Name" />
-                      <TableColumn fx:id="clmApellido" prefWidth="86.0" text="Surname" />
-                        <TableColumn fx:id="clmUsername" prefWidth="86.0" text="Username" />
-                     <TableColumn fx:id="clmEmail" prefWidth="77.0" text="Email" />
-                        <TableColumn fx:id="clmfecha" minWidth="8.0" prefWidth="57.0" text="Age" />
-                        <TableColumn fx:id="clmIdRoll" prefWidth="61.0" text="Role" />
-                        <TableColumn fx:id="clmBalance" prefWidth="59.0" text="Balance" />
+                      <TableColumn prefWidth="75.0" text="Name" />
+                      <TableColumn prefWidth="75.0" text="Surname" />
+                        <TableColumn prefWidth="75.0" text="Email" />
+                        <TableColumn prefWidth="75.0" text="Age" />
+                        <TableColumn prefWidth="75.0" text="Role" />
                     </columns>
                   </TableView>
                </children>

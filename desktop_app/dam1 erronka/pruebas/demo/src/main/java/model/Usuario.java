@@ -24,10 +24,13 @@ public class Usuario{
 	private StringProperty username;
 	private Date fechaNacimiento;
 	private Rol idRol;
+	private int balance;
+
+
 
 	public Usuario(int idUsuario, String nombreUsuario, String apellidoUsuario, 
 	String emailUsuario, String username, Date fechaNacimiento, 
-	Rol idRol) { 
+	Rol idRol, int balance) { 
 		this.idUsuario = new SimpleIntegerProperty(idUsuario);
 		this.nombreUsuario = new SimpleStringProperty(nombreUsuario);
 		this.apellidoUsuario = new SimpleStringProperty(apellidoUsuario);
@@ -35,6 +38,7 @@ public class Usuario{
 		this.username = new SimpleStringProperty(username);
 		this.fechaNacimiento = fechaNacimiento;
 		this.idRol = idRol;
+		this.balance = balance;
 	}
 
 	public Usuario(int idUsuario, String nombreUsuario, String apellidoUsuario, 
@@ -46,6 +50,18 @@ public class Usuario{
 		this.emailUsuario = new SimpleStringProperty(emailUsuario);
 		this.fechaNacimiento = fechaNacimiento;
 		this.idRol = idRol;
+	}
+	//Metodos atributo: balance
+	public int getBalance() {
+		return balance;
+	}
+
+	public void setBalance(int balance) {
+		this.balance = new SimpleIntegerProperty(balance);
+	}
+
+	public IntegerProperty BalanceProperty() {
+		
 	}
 
 	//Metodos atributo: idUsuario
@@ -130,10 +146,10 @@ public class Usuario{
 	public static void llenarTablaUsuario(Connection connection, ObservableList<Usuario>tablaUsuario){
 		try {
 			Statement instruccion = connection.createStatement();
-			ResultSet resultado = instruccion.executeQuery("SELECT id_user, name, surname, email, username, birthdate, id_role FROM user");
+			ResultSet resultado = instruccion.executeQuery("SELECT id_user, name, surname, email, username, birthdate, id_role, balance FROM user");
 
 			while(resultado.next()){
-				tablaUsuario.add(new Usuario(resultado.getInt("id_user"), resultado.getString("name"), resultado.getString("surname"), resultado.getString("email"),  resultado.getString("username"), resultado.getDate("birthdate"), new Rol(resultado.getInt("id_role"))));
+				tablaUsuario.add(new Usuario(resultado.getInt("id_user"), resultado.getString("name"), resultado.getString("surname"), resultado.getString("email"),  resultado.getString("username"), resultado.getDate("birthdate"), new Rol(resultado.getInt("id_role"), resultado.getString("balance"))));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
