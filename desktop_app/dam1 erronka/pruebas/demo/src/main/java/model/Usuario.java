@@ -6,9 +6,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Date;
 
-
-
+import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -23,37 +23,41 @@ public class Usuario{
 	private StringProperty emailUsuario;
 	private StringProperty username;
 	private Date fechaNacimiento;
-	private Rol idRol;
-	private int balance;
+	private IntegerProperty idRol;
+	private DoubleProperty balance;
 
 
 
 	public Usuario(int idUsuario, String nombreUsuario, String apellidoUsuario, 
 	String emailUsuario, String username, Date fechaNacimiento, 
-	Rol idRol) { 
+	int idRol, Double balance) { 
 		this.idUsuario = new SimpleIntegerProperty(idUsuario);
 		this.nombreUsuario = new SimpleStringProperty(nombreUsuario);
 		this.apellidoUsuario = new SimpleStringProperty(apellidoUsuario);
 		this.emailUsuario = new SimpleStringProperty(emailUsuario);
 		this.username = new SimpleStringProperty(username);
 		this.fechaNacimiento = fechaNacimiento;
-		this.idRol = idRol;
+		this.idRol = new SimpleIntegerProperty(idRol);
+		this.balance = new SimpleDoubleProperty(balance);
 	}
 
 	public Usuario(int idUsuario, String nombreUsuario, String apellidoUsuario, 
 	String emailUsuario, Date fechaNacimiento, 
-	Rol idRol) { 
+	int idRol) { 
 		this.idUsuario = new SimpleIntegerProperty(idUsuario);
 		this.nombreUsuario = new SimpleStringProperty(nombreUsuario);
 		this.apellidoUsuario = new SimpleStringProperty(apellidoUsuario);
 		this.emailUsuario = new SimpleStringProperty(emailUsuario);
 		this.fechaNacimiento = fechaNacimiento;
-		this.idRol = idRol;
+		this.idRol = new SimpleIntegerProperty(idRol);
 	}
+
 	//Metodos atributo: balance
-	public int getBalance() {
-		return balance;
+	public Double getBalance() {
+		return balance.get();
 	}
+
+
 
 	//Metodos atributo: idUsuario
 	public int getIdUsuario() {
@@ -113,11 +117,11 @@ public class Usuario{
 		this.fechaNacimiento = fechaNacimiento;
 	}
 	//Metodos atributo: idRol
-	public Rol getIdRol() {
+	public IntegerProperty getidRol() {
 		return idRol;
 	}
-	public void setIdRol(Rol idRol) {
-		this.idRol = idRol;
+	public void setidRol(int idRol) {
+		this.idRol = new SimpleIntegerProperty(idRol);
 	}
 
 	//metodos agregar eliminar...
@@ -140,7 +144,7 @@ public class Usuario{
 			ResultSet resultado = instruccion.executeQuery("SELECT id_user, name, surname, email, username, birthdate, id_role, balance FROM user");
 
 			while(resultado.next()){
-				tablaUsuario.add(new Usuario(resultado.getInt("id_user"), resultado.getString("name"), resultado.getString("surname"), resultado.getString("email"),  resultado.getString("username"), resultado.getDate("birthdate"), new Rol(resultado.getInt("id_role"))));
+				tablaUsuario.add(new Usuario(resultado.getInt("id_user"), resultado.getString("name"), resultado.getString("surname"), resultado.getString("email"),  resultado.getString("username"), resultado.getDate("birthdate"), resultado.getInt("id_role"), resultado.getDouble("balance")));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

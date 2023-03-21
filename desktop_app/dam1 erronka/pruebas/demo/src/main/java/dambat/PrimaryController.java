@@ -27,9 +27,9 @@ public class PrimaryController implements Initializable{
     @FXML private TableColumn<Usuario, String> clmApellido;
     @FXML private TableColumn<Usuario, String> clmEmail;
     @FXML private TableColumn<Usuario, Date> clmfecha;
-    @FXML private TableColumn<Usuario, Rol> clmIdRoll; 
+    @FXML private TableColumn<Usuario, Integer> clmIdRoll; 
     @FXML private TableColumn<Usuario, String> clmUsername; 
-    @FXML private TableColumn<Usuario, String> clmBalance; 
+    @FXML private TableColumn<Usuario, Double> clmBalance; 
     //componentes interfaz grafica
         //Text
     @FXML private TextField tId;
@@ -68,8 +68,8 @@ public class PrimaryController implements Initializable{
         clmEmail.setCellValueFactory(new PropertyValueFactory<Usuario, String>("emailUsuario"));
         clmfecha.setCellValueFactory(new PropertyValueFactory<Usuario, Date>("fechaNacimiento"));
         clmUsername.setCellValueFactory(new PropertyValueFactory<Usuario, String>("username"));
-        clmBalance.setCellValueFactory(new PropertyValueFactory<Usuario, String>("balance"));
-/*         clmIdRoll.setCellValueFactory(new PropertyValueFactory<Usuario, Rol>("idRol")); no funciona*/
+        clmBalance.setCellValueFactory(new PropertyValueFactory<Usuario, Double>("balance"));
+        clmIdRoll.setCellValueFactory(new PropertyValueFactory<Usuario, Integer>("idRol"));
         gestionarEventos();
         conexion.cerrarConexion();
     }
@@ -87,6 +87,7 @@ public class PrimaryController implements Initializable{
                 tEmail.setText(valorSeleccionado.getEmailUsuario());
                 tUsername.setText(valorSeleccionado.getUsername());
                 tEdad.setPromptText(String.valueOf(valorSeleccionado.getFechaNacimiento()));
+                tMony.setText(strMony);
 
 
             }

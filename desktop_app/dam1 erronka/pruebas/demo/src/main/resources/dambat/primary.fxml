@@ -96,7 +96,7 @@
                         <Button mnemonicParsing="false" text="SAVE" />
                         <Button mnemonicParsing="false" text="REFRESH" />
                         <Button mnemonicParsing="false" text="DELETE" />
-                        <Button mnemonicParsing="false" onAction="#pasoPag" text="PASO" />
+                        <Button mnemonicParsing="false" onAction="#pasoPag" text="----&gt;" />
                      </children>
                   </HBox>
                </children>
@@ -110,8 +110,8 @@
                         <TableColumn fx:id="clmUsername" prefWidth="86.0" text="Username" />
                      <TableColumn fx:id="clmEmail" prefWidth="77.0" text="Email" />
                         <TableColumn fx:id="clmfecha" minWidth="8.0" prefWidth="57.0" text="Age" />
-                        <TableColumn fx:id="clmIdRoll" prefWidth="61.0" text="Role" />
-                        <TableColumn fx:id="clmBalance" prefWidth="59.0" text="Balance" />
+                        <TableColumn fx:id="clmIdRoll" minWidth="0.0" prefWidth="14.0" text="Role" />
+                        <TableColumn fx:id="clmBalance" prefWidth="106.0" text="Balance" />
                     </columns>
                   </TableView>
                </children>
