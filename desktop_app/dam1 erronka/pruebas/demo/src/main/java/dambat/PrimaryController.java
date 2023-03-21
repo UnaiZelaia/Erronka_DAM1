@@ -86,7 +86,6 @@ public class PrimaryController implements Initializable{
                 tApellido.setText(valorSeleccionado.getApellidoUsuario());
                 tEmail.setText(valorSeleccionado.getEmailUsuario());
                 tUsername.setText(valorSeleccionado.getUsername());
-                strMony.setText(valorSeleccionado.getBalance());
                 tEdad.setPromptText(String.valueOf(valorSeleccionado.getFechaNacimiento()));
 
 

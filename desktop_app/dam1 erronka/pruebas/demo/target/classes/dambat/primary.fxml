@@ -88,7 +88,7 @@
                               <ComboBox fx:id="tablaName" prefWidth="150.0" />
                            </children>
                         </HBox>
-                        <DatePicker prefHeight="25.0" prefWidth="152.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                        <DatePicker fx:id="tEdad" prefHeight="25.0" prefWidth="152.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                      </children>
                   </GridPane>
                   <HBox alignment="CENTER" layoutY="333.0" prefHeight="68.0" prefWidth="296.0" spacing="10.0">
