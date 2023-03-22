@@ -3,5 +3,18 @@ body {
 }
 
 .container-fluid {
-    background-color: #705a89;
+    background-color: #5e4384;
+}
+.bt{
+    background-color: #5e4384;
+    color: white;
+    border-radius: 18%;
+    border-color: #5e4384;
+}
+a{
+    text-decoration: none;
+    color: white;
+}
+fieldset.border.p4 {
+    padding: 10px;
 }
