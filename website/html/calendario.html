@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <meta charset="utf-8">
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="shortcut icon" href="../img/lg.png" type="image/x-icon">
   <title>Uni Ei-Er Canteen</title>
@@ -10,9 +10,10 @@
   <script src="../js/bootstrap.bundle.js"></script>
   <script src="../js/bootstrap.bundle.min.js"></script>
   <link rel="stylesheet" href="../style/style.css">
+  <script src="../js/calendar.js"></script>
 </head>
 
-<body>
+<body onload="javascript:setHtmlWeek()">
   <!--Start of the navbar-->
   <nav class="navbar navbar-expand-sm navbar-dark container-fluid">
     <div class="container-fluid">
@@ -41,9 +42,45 @@
     </div>
   </nav>
   <!--End of the navbar-->
-  <!--Start of the content-->
-  <div>
 
+
+  <!--Start of the content-->
+  <div class="col-8 m-auto mt-3">
+    <h4>Menu for week {week number}</h4>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th id="weekMon">Monday </th>
+          <th id="weekTue">Tuesday </th>
+          <th id="weekWed">Wednesday </th>
+          <th id="weekThu">Thursday </th>
+          <th id="weekFri">Friday </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Menu for Breakfast: Monday</td>
+          <td>Menu for Breakfast: Tuesday</td>
+          <td>Menu for breakfast: Wednesday</td>
+          <td>Menu for breakfast: Thursday</td>
+          <td>Menu for breakfast: Friday</td>
+        </tr>
+        <tr>
+          <td>Menu for lunch: Monday</td>
+          <td>Menu for lunch: Tuesday</td>
+          <td>Menu for lunch: Wednesday</td>
+          <td>Menu for lunch: Thursday</td>
+          <td>Menu for lunch: Friday</td>
+        </tr>
+        <tr>
+          <td>Menu for dinner: Monday</td>
+          <td>Menu for dinner: Tuesday</td>
+          <td>Menu for dinner: Wednesday</td>
+          <td>Menu for dinner: Thursday</td>
+          <td>Menu for dinner: Friday</td>>
+        </tr>
+      </tbody>
+    </table>
   </div>
   <!--End of the content-->
   <!--Start of the footer-->
