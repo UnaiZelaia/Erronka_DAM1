@@ -38,7 +38,6 @@ public class PrimaryController implements Initializable{
     @FXML private TextField tEmail;
     @FXML private TextField tUsername;
     @FXML private DatePicker tEdad;
-    @FXML private TextField tRol;
     @FXML private TextField tMony;
 
     @FXML private ComboBox<Rol> tablaName;
@@ -87,6 +86,7 @@ public class PrimaryController implements Initializable{
                 tEmail.setText(valorSeleccionado.getEmailUsuario());
                 tUsername.setText(valorSeleccionado.getUsername());
                 tEdad.setPromptText(String.valueOf(valorSeleccionado.getFechaNacimiento()));
+                tablaName.setPromptText(String.valueOf(valorSeleccionado.getRoleDesc()));
                 tMony.setText(strMony);
 
 
