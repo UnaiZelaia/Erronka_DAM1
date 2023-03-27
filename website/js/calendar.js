@@ -161,7 +161,7 @@ function setMonthAndWeek() {
 }
 
 function setHiddens() {
-    let week = setWeekDays();
+    var week = setWeekDays();
     var day1 = document.getElementsByClassName("day1");
     var day2 = document.getElementsByClassName("day2");
     var day3 = document.getElementsByClassName("day3");
@@ -169,7 +169,7 @@ function setHiddens() {
     var day5 = document.getElementsByClassName("day5");
     var n;
     for (n = 0; n < day1.length; ++n) {
-        day1[n].value =week[0];
+        day1[n].value = week[0];
         day2[n].value = week[1];
         day3[n].value = week[2];
         day4[n].value = week[3];

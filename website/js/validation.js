@@ -31,3 +31,44 @@ function validateEmptyBirthdate(){
         alert("Name cannot be empty");
     }
 }
+
+
+
+/*
+Validation de Nistal
+*/
+
+function balidatu() {
+    const formularioa = ["izena", "email", "helbidea", "telefonoa", "herrialdea", "iruzkinak"];
+    for (var i = 0; i < formularioa.length; i++) {
+        var x = document.forms["formularioa"][formularioa[i]].value;
+        if (x == "") {
+            document.getElementById("abisua").innerHTML = "Mesedez bete '" + formularioa[i] + "' eremua";
+            document.getElementById("abisua").style.color = "grey";
+            document.getElementById("abisua").style.fontSize = "50px";
+            document.getElementById("abisua").style.textAlign = "center";
+
+            return false;
+        }
+    }
+    var em = document.forms["formularioa"]["email"].value;
+    if ((em.includes("@")) == false) {
+        document.getElementById("abisua").innerHTML = "Emailak @ ikurra eduki behar du.";
+        document.getElementById("abisua").style.color = "grey";
+        document.getElementById("abisua").style.fontSize = "50px";
+        document.getElementById("abisua").style.textAlign = "center";
+        return false;
+    }
+    var tlf = document.forms["formularioa"]["telefonoa"].value;
+    if ((tlf.match(/(\+34|0034|34)?[ -]*(6|7|9|8)[ -]*([0-9][ -]*){8}/)) == null) {
+        document.getElementById("abisua").innerHTML = "Telefonoak 9 zenbaki izan behar ditu.";
+        document.getElementById("abisua").style.color = "grey";
+        document.getElementById("abisua").style.fontSize = "50px";
+        document.getElementById("abisua").style.textAlign = "center";
+        return false;
+    }
+}
+
+function garbitu() {
+    document.getElementById("abisua").innerHTML = "";
+}
