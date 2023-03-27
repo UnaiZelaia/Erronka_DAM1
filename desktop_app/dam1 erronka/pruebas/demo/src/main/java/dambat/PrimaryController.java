@@ -27,7 +27,7 @@ public class PrimaryController implements Initializable{
     @FXML private TableColumn<Usuario, String> clmApellido;
     @FXML private TableColumn<Usuario, String> clmEmail;
     @FXML private TableColumn<Usuario, Date> clmfecha;
-    @FXML private TableColumn<Usuario, Integer> clmIdRoll; 
+    @FXML private TableColumn<Usuario, String> clmIdRoll; 
     @FXML private TableColumn<Usuario, String> clmUsername; 
     @FXML private TableColumn<Usuario, Double> clmBalance; 
     //componentes interfaz grafica
@@ -69,7 +69,7 @@ public class PrimaryController implements Initializable{
         clmfecha.setCellValueFactory(new PropertyValueFactory<Usuario, Date>("fechaNacimiento"));
         clmUsername.setCellValueFactory(new PropertyValueFactory<Usuario, String>("username"));
         clmBalance.setCellValueFactory(new PropertyValueFactory<Usuario, Double>("balance"));
-        clmIdRoll.setCellValueFactory(new PropertyValueFactory<Usuario, Integer>("idRol"));
+        clmIdRoll.setCellValueFactory(new PropertyValueFactory<Usuario, String>("role_desc"));
         gestionarEventos();
         conexion.cerrarConexion();
     }
