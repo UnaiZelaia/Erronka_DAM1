@@ -25,7 +25,7 @@ public class Usuario{
 	private Date fechaNacimiento;
 	private IntegerProperty idRol;
 	private DoubleProperty balance;
-	private StringProperty role_desc;
+	private StringProperty roleDesc;
 
 
 
@@ -39,7 +39,7 @@ public class Usuario{
 		this.username = new SimpleStringProperty(username);
 		this.fechaNacimiento = fechaNacimiento;
 		this.balance = new SimpleDoubleProperty(balance);
-		this.role_desc = new SimpleStringProperty(role_desc);
+		this.roleDesc = new SimpleStringProperty(role_desc);
 	}
 
 	public Usuario(int idUsuario, String nombreUsuario, String apellidoUsuario, 
@@ -125,15 +125,15 @@ public class Usuario{
 		this.idRol = new SimpleIntegerProperty(idRol);
 	}
 
-		//Metodos atributo: username
+		//Metodos atributo: Rol Desc
 		public String getRoleDesc() {
-			return role_desc.get();
+			return roleDesc.get();
 		}
 		public void setRoleDesc(String role_desc) {
-			this.role_desc = new SimpleStringProperty(role_desc);
+			this.roleDesc = new SimpleStringProperty(role_desc);
 		}
 		public StringProperty RoleDescProperty() {
-			return role_desc;
+			return roleDesc;
 		}
 
 

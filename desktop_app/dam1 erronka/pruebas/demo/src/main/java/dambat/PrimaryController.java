@@ -69,7 +69,7 @@ public class PrimaryController implements Initializable{
         clmfecha.setCellValueFactory(new PropertyValueFactory<Usuario, Date>("fechaNacimiento"));
         clmUsername.setCellValueFactory(new PropertyValueFactory<Usuario, String>("username"));
         clmBalance.setCellValueFactory(new PropertyValueFactory<Usuario, Double>("balance"));
-        clmIdRoll.setCellValueFactory(new PropertyValueFactory<Usuario, String>("role_desc"));
+        clmIdRoll.setCellValueFactory(new PropertyValueFactory<Usuario, String>("roleDesc"));
         gestionarEventos();
         conexion.cerrarConexion();
     }
