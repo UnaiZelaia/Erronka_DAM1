@@ -1,20 +1,42 @@
 body {
-    background-color: rgba(229, 205, 245, 0.4);
+    background-color: rgba(222, 193, 241, 0.505);
 }
 
-.container-fluid {
+.navbar {
     background-color: #5e4384;
 }
-.bt{
+
+.bt {
     background-color: #5e4384;
     color: white;
     border-radius: 18%;
     border-color: #5e4384;
 }
-a{
+
+a {
     text-decoration: none;
     color: white;
 }
+
 fieldset.border.p4 {
     padding: 10px;
+}
+
+footer {
+    background-color: #5e4384;
+}
+
+.table-responsive {
+    margin-right: 5%;
+    margin-left: 5%;
+}
+#MonthHeader{
+    text-align: center;
+}
+.table-bordered {
+    border-color: rgba(211, 142, 248, 0.493);
+  }
+.btn-primary{
+    background-color: #5e4384;
+    border: none;
 }
