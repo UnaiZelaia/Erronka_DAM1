@@ -11,12 +11,41 @@
     <link rel="stylesheet" href="../style/style.css">
     <title>Canteen log in</title>
 </head>
+<nav class="navbar navbar-expand-sm navbar-dark container-fluid">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="../img/lg.png">
+            Uni Eibar-Ermua Canteen
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">HOME</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="menu.html">MENU</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="reservas.html">RESERVAS</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="calendario.html">CALENDARIO</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<!--End of the navbar-->
+<!--Start of the content-->
 
 <body class="bg-muted">
     <div class="container text-center mb-5">
         <div class="col-12 rounded-4 mt-5" id="centro">
             <img id="uniLogo" class="col-4 rounded-top" src="../img/uni_eibar.png" alt="uni-eibar logo">
-            <form id="loginForm" name="loginForm" class="m-auto col-4 rounded-bottom p-4 text-light" method="POST" action="login_action.php">
+            <form id="loginForm" name="loginForm" class="m-auto col-4 rounded-bottom p-4 text-light" method="POST"
+                action="login_action.php">
                 <h2 class="pt-5 text-decoration-underline">Uni-Eibar canteen system</h2>
                 <h4>Log in</h4>
 
@@ -40,6 +69,41 @@
             </form>
         </div>
     </div>
+
+    <!--End of the content-->
+    <!--Start of the footer-->
+    <footer>
+        <div class="mt-5 p-4 text-light text-center container-fluid">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <p>Otaola Hiribidea, 29</p>
+                        <p>20600 Eibar, Gipuzkoa</p>
+                        <p>canteen@uni.eus</p>
+                        <p>943 89 92 11</p>
+                    </div>
+                    <div class="col-sm-4">
+                        <img width="290" height="210" src="../img/lg.png">
+                    </div>
+                    <div class="col-sm-4">
+                        <h5>Links</h5>
+                        <ul class="list-unstyled">
+                            <li><a href="index.html">HOME</a></li>
+                            <li><a href="menu.html">MENU</a></li>
+                            <li><a href="reservas.html">RESERVAS</a></li>
+                            <li><a href="calendario.html">CALENDARIO</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <p>Uni Ermua-Eibar Canteen ©2023</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!--End of the footer-->
 </body>
 
 </html>
