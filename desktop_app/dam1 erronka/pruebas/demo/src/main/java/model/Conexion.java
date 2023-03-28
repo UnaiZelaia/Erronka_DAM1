@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 public class Conexion {
     private Connection connection;
-    private String url = "jdbc:mysql://localhost/canteen_database";
+    private String url = "jdbc:mysql://localhost/canteen";
     private String usuario = "root";
     private String contraseña = "";
 

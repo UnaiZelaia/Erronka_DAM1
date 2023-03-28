@@ -1,6 +1,7 @@
 package model;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -21,37 +22,56 @@ public class Usuario{
 	private StringProperty nombreUsuario;
 	private StringProperty apellidoUsuario;
 	private StringProperty emailUsuario;
-	private StringProperty username;
 	private Date fechaNacimiento;
 	private IntegerProperty idRol;
+	private StringProperty password;
 	private DoubleProperty balance;
+	private IntegerProperty number;
 	private StringProperty roleDesc;
 
 
-
+	//constructor para visualizazr usuarios en tabla
 	public Usuario(int idUsuario, String nombreUsuario, String apellidoUsuario, 
-	String emailUsuario, String username, Date fechaNacimiento, 
+	String emailUsuario, Date fechaNacimiento, 
 	 Double balance, String role_desc) { 
 		this.idUsuario = new SimpleIntegerProperty(idUsuario);
 		this.nombreUsuario = new SimpleStringProperty(nombreUsuario);
 		this.apellidoUsuario = new SimpleStringProperty(apellidoUsuario);
 		this.emailUsuario = new SimpleStringProperty(emailUsuario);
-		this.username = new SimpleStringProperty(username);
 		this.fechaNacimiento = fechaNacimiento;
 		this.balance = new SimpleDoubleProperty(balance);
 		this.roleDesc = new SimpleStringProperty(role_desc);
 	}
-
+	//constructor para CreateUsers
 	public Usuario(int idUsuario, String nombreUsuario, String apellidoUsuario, 
-	String emailUsuario, Date fechaNacimiento, 
-	int idRol) { 
+	String emailUsuario, String password, int number, Date fechaNacimiento, 
+	int idRol, Double balance) { 
 		this.idUsuario = new SimpleIntegerProperty(idUsuario);
 		this.nombreUsuario = new SimpleStringProperty(nombreUsuario);
 		this.apellidoUsuario = new SimpleStringProperty(apellidoUsuario);
 		this.emailUsuario = new SimpleStringProperty(emailUsuario);
 		this.fechaNacimiento = fechaNacimiento;
+		this.balance = new SimpleDoubleProperty(balance);
+		this.password = new SimpleStringProperty(password);
+		this.number = new SimpleIntegerProperty(number);
 		this.idRol = new SimpleIntegerProperty(idRol);
 	}
+
+	//constructor para ManageUsers
+	public Usuario(int idUsuario, String nombreUsuario, String apellidoUsuario, 
+	String emailUsuario, Date fechaNacimiento, 
+	 int idRol, Double balance) { 
+		this.idUsuario = new SimpleIntegerProperty(idUsuario);
+		this.nombreUsuario = new SimpleStringProperty(nombreUsuario);
+		this.apellidoUsuario = new SimpleStringProperty(apellidoUsuario);
+		this.emailUsuario = new SimpleStringProperty(emailUsuario);
+		this.fechaNacimiento = fechaNacimiento;
+		this.balance = new SimpleDoubleProperty(balance);
+		this.idRol = new SimpleIntegerProperty(idRol);
+	}
+
+
+	
 
 	//Metodos atributo: balance
 	public Double getBalance() {
@@ -100,16 +120,7 @@ public class Usuario{
 	public StringProperty EmailUsuarioProperty() {
 		return emailUsuario;
 	}
-	//Metodos atributo: username
-	public String getUsername() {
-		return username.get();
-	}
-	public void setUsername(String username) {
-		this.username = new SimpleStringProperty(username);
-	}
-	public StringProperty UsernameProperty() {
-		return username;
-	}
+	
 	//Metodos atributo: fechaNacimiento
 	public Date getFechaNacimiento() {
 		return fechaNacimiento;
@@ -124,27 +135,79 @@ public class Usuario{
 	public void setidRol(int idRol) {
 		this.idRol = new SimpleIntegerProperty(idRol);
 	}
+	public IntegerProperty IdRolProperty() {
+		return idRol;
+	}
+	//Metodos atributo: apellidoUsuario
+	public String getPassword() {
+		return password.get();
+	}
+	public void setPassword(String password) {
+		this.apellidoUsuario = new SimpleStringProperty(password);
+	}
+	public StringProperty PasswordProperty() {
+		return password;
+	}
+	public int getNumber() {
+		return idUsuario.get();
+	}
+	public void setNumber(int number) {
+		this.number = new SimpleIntegerProperty(number);
+	}
+	public IntegerProperty NumberProperty() {
+		return number;
+	}
 
-		//Metodos atributo: Rol Desc
-		public String getRoleDesc() {
-			return roleDesc.get();
-		}
-		public void setRoleDesc(String role_desc) {
-			this.roleDesc = new SimpleStringProperty(role_desc);
-		}
-		public StringProperty RoleDescProperty() {
-			return roleDesc;
-		}
+	//Metodos atributo: Rol Desc
+	public String getRoleDesc() {
+		return roleDesc.get();
+	}
+	public void setRoleDesc(String role_desc) {
+		this.roleDesc = new SimpleStringProperty(role_desc);
+	}
+	public StringProperty RoleDescProperty() {
+		return roleDesc;
+	}
 
 
 	//metodos agregar eliminar...
 
-	public void guardarRegistro(){
-
+	public int nuevoRegistro(Connection connection){
+		try {
+			PreparedStatement instruccion = connection.prepareStatement("INSERT INTO user (name, surname, email, hash_password, telephone_num, birthdate, id_role, balance) VALUES (?, ?, ?, ?, ?, ?, ?, ?)"); //evita injeccion sql al enviar datos de esta forma y no con statement
+			
+			instruccion.setString(1, nombreUsuario.get());
+			instruccion.setString(2, apellidoUsuario.get());
+			instruccion.setString(3, emailUsuario.get());
+			instruccion.setString(4, password.get());
+			instruccion.setInt(5, number.get());
+			instruccion.setDate(6, (java.sql.Date) fechaNacimiento);
+			instruccion.setInt(7,idRol.get());
+			instruccion.setDouble(8,balance.get());
+			return instruccion.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return 0;
+		} 
 	}
 
-	public void actualizarRegistro(){
-		
+	public int actualizarRegistro(Connection connection){
+		try {
+			PreparedStatement instruccion = connection.prepareStatement("UPDATE user SET name = ?, surname = ?, birthdate = ?, id_role = ?, balance = ? WHERE user.id_user = ?");
+			
+			instruccion.setString(1, nombreUsuario.get());
+			instruccion.setString(2, apellidoUsuario.get());
+			instruccion.setString(3, emailUsuario.get());
+			instruccion.setDate(4, (java.sql.Date) fechaNacimiento);
+			instruccion.setInt(5,idRol.get());
+			instruccion.setDouble(6,balance.get());
+			instruccion.setInt(7,idUsuario.get());
+			return instruccion.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return 0;
+		}
 	}
 
 	public void eliminarRegistro(){
@@ -154,10 +217,10 @@ public class Usuario{
 	public static void llenarTablaUsuario(Connection connection, ObservableList<Usuario>tablaUsuario){
 		try {
 			Statement instruccion = connection.createStatement();
-			ResultSet resultado = instruccion.executeQuery("SELECT id_user, name, surname, email, username, birthdate, balance, r.role_desc FROM user INNER JOIN role r ON user.id_role = r.id_role");
+			ResultSet resultado = instruccion.executeQuery("SELECT id_user, name, surname, email, birthdate, balance, r.role_desc FROM user INNER JOIN role r ON user.id_role = r.id_role");
 
 			while(resultado.next()){
-				tablaUsuario.add(new Usuario(resultado.getInt("id_user"), resultado.getString("name"), resultado.getString("surname"), resultado.getString("email"),  resultado.getString("username"), resultado.getDate("birthdate"), resultado.getDouble("balance"), resultado.getString("role_desc")));
+				tablaUsuario.add(new Usuario(resultado.getInt("id_user"), resultado.getString("name"), resultado.getString("surname"), resultado.getString("email"), resultado.getDate("birthdate"), resultado.getDouble("balance"), resultado.getString("role_desc")));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
