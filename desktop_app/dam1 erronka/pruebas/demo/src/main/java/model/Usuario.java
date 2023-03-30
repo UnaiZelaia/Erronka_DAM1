@@ -5,7 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Date;
+import java.time.LocalDate;
 
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.IntegerProperty;
@@ -22,7 +22,7 @@ public class Usuario{
 	private StringProperty nombreUsuario;
 	private StringProperty apellidoUsuario;
 	private StringProperty emailUsuario;
-	private Date fechaNacimiento;
+	private LocalDate fechaNacimiento;
 	private IntegerProperty idRol;
 	private StringProperty password;
 	private DoubleProperty balance;
@@ -32,7 +32,7 @@ public class Usuario{
 
 	//constructor para visualizazr usuarios en tabla
 	public Usuario(int idUsuario, String nombreUsuario, String apellidoUsuario, 
-	String emailUsuario, Date fechaNacimiento, 
+	String emailUsuario, LocalDate fechaNacimiento, 
 	 Double balance, String role_desc) { 
 		this.idUsuario = new SimpleIntegerProperty(idUsuario);
 		this.nombreUsuario = new SimpleStringProperty(nombreUsuario);
@@ -44,7 +44,7 @@ public class Usuario{
 	}
 	//constructor para CreateUsers
 	public Usuario(int idUsuario, String nombreUsuario, String apellidoUsuario, 
-	String emailUsuario, String password, int number, Date fechaNacimiento, 
+	String emailUsuario, String password, int number, LocalDate fechaNacimiento, 
 	int idRol, Double balance) { 
 		this.idUsuario = new SimpleIntegerProperty(idUsuario);
 		this.nombreUsuario = new SimpleStringProperty(nombreUsuario);
@@ -59,7 +59,7 @@ public class Usuario{
 
 	//constructor para ManageUsers
 	public Usuario(int idUsuario, String nombreUsuario, String apellidoUsuario, 
-	String emailUsuario, Date fechaNacimiento, 
+	String emailUsuario, LocalDate fechaNacimiento, 
 	 int idRol, Double balance) { 
 		this.idUsuario = new SimpleIntegerProperty(idUsuario);
 		this.nombreUsuario = new SimpleStringProperty(nombreUsuario);
@@ -122,10 +122,10 @@ public class Usuario{
 	}
 	
 	//Metodos atributo: fechaNacimiento
-	public Date getFechaNacimiento() {
+	public LocalDate getFechaNacimiento() {
 		return fechaNacimiento;
 	}
-	public void setFechaNacimiento(Date fechaNacimiento) {
+	public void setFechaNacimiento(LocalDate fechaNacimiento) {
 		this.fechaNacimiento = fechaNacimiento;
 	}
 	//Metodos atributo: idRol
@@ -181,10 +181,11 @@ public class Usuario{
 			instruccion.setString(3, emailUsuario.get());
 			instruccion.setString(4, password.get());
 			instruccion.setInt(5, number.get());
-			instruccion.setDate(6, (java.sql.Date) fechaNacimiento);
+			instruccion.setDate(6, java.sql.Date.valueOf(fechaNacimiento));
 			instruccion.setInt(7,idRol.get());
 			instruccion.setDouble(8,balance.get());
 			return instruccion.executeUpdate();
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return 0;
@@ -193,13 +194,13 @@ public class Usuario{
 
 	public int actualizarRegistro(Connection connection){
 		try {
-			PreparedStatement instruccion = connection.prepareStatement("UPDATE user SET name = ?, surname = ?, birthdate = ?, id_role = ?, balance = ? WHERE user.id_user = ?");
+			PreparedStatement instruccion = connection.prepareStatement("UPDATE user SET name = ?, surname = ?, email = ?, birthdate = ?, id_role = ?, balance = ? WHERE user.id_user = ?");
 			
 			instruccion.setString(1, nombreUsuario.get());
 			instruccion.setString(2, apellidoUsuario.get());
 			instruccion.setString(3, emailUsuario.get());
-			instruccion.setDate(4, (java.sql.Date) fechaNacimiento);
-			instruccion.setInt(5,idRol.get());
+			instruccion.setDate(4, java.sql.Date.valueOf(fechaNacimiento));
+			instruccion.setInt(5,idRol.get()); 
 			instruccion.setDouble(6,balance.get());
 			instruccion.setInt(7,idUsuario.get());
 			return instruccion.executeUpdate();
@@ -220,7 +221,7 @@ public class Usuario{
 			ResultSet resultado = instruccion.executeQuery("SELECT id_user, name, surname, email, birthdate, balance, r.role_desc FROM user INNER JOIN role r ON user.id_role = r.id_role");
 
 			while(resultado.next()){
-				tablaUsuario.add(new Usuario(resultado.getInt("id_user"), resultado.getString("name"), resultado.getString("surname"), resultado.getString("email"), resultado.getDate("birthdate"), resultado.getDouble("balance"), resultado.getString("role_desc")));
+				tablaUsuario.add(new Usuario(resultado.getInt("id_user"), resultado.getString("name"), resultado.getString("surname"), resultado.getString("email"), resultado.getDate("birthdate").toLocalDate(), resultado.getDouble("balance"), resultado.getString("role_desc")));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

@@ -86,7 +86,7 @@ public class MUsersController implements Initializable{
                 tApellido.setText(valorSeleccionado.getApellidoUsuario());
                 tEmail.setText(valorSeleccionado.getEmailUsuario());
                 tablaName.setPromptText(valorSeleccionado.getRoleDesc());
-                tEdad.setPromptText(String.valueOf(valorSeleccionado.getFechaNacimiento()));
+                tEdad.setValue(valorSeleccionado.getFechaNacimiento());
                 tablaName.setPromptText(String.valueOf(valorSeleccionado.getRoleDesc()));
                 tMony.setText(strMony);
 
@@ -95,15 +95,16 @@ public class MUsersController implements Initializable{
             
         });
     }
-    @FXML
-    public void actualizarRegistro(){
+     @FXML
+     public void actualizarRegistro(){
        
-        Usuario u = new Usuario(0, tNombre.getText(), tApellido.getText(), tEmail.getText(), Date.valueOf(tEdad.getValue()), tablaName.getSelectionModel().getSelectedIndex(), Double.valueOf(tMony.getText()));    
+        Usuario u = new Usuario(Integer.valueOf(tId.getText()), tNombre.getText(), tApellido.getText(), tEmail.getText(), Date.valueOf(tEdad.getValue()).toLocalDate(), tablaName.getSelectionModel().getSelectedItem().getIdRol(), Double.valueOf(tMony.getText()));    
         conexion.establecerConexion();
         int resultado = u.actualizarRegistro(conexion.getConnection());
         conexion.cerrarConexion();
         if (resultado == 1){
-           /*  tablaUsuario.set(listaUs.getSelectionModel().getSelectedIndex(),u); */  //POR ARREGLAR GETSELECTIONMODEL
+
+            /* listaUs.set((tablaUsuario.getSelectionModel().getSelectedIndex()),u); */   //para hacer que la lista se actualice automaticamente, funciona mal
             Alert mensaje = new Alert(AlertType.INFORMATION);
             mensaje.setTitle("updated user");
             mensaje.setContentText("The user has been updated successfully");
@@ -112,7 +113,7 @@ public class MUsersController implements Initializable{
             
         }
 
-    }
+    }  
     
     @FXML
     private void pasoPag() throws IOException {
