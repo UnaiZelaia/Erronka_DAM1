@@ -11,24 +11,25 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import model.Conexion;
 import model.Rol;
 import model.Usuario;
 
-public class PrimaryController implements Initializable{
+public class MUsersController implements Initializable{
     //columnas
     @FXML private TableColumn<Usuario, String> clmNombre;
     @FXML private TableColumn<Usuario, String> clmApellido;
     @FXML private TableColumn<Usuario, String> clmEmail;
     @FXML private TableColumn<Usuario, Date> clmfecha;
     @FXML private TableColumn<Usuario, String> clmIdRoll; 
-    @FXML private TableColumn<Usuario, String> clmUsername; 
     @FXML private TableColumn<Usuario, Double> clmBalance; 
     //componentes interfaz grafica
         //Text
@@ -66,13 +67,13 @@ public class PrimaryController implements Initializable{
         clmApellido.setCellValueFactory(new PropertyValueFactory<Usuario, String>("apellidoUsuario"));
         clmEmail.setCellValueFactory(new PropertyValueFactory<Usuario, String>("emailUsuario"));
         clmfecha.setCellValueFactory(new PropertyValueFactory<Usuario, Date>("fechaNacimiento"));
-        clmUsername.setCellValueFactory(new PropertyValueFactory<Usuario, String>("username"));
         clmBalance.setCellValueFactory(new PropertyValueFactory<Usuario, Double>("balance"));
         clmIdRoll.setCellValueFactory(new PropertyValueFactory<Usuario, String>("roleDesc"));
         gestionarEventos();
         conexion.cerrarConexion();
     }
 
+    @FXML
     public void gestionarEventos(){
         tablaUsuario.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Usuario>() {
 
@@ -84,7 +85,7 @@ public class PrimaryController implements Initializable{
                 tNombre.setText(valorSeleccionado.getNombreUsuario());
                 tApellido.setText(valorSeleccionado.getApellidoUsuario());
                 tEmail.setText(valorSeleccionado.getEmailUsuario());
-                tUsername.setText(valorSeleccionado.getUsername());
+                tablaName.setPromptText(valorSeleccionado.getRoleDesc());
                 tEdad.setPromptText(String.valueOf(valorSeleccionado.getFechaNacimiento()));
                 tablaName.setPromptText(String.valueOf(valorSeleccionado.getRoleDesc()));
                 tMony.setText(strMony);
@@ -94,10 +95,28 @@ public class PrimaryController implements Initializable{
             
         });
     }
+    @FXML
+    public void actualizarRegistro(){
+       
+        Usuario u = new Usuario(0, tNombre.getText(), tApellido.getText(), tEmail.getText(), Date.valueOf(tEdad.getValue()), tablaName.getSelectionModel().getSelectedIndex(), Double.valueOf(tMony.getText()));    
+        conexion.establecerConexion();
+        int resultado = u.actualizarRegistro(conexion.getConnection());
+        conexion.cerrarConexion();
+        if (resultado == 1){
+           /*  tablaUsuario.set(listaUs.getSelectionModel().getSelectedIndex(),u); */  //POR ARREGLAR GETSELECTIONMODEL
+            Alert mensaje = new Alert(AlertType.INFORMATION);
+            mensaje.setTitle("updated user");
+            mensaje.setContentText("The user has been updated successfully");
+            mensaje.setHeaderText("Result:");
+            mensaje.show();
+            
+        }
 
+    }
+    
     @FXML
     private void pasoPag() throws IOException {
-        App.setRoot("secondary");
+        App.setRoot("CreateUsers");
     }
 
     
