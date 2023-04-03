@@ -149,7 +149,7 @@ public class Usuario{
 		return password;
 	}
 	public int getNumber() {
-		return idUsuario.get();
+		return number.get();
 	}
 	public void setNumber(int number) {
 		this.number = new SimpleIntegerProperty(number);
