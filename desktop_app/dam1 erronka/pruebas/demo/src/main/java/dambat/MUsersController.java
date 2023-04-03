@@ -104,7 +104,7 @@ public class MUsersController implements Initializable{
         conexion.cerrarConexion();
         if (resultado == 1){
 
-            /* listaUs.set((tablaUsuario.getSelectionModel().getSelectedIndex()),u); */   //para hacer que la lista se actualice automaticamente, funciona mal
+            listaUs.set(tablaUsuario.getSelectionModel().getSelectedIndex(),u);   //para hacer que la lista se actualice automaticamente, funciona mal
             Alert mensaje = new Alert(AlertType.INFORMATION);
             mensaje.setTitle("updated user");
             mensaje.setContentText("The user has been updated successfully");
@@ -114,6 +114,23 @@ public class MUsersController implements Initializable{
         }
 
     }  
+
+    public void eliminarRegistro(){
+        Usuario u = new Usuario(Integer.valueOf(tId.getText()));    
+        conexion.establecerConexion();
+        int resultado = u.eliminarRegistro(conexion.getConnection());
+        conexion.cerrarConexion();
+        if (resultado == 1){
+
+            /* listaUs.set((tablaUsuario.getSelectionModel().getSelectedIndex()),u); */   //para hacer que la lista se actualice automaticamente, funciona mal
+            Alert mensaje = new Alert(AlertType.INFORMATION);
+            mensaje.setTitle("eliminated user");
+            mensaje.setContentText("The user has been eliminated successfully");
+            mensaje.setHeaderText("Result:");
+            mensaje.show();
+            
+        }
+    }
     
     @FXML
     private void pasoPag() throws IOException {
