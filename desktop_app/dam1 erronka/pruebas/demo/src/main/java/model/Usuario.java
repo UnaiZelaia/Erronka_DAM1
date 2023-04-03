@@ -198,10 +198,9 @@ public class Usuario{
 	}
 
 	public int actualizarRegistro(Connection connection){
-		llenarTablaUsuario(connection, null);
 		try {
 			PreparedStatement instruccion = connection.prepareStatement("UPDATE user SET name = ?, surname = ?, email = ?, birthdate = ?, id_role = ?, balance = ? WHERE user.id_user = ?");
-			ResultSet resultado = instruccion.executeQuery("SELECT id_user, name, surname, email, birthdate, balance, r.role_desc FROM user INNER JOIN role r ON user.id_role = r.id_role");
+			/* ResultSet resultado = instruccion.executeQuery("SELECT id_user, name, surname, email, birthdate, balance, r.role_desc FROM user INNER JOIN role r ON user.id_role = r.id_role"); */
 			
 			instruccion.setString(1, nombreUsuario.get());
 			instruccion.setString(2, apellidoUsuario.get());
@@ -211,10 +210,6 @@ public class Usuario{
 			instruccion.setDouble(6,balance.get());
 			instruccion.setInt(7,idUsuario.get());
 			return instruccion.executeUpdate();
-			
-
-			
-
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return 0;

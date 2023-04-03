@@ -104,7 +104,7 @@ public class MUsersController implements Initializable{
         conexion.cerrarConexion();
         if (resultado == 1){
 
-            listaUs.set(tablaUsuario.getSelectionModel().getSelectedIndex(),u);   //para hacer que la lista se actualice automaticamente, funciona mal
+/*             listaUs.set(tablaUsuario.getSelectionModel().getSelectedIndex(),u); */   //para hacer que la lista se actualice automaticamente, funciona mal
             Alert mensaje = new Alert(AlertType.INFORMATION);
             mensaje.setTitle("updated user");
             mensaje.setContentText("The user has been updated successfully");
@@ -115,6 +115,7 @@ public class MUsersController implements Initializable{
 
     }  
 
+    @FXML
     public void eliminarRegistro(){
         Usuario u = new Usuario(Integer.valueOf(tId.getText()));    
         conexion.establecerConexion();
