@@ -1,21 +1,29 @@
 <?php
+require('../model/MySQLPDO.class.php');
+require('../model/User.class.php');
+
+if (isset($_POST["email"])) {
+
     $user = new User;
-    $user -> setName($_POST["name"]);
-    $user -> setSurname($_POST["surname"]);
-    $user -> setEmail($_POST["email"]);
-    $user -> setPassHash(password_hash($_POST["password"], PASSWORD_DEFAULT));
-    $user -> setBirhtdate($_POST["birthdate"]);
+    $user->setName($_POST["name"]);
+    $user->setSurname($_POST["surname"]);
+    $user->setEmail($_POST["email"]);
+    $user->setPassHash(password_hash($_POST["password"], PASSWORD_DEFAULT));
+    $user->setBirthdate($_POST["birthdate"]);
+    $user->setBalance(0);
 
-    $user -> setBalance(0);
 
-    if($_POST["resident"] = "on"){
-        $user -> setRole(2);
+    if (isset($_POST["resident"]) && $_POST["resident"] == "on") {
+        $user->setRole(2);
+    } else {
+        $user->setRole(1);
     }
-    else{
-        $user -> setRole(1);
-    }
+    MySQLPDO::signup($user);
 
-    $result = MySQLPDO::signup($user);
-    print($result);
-    header("Location: ../templates/home_log.php")
+
+    header("Location: ../templates/home_log.php");
+}
+else{
+    header("Location: ../public/errorPage.html");
+}
 ?>

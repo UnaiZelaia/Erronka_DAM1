@@ -1,7 +1,7 @@
 <?php
 class User{
 
-    private $id, $email, $name, $surname, $passHash, $birhtdate, $role, $balance;
+    private $id, $email, $name, $surname, $passHash, $birthdate, $role, $balance;
 
 
 
@@ -96,9 +96,9 @@ class User{
     /**
      * Get the value of birhtdate
      */ 
-    public function getBirhtdate()
+    public function getBirthdate()
     {
-        return $this->birhtdate;
+        return $this->birthdate;
     }
 
     /**
@@ -106,9 +106,9 @@ class User{
      *
      * @return  self
      */ 
-    public function setBirhtdate($birhtdate)
+    public function setBirthdate($birhtdate)
     {
-        $this->birhtdate = $birhtdate;
+        $this->birthdate = $birhtdate;
 
         return $this;
     }

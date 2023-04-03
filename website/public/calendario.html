@@ -32,7 +32,7 @@
             <a class="nav-link" href="menu.html">MENU</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="reservas.html">RESERVAS</a>
+            <a class="nav-link" href="reservation_form.html">RESERVAS</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="calendario.html">CALENDARIO</a>
@@ -48,160 +48,162 @@
   <!--Start of the content-->
   <div class="col-8 m-auto mt-3">
     <h4 id="MonthHeader">Menu for week: </h4>
-    <table class="table table-bordered">
-      <thead>
-        <tr>
-          <th id="weekMon">Monday </th>
-          <th id="weekTue">Tuesday </th>
-          <th id="weekWed">Wednesday </th>
-          <th id="weekThu">Thursday </th>
-          <th id="weekFri">Friday </th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>
-            Menu for Breakfast: Monday
-            <br>
-            <form method="GET" action="../modules/reservationAction.php">
-              <input name="day1" class="day1" type="hidden" value=""/>
-              <input name="type" id="type" type="hidden" value="bf"/>
-              <input type="submit" value="Make a reservation" class="btn btn-primary">
-            </form>
-          </td>
-          <td>
-            Menu for Breakfast: Tuesday
-            <br>
-            <form method="GET" action="../modules/reservationAction.php">
-              <input name="day2" class="day2" type="hidden" value=""/>
-              <input name="type" id="type" type="hidden" value="bf"/>
-              <input type="submit" value="Make a reservation" class="btn btn-primary">
-            </form>
-          </td>
-          <td>
-            Menu for Breakfast: Wednesday
-            <br>
-            <form method="GET" action="../modules/reservationAction.php">
-              <input name="day3" class="day3" type="hidden" value=""/>
-              <input name="type" id="type" type="hidden" value="bf"/>
-              <input type="submit" value="Make a reservation" class="btn btn-primary">
-            </form>
-          </td>
-          <td>
-            Menu for Breakfast: Thursday
-            <br>
-            <form method="GET" action="../modules/reservationAction.php">
-              <input name="day4" class="day4" type="hidden" value=""/>
-              <input name="type" id="type" type="hidden" value="bf"/>
-              <input type="submit" value="Make a reservation" class="btn btn-primary">
-            </form>
-          </td>
-          <td>
-            Menu for Breakfast: Friday
-            <br>
-            <form method="GET" action="../modules/reservationAction.php">
-              <input name="day5" class="day5" type="hidden" value=""/>
-              <input name="type" id="type" type="hidden" value="bf"/>
-              <input type="submit" value="Make a reservation" class="btn btn-primary">
-            </form>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            Menu for Lunch: Monday
-            <br>
-            <form method="GET" action="../modules/reservationAction.php">
-              <input name="day1" class="day1" type="hidden" value=""/>
-              <input name="type" id="type" type="hidden" value="lu"/>
-              <input type="submit" value="Make a reservation" class="btn btn-primary">
-            </form>
-          </td>
-          <td>
-            Menu for Lunch: Tuesday
-            <br>
-            <form method="GET" action="../modules/reservationAction.php">
-              <input name="day2" class="day2" type="hidden" value=""/>
-              <input name="type" id="type" type="hidden" value="lu"/>
-              <input type="submit" value="Make a reservation" class="btn btn-primary">
-            </form>
-          </td>
-          <td>
-            Menu for Lunch: Wednesday
-            <br>
-            <form method="GET" action="../modules/reservationAction.php">
-              <input name="day3" class="day3" type="hidden" value=""/>
-              <input name="type" id="type" type="hidden" value="lu"/>
-              <input type="submit" value="Make a reservation" class="btn btn-primary">
-            </form>
-          </td>
-          <td>
-            Menu for Lunch: Thursday
-            <br>
-            <form method="GET" action="../modules/reservationAction.php">
-              <input name="day4" class="day4" type="hidden" value=""/>
-              <input name="type" id="type" type="hidden" value="lu"/>
-              <input type="submit" value="Make a reservation" class="btn btn-primary">
-            </form>
-          </td>
-          <td>
-            Menu for Lunch: Friday
-            <br>
-            <form method="GET" action="../modules/reservationAction.php">
-              <input name="day5" class="day5" type="hidden" value=""/>
-              <input name="type" id="type" type="hidden" value="lu"/>
-              <input type="submit" value="Make a reservation" class="btn btn-primary">
-            </form>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            Menu for Dinner: Monday
-            <br>
-            <form method="GET" action="../modules/reservationAction.php">
-              <input name="day1" class="day1" type="hidden" value=""/>
-              <input name="type" id="type" type="hidden" value="di"/>
-              <input type="submit" value="Make a reservation" class="btn btn-primary">
-            </form>
-          </td>
-          <td>
-            Menu for Dinner: Tuesday
-            <br>
-            <form method="GET" action="../modules/reservationAction.php">
-              <input name="day2" class="day2" type="hidden" value="2"/>
-              <input name="type" id="type" type="hidden" value="di"/>
-              <input type="submit" value="Make a reservation" class="btn btn-primary">
-            </form>
-          </td>
-          <td>
-            Menu for Dinner: Wednesday
-            <br>
-            <form method="GET" action="../modules/reservationAction.php">
-              <input name="day3" class="day3" type="hidden" value=""/>
-              <input name="type" id="type" type="hidden" value="di"/>
-              <input type="submit" value="Make a reservation" class="btn btn-primary">
-            </form>
-          </td>
-          <td>
-            Menu for Dinner: Thursday
-            <br>
-            <form method="GET" action="../modules/reservationAction.php">
-              <input name="day4" class="day4" type="hidden" value=""/>
-              <input name="type" id="type" type="hidden" value="di"/>
-              <input type="submit" value="Make a reservation" class="btn btn-primary">
-            </form>
-          </td>
-          <td>
-            Menu for Dinner: Friday
-            <br>
-            <form method="GET" action="../modules/reservationAction.php">
-              <input name="day5" class="day5" type="hidden" value=""/>
-              <input name="type" id="type" type="hidden" value="di"/>
-              <input type="submit" value="Make a reservation" class="btn btn-primary">
-            </form>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="table-responsive">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th id="weekMon">Monday </th>
+            <th id="weekTue">Tuesday </th>
+            <th id="weekWed">Wednesday </th>
+            <th id="weekThu">Thursday </th>
+            <th id="weekFri">Friday </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              Menu for Breakfast: Monday
+              <br>
+              <form method="GET" action="../modules/reservationAction.php">
+                <input name="day1" class="day1" type="hidden" value="" />
+                <input name="type" id="type" type="hidden" value="bf" />
+                <input type="submit" value="Make a reservation" class="btn btn-primary">
+              </form>
+            </td>
+            <td>
+              Menu for Breakfast: Tuesday
+              <br>
+              <form method="GET" action="../modules/reservationAction.php">
+                <input name="day2" class="day2" type="hidden" value="" />
+                <input name="type" id="type" type="hidden" value="bf" />
+                <input type="submit" value="Make a reservation" class="btn btn-primary">
+              </form>
+            </td>
+            <td>
+              Menu for Breakfast: Wednesday
+              <br>
+              <form method="GET" action="../modules/reservationAction.php">
+                <input name="day3" class="day3" type="hidden" value="" />
+                <input name="type" id="type" type="hidden" value="bf" />
+                <input type="submit" value="Make a reservation" class="btn btn-primary">
+              </form>
+            </td>
+            <td>
+              Menu for Breakfast: Thursday
+              <br>
+              <form method="GET" action="../modules/reservationAction.php">
+                <input name="day4" class="day4" type="hidden" value="" />
+                <input name="type" id="type" type="hidden" value="bf" />
+                <input type="submit" value="Make a reservation" class="btn btn-primary">
+              </form>
+            </td>
+            <td>
+              Menu for Breakfast: Friday
+              <br>
+              <form method="GET" action="../modules/reservationAction.php">
+                <input name="day5" class="day5" type="hidden" value="" />
+                <input name="type" id="type" type="hidden" value="bf" />
+                <input type="submit" value="Make a reservation" class="btn btn-primary">
+              </form>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Menu for Lunch: Monday
+              <br>
+              <form method="GET" action="../modules/reservationAction.php">
+                <input name="day1" class="day1" type="hidden" value="" />
+                <input name="type" id="type" type="hidden" value="lu" />
+                <input type="submit" value="Make a reservation" class="btn btn-primary">
+              </form>
+            </td>
+            <td>
+              Menu for Lunch: Tuesday
+              <br>
+              <form method="GET" action="../modules/reservationAction.php">
+                <input name="day2" class="day2" type="hidden" value="" />
+                <input name="type" id="type" type="hidden" value="lu" />
+                <input type="submit" value="Make a reservation" class="btn btn-primary">
+              </form>
+            </td>
+            <td>
+              Menu for Lunch: Wednesday
+              <br>
+              <form method="GET" action="../modules/reservationAction.php">
+                <input name="day3" class="day3" type="hidden" value="" />
+                <input name="type" id="type" type="hidden" value="lu" />
+                <input type="submit" value="Make a reservation" class="btn btn-primary">
+              </form>
+            </td>
+            <td>
+              Menu for Lunch: Thursday
+              <br>
+              <form method="GET" action="../modules/reservationAction.php">
+                <input name="day4" class="day4" type="hidden" value="" />
+                <input name="type" id="type" type="hidden" value="lu" />
+                <input type="submit" value="Make a reservation" class="btn btn-primary">
+              </form>
+            </td>
+            <td>
+              Menu for Lunch: Friday
+              <br>
+              <form method="GET" action="../modules/reservationAction.php">
+                <input name="day5" class="day5" type="hidden" value="" />
+                <input name="type" id="type" type="hidden" value="lu" />
+                <input type="submit" value="Make a reservation" class="btn btn-primary">
+              </form>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Menu for Dinner: Monday
+              <br>
+              <form method="GET" action="../modules/reservationAction.php">
+                <input name="day1" class="day1" type="hidden" value="" />
+                <input name="type" id="type" type="hidden" value="di" />
+                <input type="submit" value="Make a reservation" class="btn btn-primary">
+              </form>
+            </td>
+            <td>
+              Menu for Dinner: Tuesday
+              <br>
+              <form method="GET" action="../modules/reservationAction.php">
+                <input name="day2" class="day2" type="hidden" value="2" />
+                <input name="type" id="type" type="hidden" value="di" />
+                <input type="submit" value="Make a reservation" class="btn btn-primary">
+              </form>
+            </td>
+            <td>
+              Menu for Dinner: Wednesday
+              <br>
+              <form method="GET" action="../modules/reservationAction.php">
+                <input name="day3" class="day3" type="hidden" value="" />
+                <input name="type" id="type" type="hidden" value="di" />
+                <input type="submit" value="Make a reservation" class="btn btn-primary">
+              </form>
+            </td>
+            <td>
+              Menu for Dinner: Thursday
+              <br>
+              <form method="GET" action="../modules/reservationAction.php">
+                <input name="day4" class="day4" type="hidden" value="" />
+                <input name="type" id="type" type="hidden" value="di" />
+                <input type="submit" value="Make a reservation" class="btn btn-primary">
+              </form>
+            </td>
+            <td>
+              Menu for Dinner: Friday
+              <br>
+              <form method="GET" action="../modules/reservationAction.php">
+                <input name="day5" class="day5" type="hidden" value="" />
+                <input name="type" id="type" type="hidden" value="di" />
+                <input type="submit" value="Make a reservation" class="btn btn-primary">
+              </form>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
   <!--End of the content-->
 
@@ -210,33 +212,33 @@
   <footer>
     <div class="mt-5 p-4 text-light text-center container-fluid">
       <div class="container">
-          <div class="row">
-            <div class="col-sm-4">
-              <p>Otaola Hiribidea, 29</p>
-              <p>20600 Eibar, Gipuzkoa</p>
-              <p>canteen@uni.eus</p>
-              <p>943 89 92 11</p>
-            </div>
-            <div class="col-sm-4">
-                <img class="img-flex" width="290" height="210" src="../img/lg.png">
-            </div>
-            <div class="col-sm-4">
-              <h5>Links</h5>
-              <ul class="list-unstyled">
-                <li><a href="index.html">HOME</a></li>
-                <li><a href="menu.html">MENU</a></li>
-                <li><a href="reservas.html">RESERVAS</a></li>
-                <li><a href="calendario.html">CALENDARIO</a></li>
-              </ul>
-            </div>
+        <div class="row">
+          <div class="col-sm-4">
+            <p>Otaola Hiribidea, 29</p>
+            <p>20600 Eibar, Gipuzkoa</p>
+            <p>canteen@uni.eus</p>
+            <p>943 89 92 11</p>
           </div>
-          <div class="row">
-            <div class="col-12 text-center">
-              <p>Uni Ermua-Eibar Canteen ©2023</p>
-            </div>
+          <div class="col-sm-4">
+            <img class="img-flex m-auto" src="../img/lg.png">
+          </div>
+          <div class="col-sm-4">
+            <h5>Links</h5>
+            <ul class="list-unstyled">
+              <li><a href="index.html">HOME</a></li>
+              <li><a href="menu.html">MENU</a></li>
+              <li><a href="reservas.html">RESERVAS</a></li>
+              <li><a href="calendario.html">CALENDARIO</a></li>
+            </ul>
           </div>
         </div>
-  </div>
+        <div class="row">
+          <div class="col-12 text-center">
+            <p>Uni Ermua-Eibar Canteen ©2023</p>
+          </div>
+        </div>
+      </div>
+    </div>
   </footer>
   <!--End of the footer-->
 </body>
