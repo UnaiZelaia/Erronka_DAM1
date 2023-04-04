@@ -43,7 +43,7 @@ class MySQLPDO {
     }
 
     public static function login($userEmail){
-        $sql = "SELECT email, password_hash FROM user WHERE UPPER(email) = ?";
+        $sql = "SELECT email, hash_password, name, surname, birthdate, id_role, balance FROM user WHERE UPPER(email) = ?";
         $params = array(strtoupper($userEmail));
         $result = MySQLPDO::select($sql, $params);
         return $result[0];
@@ -51,7 +51,7 @@ class MySQLPDO {
 
     public static function signup($user){
         try{
-        $sql = "INSERT INTO user(name, surname, email, hash_password, birthdate, id_role, balance) VALUES(?, ?, ?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO user (name, surname, email, hash_password, birthdate, id_role, balance) VALUES(?, ?, ?, ?, ?, ?, ?)";
         $params = array($user -> getName(), $user -> getSurname(), $user -> getEmail(), $user -> getPassHash(), $user -> getBirthdate(), $user -> getRole(), $user -> getBalance());
         $result = MySQLPDO::exec($sql, $params);
         return $result;

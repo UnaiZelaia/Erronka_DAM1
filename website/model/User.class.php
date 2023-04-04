@@ -3,15 +3,6 @@ class User{
 
     private $id, $email, $name, $surname, $passHash, $birthdate, $role, $balance;
 
-
-
-    
-
-
-
-
-
-
     //Setters and getters
     /**
      * Get the value of id

@@ -21,7 +21,8 @@ if (isset($_POST["email"])) {
     MySQLPDO::signup($user);
 
 
-    header("Location: ../templates/home_log.php");
+
+    header("Location: ../public/login_form.html");
 }
 else{
     header("Location: ../public/errorPage.html");

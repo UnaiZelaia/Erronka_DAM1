@@ -16,7 +16,7 @@ CREATE TABLE IF NOT EXISTS user(
     surname VARCHAR(50) NOT NULL,
     email VARCHAR(50) NOT NULL UNIQUE,
     hash_password VARCHAR(200) NOT NULL,
-    telephone_num VARCHAR(15) NOT NULL,
+    -- telephone_num VARCHAR(15) NOT NULL,
     birthdate DATE NOT NULL,
     id_role INTEGER(5) NOT NULL,
     balance FLOAT(7, 2),
