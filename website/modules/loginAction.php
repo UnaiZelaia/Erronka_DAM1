@@ -11,6 +11,7 @@ if(isset($result["email"])){
     if(password_verify($pass, $result["hash_password"])){
         session_start();
         $_SESSION["user"] = new User;
+        $_SESSION["user"] -> setId($result["id_user"]);
         $_SESSION["user"] -> setEmail($result["email"]);
         $_SESSION["user"] -> setName($result["name"]);
         $_SESSION["user"] -> setSurname($result["surname"]);

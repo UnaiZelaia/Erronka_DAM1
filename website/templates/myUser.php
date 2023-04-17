@@ -2,8 +2,6 @@
 include("../model/User.class.php");
 session_start();
 
-
-
 ?>
 
 

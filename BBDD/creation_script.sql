@@ -198,6 +198,27 @@ VALUES  (1, 1), (1, 3),
         (44, 3), (44, 1);
 
 
+DELIMITER //
+CREATE TRIGGER updateBalance
+AFTER INSERT ON transactions
+FOR EACH ROW
+BEGIN
+    UPDATE user SET balance = balance + NEW.transaction_quantity
+    WHERE id_user = NEW.id_user;
+END; //
+
+
+
+DELIMITER //
+CREATE TRIGGER updateBalanceReserve
+AFTER INSERT ON reserve
+FOR EACH ROW
+BEGIN
+    UPDATE user SET balance = balance - 5.7
+    WHERE id_user = NEW.id_user;
+END; //
+
+
 
 
 

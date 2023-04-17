@@ -1,10 +1,8 @@
 <?php
 include("../model/User.class.php");
+include("../model/MySQLPDO.class.php");
 
 session_start();
-
-$transactions = MySQLPDO::selectTransactions($_SESSION["user"]->getId());
-
 ?>
 <!doctype html>
 <html lang="en">
@@ -73,29 +71,54 @@ $transactions = MySQLPDO::selectTransactions($_SESSION["user"]->getId());
   <!--End of the navbar-->
   <!--Start of the content-->
 
+  <div class="col-8 m-auto mt-3">
 
-  <table class="table table-bordered rounded-3">
-    <thead>
-        <tr>
-            <th>Date of the transaction</th>
-            <th>Type of transaction</th>
-            <th>Transaction amount</th>
-            <th>Total balance</th>
-        </tr>
-    </thead>
-    <tbody>
-        <?php
-        foreach($transactions as $transac){
-        ?>
-        <tr>
-            <th><?php print($transac["transaction_date"]); ?></th>
-            <th><?php print($transac["transaction_method"]); ?></th>
-            <th><?php print($transac["transaction_quantity"]); ?></th>
-            <th><?php print($_SESSION["user"]->getBalance()); ?></th>
-        </tr>
-    </tbody>
+    <?php
+    $transactions = MySQLPDO::selectTransactions($_SESSION["user"]->getId());
+    if (sizeof($transactions) != 0) {
+      ?>
 
-  </table>
+      <div class="table-responsive">
+        <table class="table table-bordered rounded-3 col-8">
+          <thead>
+            <tr>
+              <th>Date of the transaction</th>
+              <th>Type of transaction</th>
+              <th>Transaction amount</th>
+              <th>Total balance</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <?php
+            foreach ($transactions as $transac) {
+              extract($transac)
+                ?>
+
+              <tr>
+                <th>
+                  <?php echo $transaction_date; ?>
+                </th>
+                <th>
+                  <?php echo $transaction_method; ?>
+                </th>
+                <th>
+                  <?php echo $transaction_quantity; ?>
+                </th>
+                <th>
+                  <?php print($_SESSION["user"]->getBalance());
+            }
+    } else {
+      ?>
+                <h1>El array esta vacio</h1>
+                <?php
+    } ?>
+            </th>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 
 
 
@@ -137,4 +160,5 @@ $transactions = MySQLPDO::selectTransactions($_SESSION["user"]->getId());
   </footer>
   <!--End of the footer-->
 </body>
-</html> 
+
+</html>

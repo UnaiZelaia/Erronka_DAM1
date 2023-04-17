@@ -43,7 +43,7 @@ class MySQLPDO {
     }
 
     public static function login($userEmail){
-        $sql = "SELECT email, hash_password, name, surname, birthdate, id_role, balance FROM user WHERE UPPER(email) = ?";
+        $sql = "SELECT id_user, email, hash_password, name, surname, birthdate, id_role, balance FROM user WHERE UPPER(email) = ?";
         $params = array(strtoupper($userEmail));
         $result = MySQLPDO::select($sql, $params);
         return $result[0];
