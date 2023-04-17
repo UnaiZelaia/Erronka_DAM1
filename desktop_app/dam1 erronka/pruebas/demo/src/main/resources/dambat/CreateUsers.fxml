@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="401.0" prefWidth="335.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dambat.CUsersController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="401.0" prefWidth="335.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dambat.CUsersController">
    <children>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" />
       <GridPane layoutX="18.0" layoutY="14.0" prefHeight="334.0" prefWidth="286.0">
@@ -25,23 +25,22 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label alignment="CENTER" contentDisplay="CENTER" text="BALANCE:" GridPane.rowIndex="8">
+            <Label alignment="CENTER" contentDisplay="CENTER" text="BALANCE:" GridPane.rowIndex="7">
                <padding>
                   <Insets right="5.0" />
                </padding>
             </Label>
-            <Label alignment="CENTER" contentDisplay="CENTER" text="ROLE:" GridPane.rowIndex="7">
+            <Label alignment="CENTER" contentDisplay="CENTER" text="ROLE:" GridPane.rowIndex="6">
                <padding>
                   <Insets right="5.0" />
                </padding>
             </Label>
-            <Label alignment="CENTER" contentDisplay="CENTER" text="BIRDTHDATE:" GridPane.rowIndex="6">
+            <Label alignment="CENTER" contentDisplay="CENTER" text="BIRDTHDATE:" GridPane.rowIndex="5">
                <padding>
                   <Insets right="5.0" />
                </padding>
@@ -70,8 +69,8 @@
             <TextField fx:id="tNombre" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <TextField fx:id="tApellido" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <TextField fx:id="tEmail" prefHeight="25.0" prefWidth="217.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <TextField fx:id="tMony" GridPane.columnIndex="1" GridPane.rowIndex="8" />
-            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
+            <TextField fx:id="tMony" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
                <children>
                   <DatePicker fx:id="tEdad" prefHeight="25.0" prefWidth="152.0" />
                </children>
@@ -82,17 +81,7 @@
                   <Insets right="5.0" />
                </padding>
             </Label>
-            <TextField fx:id="tRol" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-            <HBox alignment="CENTER_LEFT" prefHeight="68.0" prefWidth="296.0" spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
-               <children>
-                  <TextField fx:id="tNumber" />
-               </children>
-            </HBox>
-            <Label alignment="CENTER" contentDisplay="CENTER" text="NUMBER" GridPane.rowIndex="5">
-               <padding>
-                  <Insets right="5.0" />
-               </padding>
-            </Label>
+            <TextField fx:id="tRol" GridPane.columnIndex="1" GridPane.rowIndex="6" />
          </children>
       </GridPane>
       <Button layoutX="90.0" layoutY="365.0" mnemonicParsing="false" onAction="#nuevoRegistro" text="Create" />

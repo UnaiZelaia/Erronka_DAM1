@@ -26,7 +26,6 @@ public class Usuario{
 	private IntegerProperty idRol;
 	private StringProperty password;
 	private DoubleProperty balance;
-	private IntegerProperty number;
 	private StringProperty roleDesc;
 
 
@@ -44,7 +43,7 @@ public class Usuario{
 	}
 	//constructor para CreateUsers
 	public Usuario(int idUsuario, String nombreUsuario, String apellidoUsuario, 
-	String emailUsuario, String password, int number, LocalDate fechaNacimiento, 
+	String emailUsuario, String password, LocalDate fechaNacimiento, 
 	int idRol, Double balance) { 
 		this.idUsuario = new SimpleIntegerProperty(idUsuario);
 		this.nombreUsuario = new SimpleStringProperty(nombreUsuario);
@@ -53,7 +52,6 @@ public class Usuario{
 		this.fechaNacimiento = fechaNacimiento;
 		this.balance = new SimpleDoubleProperty(balance);
 		this.password = new SimpleStringProperty(password);
-		this.number = new SimpleIntegerProperty(number);
 		this.idRol = new SimpleIntegerProperty(idRol);
 	}
 
@@ -153,15 +151,6 @@ public class Usuario{
 	public StringProperty PasswordProperty() {
 		return password;
 	}
-	public int getNumber() {
-		return number.get();
-	}
-	public void setNumber(int number) {
-		this.number = new SimpleIntegerProperty(number);
-	}
-	public IntegerProperty NumberProperty() {
-		return number;
-	}
 
 	//Metodos atributo: Rol Desc
 	public String getRoleDesc() {
@@ -179,16 +168,15 @@ public class Usuario{
 
 	public int nuevoRegistro(Connection connection){
 		try {
-			PreparedStatement instruccion = connection.prepareStatement("INSERT INTO user (name, surname, email, hash_password, telephone_num, birthdate, id_role, balance) VALUES (?, ?, ?, ?, ?, ?, ?, ?)"); //evita injeccion sql al enviar datos de esta forma y no con statement
+			PreparedStatement instruccion = connection.prepareStatement("INSERT INTO user (name, surname, email, hash_password, birthdate, id_role, balance) VALUES (?, ?, ?, ?, ?, ?, ?)"); //evita injeccion sql al enviar datos de esta forma y no con statement
 			
 			instruccion.setString(1, nombreUsuario.get());
 			instruccion.setString(2, apellidoUsuario.get());
 			instruccion.setString(3, emailUsuario.get());
 			instruccion.setString(4, password.get());
-			instruccion.setInt(5, number.get());
-			instruccion.setDate(6, java.sql.Date.valueOf(fechaNacimiento));
-			instruccion.setInt(7,idRol.get());
-			instruccion.setDouble(8,balance.get());
+			instruccion.setDate(5, java.sql.Date.valueOf(fechaNacimiento));
+			instruccion.setInt(6,idRol.get());
+			instruccion.setDouble(7,balance.get());
 			return instruccion.executeUpdate();
 
 		} catch (SQLException e) {

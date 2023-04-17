@@ -17,7 +17,6 @@ public class CUsersController {
     @FXML private TextField tApellido;
     @FXML private TextField tEmail;
     @FXML private TextField tPassword;
-    @FXML private TextField tNumber;
     @FXML private DatePicker tEdad;
     @FXML private TextField tMony;
     @FXML private TextField tRol;
@@ -27,7 +26,7 @@ public class CUsersController {
         conexion = new Conexion();
         conexion.establecerConexion();
         //crear nuevo usuario llama al metodo nuevoRe0gistro
-        Usuario u = new Usuario(0, tNombre.getText(), tApellido.getText(), tEmail.getText(), tPassword.getText(), Integer.valueOf(tNumber.getText()), Date.valueOf(tEdad.getValue()).toLocalDate(), Integer.valueOf(tRol.getText()), Double.valueOf(tMony.getText()));
+        Usuario u = new Usuario(0, tNombre.getText(), tApellido.getText(), tEmail.getText(), tPassword.getText(), Date.valueOf(tEdad.getValue()).toLocalDate(), Integer.valueOf(tRol.getText()), Double.valueOf(tMony.getText()));
 
         //llama al metodo nuevoRe0gistro
         int resultado = u.nuevoRegistro(conexion.getConnection());
