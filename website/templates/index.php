@@ -60,7 +60,8 @@ session_start();
               </ul>
             </div>
             <li>
-              <img class="img-fluid nav-item m-auto pl-5" id="userLogo" src="../img/user_logo.png" alt="User default logo">
+              <img class="img-fluid nav-item m-auto pl-5" id="userLogo" src="../img/user_logo.png"
+                alt="User default logo">
             </li>
           </ul>
         </div>
@@ -266,5 +267,4 @@ session_start();
   </footer>
   <!--End of the footer-->
 </body>
-
 </html>

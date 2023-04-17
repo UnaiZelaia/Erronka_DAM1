@@ -83,5 +83,17 @@ class MySQLPDO {
                 return $e -> getMessage();
             }
     }
+
+    public static function selectTransactions($idUser){
+        try{
+            $sql = "SELECT * FROM transactions WHERE id_user = ?";
+            $params = array($idUser);
+            $result = MySQLPDO::select($sql, $params);
+            return $result;
+        }
+        catch(Exception $e){
+            return $e -> getMessage();
+        }
+    }
 }
     ?>
