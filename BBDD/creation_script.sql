@@ -74,13 +74,14 @@ CREATE TABLE IF NOT EXISTS menu_items(
 
 
 CREATE TABLE IF NOT EXISTS reserve(
+    id_reserve INTEGER(7) NOT NULL AUTO_INCREMENT,
     id_user INTEGER(7) NOT NULL,
     id_menu INTEGER(6) NOT NULL,
     menu_date DATE NOT NULL,
 
+    PRIMARY KEY(id_reserve),
     FOREIGN KEY(id_user) REFERENCES user(id_user),
-    FOREIGN KEY(id_menu) REFERENCES menu(id_menu),
-    PRIMARY KEY(id_user, id_menu, menu_date)
+    FOREIGN KEY(id_menu) REFERENCES menu(id_menu)
 );
 
 

@@ -24,7 +24,7 @@ if(isset($_SESSION["user"]) && $_SESSION["loged"] == "ok"){
 
 <body onload="javascript:setHtmlWeek()">
   <!--Start of the navbar-->
-  <nav class="navbar navbar-expand-sm navbar-dark container-fluid">
+  <nav class="navbar navbar-expand-sm navbar-dark container-fluid bg-uni">
     <div class="container-fluid">
       <a class="navbar-brand" href="../img/lg.png">
         Uni Eibar-Ermua Canteen
@@ -57,6 +57,7 @@ if(isset($_SESSION["user"]) && $_SESSION["loged"] == "ok"){
               <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="myUser.php">My user</a></li>
                 <li><a class="dropdown-item" href="userBalance.php">My balance</a></li>
+                <li><a class="dropdown-item" href="reservesList.php">My reserves</a></li>
                 <li><a class="dropdown-item" href="../modules/logout.php">Log out</a></li>
               </ul>
             </div>
@@ -90,7 +91,7 @@ if(isset($_SESSION["user"]) && $_SESSION["loged"] == "ok"){
               Menu for Breakfast: Monday
               <br>
               <form method="GET" action="../modules/reservationAction.php">
-                <input name="day1" class="day1" type="hidden" value="" />
+                <input name="day" class="day1" type="hidden" value="" />
                 <input name="type" id="type" type="hidden" value="bf" />
                 <input type="submit" value="Make a reservation" class="btn btn-primary">
               </form>
@@ -99,7 +100,7 @@ if(isset($_SESSION["user"]) && $_SESSION["loged"] == "ok"){
               Menu for Breakfast: Tuesday
               <br>
               <form method="GET" action="../modules/reservationAction.php">
-                <input name="day2" class="day2" type="hidden" value="" />
+                <input name="day" class="day2" type="hidden" value="" />
                 <input name="type" id="type" type="hidden" value="bf" />
                 <input type="submit" value="Make a reservation" class="btn btn-primary">
               </form>
@@ -108,7 +109,7 @@ if(isset($_SESSION["user"]) && $_SESSION["loged"] == "ok"){
               Menu for Breakfast: Wednesday
               <br>
               <form method="GET" action="../modules/reservationAction.php">
-                <input name="day3" class="day3" type="hidden" value="" />
+                <input name="day" class="day3" type="hidden" value="" />
                 <input name="type" id="type" type="hidden" value="bf" />
                 <input type="submit" value="Make a reservation" class="btn btn-primary">
               </form>
@@ -117,7 +118,7 @@ if(isset($_SESSION["user"]) && $_SESSION["loged"] == "ok"){
               Menu for Breakfast: Thursday
               <br>
               <form method="GET" action="../modules/reservationAction.php">
-                <input name="day4" class="day4" type="hidden" value="" />
+                <input name="day" class="day4" type="hidden" value="" />
                 <input name="type" id="type" type="hidden" value="bf" />
                 <input type="submit" value="Make a reservation" class="btn btn-primary">
               </form>
@@ -126,7 +127,7 @@ if(isset($_SESSION["user"]) && $_SESSION["loged"] == "ok"){
               Menu for Breakfast: Friday
               <br>
               <form method="GET" action="../modules/reservationAction.php">
-                <input name="day5" class="day5" type="hidden" value="" />
+                <input name="day" class="day5" type="hidden" value="" />
                 <input name="type" id="type" type="hidden" value="bf" />
                 <input type="submit" value="Make a reservation" class="btn btn-primary">
               </form>
@@ -137,7 +138,7 @@ if(isset($_SESSION["user"]) && $_SESSION["loged"] == "ok"){
               Menu for Lunch: Monday
               <br>
               <form method="GET" action="../modules/reservationAction.php">
-                <input name="day1" class="day1" type="hidden" value="" />
+                <input name="day" class="day1" type="hidden" value="" />
                 <input name="type" id="type" type="hidden" value="lu" />
                 <input type="submit" value="Make a reservation" class="btn btn-primary">
               </form>
@@ -146,7 +147,7 @@ if(isset($_SESSION["user"]) && $_SESSION["loged"] == "ok"){
               Menu for Lunch: Tuesday
               <br>
               <form method="GET" action="../modules/reservationAction.php">
-                <input name="day2" class="day2" type="hidden" value="" />
+                <input name="day" class="day2" type="hidden" value="" />
                 <input name="type" id="type" type="hidden" value="lu" />
                 <input type="submit" value="Make a reservation" class="btn btn-primary">
               </form>
@@ -155,7 +156,7 @@ if(isset($_SESSION["user"]) && $_SESSION["loged"] == "ok"){
               Menu for Lunch: Wednesday
               <br>
               <form method="GET" action="../modules/reservationAction.php">
-                <input name="day3" class="day3" type="hidden" value="" />
+                <input name="day" class="day3" type="hidden" value="" />
                 <input name="type" id="type" type="hidden" value="lu" />
                 <input type="submit" value="Make a reservation" class="btn btn-primary">
               </form>
@@ -164,7 +165,7 @@ if(isset($_SESSION["user"]) && $_SESSION["loged"] == "ok"){
               Menu for Lunch: Thursday
               <br>
               <form method="GET" action="../modules/reservationAction.php">
-                <input name="day4" class="day4" type="hidden" value="" />
+                <input name="day" class="day4" type="hidden" value="" />
                 <input name="type" id="type" type="hidden" value="lu" />
                 <input type="submit" value="Make a reservation" class="btn btn-primary">
               </form>
@@ -173,7 +174,7 @@ if(isset($_SESSION["user"]) && $_SESSION["loged"] == "ok"){
               Menu for Lunch: Friday
               <br>
               <form method="GET" action="../modules/reservationAction.php">
-                <input name="day5" class="day5" type="hidden" value="" />
+                <input name="day" class="day5" type="hidden" value="" />
                 <input name="type" id="type" type="hidden" value="lu" />
                 <input type="submit" value="Make a reservation" class="btn btn-primary">
               </form>
@@ -184,7 +185,7 @@ if(isset($_SESSION["user"]) && $_SESSION["loged"] == "ok"){
               Menu for Dinner: Monday
               <br>
               <form method="GET" action="../modules/reservationAction.php">
-                <input name="day1" class="day1" type="hidden" value="" />
+                <input name="day" class="day1" type="hidden" value="" />
                 <input name="type" id="type" type="hidden" value="di" />
                 <input type="submit" value="Make a reservation" class="btn btn-primary">
               </form>
@@ -193,7 +194,7 @@ if(isset($_SESSION["user"]) && $_SESSION["loged"] == "ok"){
               Menu for Dinner: Tuesday
               <br>
               <form method="GET" action="../modules/reservationAction.php">
-                <input name="day2" class="day2" type="hidden" value="2" />
+                <input name="day" class="day2" type="hidden" value="2" />
                 <input name="type" id="type" type="hidden" value="di" />
                 <input type="submit" value="Make a reservation" class="btn btn-primary">
               </form>
@@ -202,7 +203,7 @@ if(isset($_SESSION["user"]) && $_SESSION["loged"] == "ok"){
               Menu for Dinner: Wednesday
               <br>
               <form method="GET" action="../modules/reservationAction.php">
-                <input name="day3" class="day3" type="hidden" value="" />
+                <input name="day" class="day3" type="hidden" value="" />
                 <input name="type" id="type" type="hidden" value="di" />
                 <input type="submit" value="Make a reservation" class="btn btn-primary">
               </form>
@@ -211,7 +212,7 @@ if(isset($_SESSION["user"]) && $_SESSION["loged"] == "ok"){
               Menu for Dinner: Thursday
               <br>
               <form method="GET" action="../modules/reservationAction.php">
-                <input name="day4" class="day4" type="hidden" value="" />
+                <input name="day" class="day4" type="hidden" value="" />
                 <input name="type" id="type" type="hidden" value="di" />
                 <input type="submit" value="Make a reservation" class="btn btn-primary">
               </form>
@@ -220,7 +221,7 @@ if(isset($_SESSION["user"]) && $_SESSION["loged"] == "ok"){
               Menu for Dinner: Friday
               <br>
               <form method="GET" action="../modules/reservationAction.php">
-                <input name="day5" class="day5" type="hidden" value="" />
+                <input name="day" class="day5" type="hidden" value="" />
                 <input name="type" id="type" type="hidden" value="di" />
                 <input type="submit" value="Make a reservation" class="btn btn-primary">
               </form>
@@ -270,5 +271,7 @@ if(isset($_SESSION["user"]) && $_SESSION["loged"] == "ok"){
 </body>
 </html>
 <?php
+}else{
+  header("Location: ../public/error.html");
 }
 ?>
