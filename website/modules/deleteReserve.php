@@ -3,14 +3,14 @@ require('../model/MySQLPDO.class.php');
 require('../model/User.class.php');
 session_start();
 
-$date = $_GET["reservationDate"];
-$meal = $_GET["meal"];
+$idReserve = $_GET["cancel"];
 
 
-if(isset($date) && isset($meal) && isset($_SESSION["user"])){
+if(isset($idReserve) && isset($_SESSION["user"])){
     
 
-    MySQLPDO::deleteReserve($date, $_SESSION["user"] -> getId, $idMeal);
+    MySQLPDO::deleteReserve($idReserve);
+    header("Location: ../templates/reservesList.php");
 }
 else{
     header("Location: ../public/errorPage.html");

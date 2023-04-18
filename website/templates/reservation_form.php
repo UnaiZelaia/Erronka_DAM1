@@ -58,6 +58,7 @@ if(isset($_SESSION["user"]) && $_SESSION["loged"] == "ok"){
               <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="myUser.php">My user</a></li>
                 <li><a class="dropdown-item" href="userBalance.php">My balance</a></li>
+                <li><a class="dropdown-item" href="reservesList.php">My reserves</a></li>
                 <li><a class="dropdown-item" href="../modules/logout.php">Log out</a></li>
               </ul>
             </div>
@@ -231,5 +232,7 @@ if(isset($_SESSION["user"]) && $_SESSION["loged"] == "ok"){
 </body>
 </html>
 <?php
+}else{
+  header("Location: ../public/error.html");
 }
 ?>

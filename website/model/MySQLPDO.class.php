@@ -84,10 +84,10 @@ class MySQLPDO {
             }
     }
 
-    public static function deleteReserve($id_user,$id_menu,$fecha) {
+    public static function deleteReserve($id_reserve) {
         try{
-            $sql ="delete from reserve where id_user=? and id_menu=? and menu_date=?";
-            $params = array($id_user, $id_menu, $fecha);
+            $sql ="delete from reserve where id_reserve=?";
+            $params = array($id_reserve);
             $result = MySQLPDO::exec($sql, $params);
             return $result;
             }
@@ -99,7 +99,7 @@ class MySQLPDO {
     }
     public static function listReserve($id_user){
         try{
-            $sql = "select * from reserve r inner join menu m on r.id_menu =m.id_menu where id_user=?";
+            $sql = "SELECT r.id_reserve, r.id_menu, course, menu_name, id_user, menu_date FROM reserve r INNER JOIN menu m ON r.id_menu =m.id_menu WHERE id_user=?";
             $params = array($id_user);
             $result = MySQLPDO::select($sql, $params);
             return $result;

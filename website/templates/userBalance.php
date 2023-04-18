@@ -2,9 +2,9 @@
 include("../model/User.class.php");
 include("../model/MySQLPDO.class.php");
 session_start();
-if(isset($_SESSION["user"]) && $_SESSION["loged"] == "ok"){
+if (isset($_SESSION["user"]) && $_SESSION["loged"] == "ok") {
 
-?>
+  ?>
   <!doctype html>
   <html lang="en">
 
@@ -57,6 +57,7 @@ if(isset($_SESSION["user"]) && $_SESSION["loged"] == "ok"){
                 <ul class="dropdown-menu">
                   <li><a class="dropdown-item" href="myUser.php">My user</a></li>
                   <li><a class="dropdown-item" href="userBalance.php">My balance</a></li>
+                  <li><a class="dropdown-item" href="reservesList.php">My reserves</a></li>
                   <li><a class="dropdown-item" href="../modules/logout.php">Log out</a></li>
                 </ul>
               </div>
@@ -72,7 +73,8 @@ if(isset($_SESSION["user"]) && $_SESSION["loged"] == "ok"){
     <!--End of the navbar-->
     <!--Start of the content-->
 
-    <div class="col-8 m-auto mt-3">
+    <div class="col-8 m-auto mt-3 text-center">
+      <h1 class="mb-4">My balance history</h1>
 
       <?php
       $transactions = MySQLPDO::selectTransactions($_SESSION["user"]->getId());
@@ -97,16 +99,16 @@ if(isset($_SESSION["user"]) && $_SESSION["loged"] == "ok"){
                   ?>
 
                 <tr>
-                  <th>
+                  <td>
                     <?php echo $transaction_date; ?>
-                  </th>
-                  <th>
+                  </td>
+                  <td>
                     <?php echo $transaction_method; ?>
-                  </th>
-                  <th>
+                  </td>
+                  <td>
                     <?php echo $transaction_quantity; ?>
-                  </th>
-                  <th>
+                  </td>
+                  <td>
                     <?php print($_SESSION["user"]->getBalance());
               }
       } else {
@@ -114,7 +116,7 @@ if(isset($_SESSION["user"]) && $_SESSION["loged"] == "ok"){
                   <h1>El array esta vacio</h1>
                   <?php
       } ?>
-              </th>
+                </th>
             </tr>
           </tbody>
         </table>
@@ -164,8 +166,7 @@ if(isset($_SESSION["user"]) && $_SESSION["loged"] == "ok"){
 
   </html>
   <?php
-}
-else{
+} else {
   header("Location: ../public/error.html");
 }
 ?>
