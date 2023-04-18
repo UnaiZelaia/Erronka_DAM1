@@ -25,6 +25,6 @@ if (isset($_POST["email"])) {
     header("Location: ../public/login_form.html");
 }
 else{
-    header("Location: ../public/errorPage.html");
+    header("Location: ../public/errorSignup.html");
 }
 ?>
