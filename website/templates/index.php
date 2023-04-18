@@ -1,7 +1,8 @@
 <?php
 include("../model/User.class.php");
-
+include("../model/MySQLPDO.class.php");
 session_start();
+if(isset($_SESSION["user"]) && $_SESSION["loged"] == "ok"){
 
 ?>
 <!doctype html>
@@ -34,16 +35,16 @@ session_start();
       <div class="collapse navbar-collapse" id="collapsibleNavbar">
         <ul class="nav navbar-nav ml-auto">
           <li class="nav-item">
-            <a class="nav-link" href="index.html">HOME</a>
+            <a class="nav-link" href="index.php">HOME</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="menu.html">MENU</a>
+            <a class="nav-link" href="menu.php">MENU</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="reservation_form.html">RESERVAS</a>
+            <a class="nav-link" href="reservation_form.php">RESERVAS</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="calendario.html">CALENDARIO</a>
+            <a class="nav-link" href="calendario.php">CALENDARIO</a>
           </li>
         </ul>
         <div class="collapse navbar-collapse d-flex flex-row-reverse">
@@ -268,3 +269,6 @@ session_start();
   <!--End of the footer-->
 </body>
 </html>
+<?php
+}
+?>

@@ -1,16 +1,26 @@
+<?php
+include("../model/User.class.php");
+include("../model/MySQLPDO.class.php");
+session_start();
+if(isset($_SESSION["user"]) && $_SESSION["loged"] == "ok"){
+
+?>
+
 <!doctype html>
 <html lang="en">
 
 <head>
   <meta charset="utf-8">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="shortcut icon" href="../img/lg.png" type="image/x-icon">
-  <title>Uni Ei-Er Canteen</title>
-  <link rel="stylesheet" href="../css/bootstrap-bundle.css">
-  <script src="../js/bootstrap.bundle.js"></script>
-  <script src="../js/bootstrap.bundle.min.js"></script>
-  <script src="../js/calendar.js"></script>
+  <title>TEMPLATE</title>
   <link rel="stylesheet" href="../style/style.css">
+  <script src="../js/calendar.js"></script>
 </head>
 
 <body onload="javascript:setHtmlWeek()">
@@ -24,20 +34,39 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="collapsibleNavbar">
-        <ul class="navbar-nav">
+        <ul class="nav navbar-nav ml-auto">
           <li class="nav-item">
-            <a class="nav-link" href="index.html">HOME</a>
+            <a class="nav-link" href="index.php">HOME</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="menu.html">MENU</a>
+            <a class="nav-link" href="menu.php">MENU</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="reservation_form.html">RESERVAS</a>
+            <a class="nav-link" href="reservation_form.php">RESERVAS</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="calendario.html">CALENDARIO</a>
+            <a class="nav-link" href="calendario.php">CALENDARIO</a>
           </li>
         </ul>
+        <div class="collapse navbar-collapse d-flex flex-row-reverse">
+          <ul class="nav navbar-nav" id="userLink">
+            <div class="btn-group mr-5">
+              <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                <?php echo $_SESSION["user"]->getName() ?>
+              </button>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="myUser.php">My user</a></li>
+                <li><a class="dropdown-item" href="userBalance.php">My balance</a></li>
+                <li><a class="dropdown-item" href="../modules/logout.php">Log out</a></li>
+              </ul>
+            </div>
+            <li>
+              <img class="img-fluid nav-item m-auto pl-5" id="userLogo" src="../img/user_logo.png"
+                alt="User default logo">
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   </nav>
@@ -200,5 +229,7 @@
   </footer>
   <!--End of the footer-->
 </body>
-
 </html>
+<?php
+}
+?>
