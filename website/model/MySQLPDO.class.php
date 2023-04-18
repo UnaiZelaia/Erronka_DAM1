@@ -79,11 +79,35 @@ class MySQLPDO {
             $result = MySQLPDO::exec($sql, $params);
             return $result;
             }
-            catch(Exception $e){
-                return $e -> getMessage();
+        catch(Exception $e){
+            return $e -> getMessage();
             }
     }
 
+    public static function deleteReserve($id_user,$id_menu,$fecha) {
+        try{
+            $sql ="delete from reserve where id_user=? and id_menu=? and menu_date=?";
+            $params = array($id_user, $id_menu, $fecha);
+            $result = MySQLPDO::exec($sql, $params);
+            return $result;
+            }
+        catch(Exception $e){
+            return $e -> getMessage();
+            }
+
+            
+    }
+    public static function listReserve($id_user){
+        try{
+            $sql = "select * from reserve r inner join menu m on r.id_menu =m.id_menu where id_user=?";
+            $params = array($id_user);
+            $result = MySQLPDO::select($sql, $params);
+            return $result;
+            }
+        catch(Exception $e){
+            return $e -> getMessage();
+            }
+    }
     public static function selectTransactions($idUser){
         try{
             $sql = "SELECT * FROM transactions WHERE id_user = ?";
@@ -96,4 +120,3 @@ class MySQLPDO {
         }
     }
 }
-    ?>
