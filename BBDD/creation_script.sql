@@ -217,6 +217,10 @@ FOR EACH ROW
 BEGIN
     UPDATE user SET balance = balance - 5.7
     WHERE id_user = NEW.id_user;
+
+    INSERT INTO transactions(id_user, transaction_date, transaction_method, transaction_quantity)
+    VALUES(NEW.id_user, NEW.menu_date, "Meal reservation", -5.7);
+
 END; //
 
 

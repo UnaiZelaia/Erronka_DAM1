@@ -12,15 +12,12 @@ if (isset($_POST["email"])) {
     $user->setBirthdate($_POST["birthdate"]);
     $user->setBalance(0);
 
-
     if (isset($_POST["resident"]) && $_POST["resident"] == "on") {
         $user->setRole(2);
     } else {
         $user->setRole(1);
     }
     MySQLPDO::signup($user);
-
-
 
     header("Location: ../public/login_form.html");
 }
