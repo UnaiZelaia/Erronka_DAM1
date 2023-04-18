@@ -1,6 +1,6 @@
 import datetime
 
-from src import Reserve, Menu, User
+from src.model import Menu, User, Reserve
 
 
 def printMainMenu():

@@ -1,3 +1,3 @@
-from src import Menu, User, Reserve, optionsMenu
+from src.view import optionsMenu
 
 optionsMenu.printMainMenu()
