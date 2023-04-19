@@ -57,34 +57,31 @@
                         <TextField fx:id="tMony" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                         <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                            <children>
-                              <CheckBox mnemonicParsing="false" text="Cash">
+                              <CheckBox mnemonicParsing="false" text="CHAS">
                                  <padding>
                                     <Insets right="10.0" />
                                  </padding>
                               </CheckBox>
-                              <CheckBox mnemonicParsing="false" text="Card" />
+                              <CheckBox mnemonicParsing="false" text="CARD" />
                            </children>
-                           <opaqueInsets>
-                              <Insets />
-                           </opaqueInsets>
                         </HBox>
                      </children>
                   </GridPane>
                   <HBox alignment="CENTER" layoutY="333.0" prefHeight="25.0" prefWidth="296.0" spacing="10.0">
                      <children>
-                        <Button mnemonicParsing="false" text="CREATE TRANSACTION" />
+                        <Button mnemonicParsing="false" onAction="#actualizarRegistro" text="CREATE TRANSACTION" />
                      </children>
                   </HBox>
-                  <Button layoutX="115.0" layoutY="372.0" mnemonicParsing="false" onAction="#pasoPag" text="GO BACK" />
+                  <Button layoutX="84.0" layoutY="365.0" mnemonicParsing="false" onAction="#pasoPag" text="GO TO CREATE USER" />
                </children>
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="398.0" prefWidth="333.0">
                <children>
                   <TableView fx:id="tablaUsuario" layoutY="-1.0" prefHeight="400.0" prefWidth="523.0">
                     <columns>
-                      <TableColumn fx:id="clmNombre" prefWidth="171.0" text="Name" />
-                      <TableColumn fx:id="clmApellido" prefWidth="164.0" text="Surname" />
-                        <TableColumn fx:id="clmBalance" prefWidth="187.0" text="Balance" />
+                      <TableColumn fx:id="clmNombre" prefWidth="182.0" text="Name" />
+                      <TableColumn fx:id="clmApellido" prefWidth="192.0" text="Surname" />
+                        <TableColumn fx:id="clmBalance" prefWidth="148.0" text="Balance" />
                     </columns>
                   </TableView>
                </children>
