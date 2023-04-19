@@ -135,7 +135,7 @@ public class MUsersController implements Initializable{
     
     @FXML
     private void pasoPag() throws IOException {
-        App.setRoot("CreateUsers");
+        App.setRoot("Menu");
     }
 
     

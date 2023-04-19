@@ -68,6 +68,14 @@ public class Usuario{
 		this.idRol = new SimpleIntegerProperty(idRol);
 	}
 
+		//constructor para CTransaction
+		public Usuario(String nombreUsuario, String apellidoUsuario, 
+		Double balance) { 
+			this.nombreUsuario = new SimpleStringProperty(nombreUsuario);
+			this.apellidoUsuario = new SimpleStringProperty(apellidoUsuario);
+			this.balance = new SimpleDoubleProperty(balance);
+		}
+
 		//constructor para Delete
 		public Usuario(int idUsuario) { 
 			this.idUsuario = new SimpleIntegerProperty(idUsuario);

@@ -46,8 +46,8 @@ public class CUsersController {
 
 
     @FXML
-    private void switchToPrimary() throws IOException {
-        App.setRoot("ManageUsers");
+    private void pasoPag() throws IOException {
+        App.setRoot("Menu");
     }
 
 }
