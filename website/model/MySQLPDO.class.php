@@ -119,4 +119,19 @@ class MySQLPDO {
             return $e -> getMessage();
         }
     }
+
+    public static function selectMenus(){
+        try{
+            $sql = "SELECT r.menu_date, m.meal, it.item_description, mt.course FROM menu m INNER JOIN menu_items mt ON mt.id_menu = m.id_menu INNER JOIN reserve r ON m.id_menu = r.id_menu INNER JOIN items it ON mt.id_item = it.id_item
+                        WHERE id_user = ? AND YEARWEEK(r.menu_date, 1) = YEARWEEK(CURDATE(), 1)
+                            ORDER BY mt.course ASC";
+
+            $params = array(2);
+            $result = MySQLPDO::select($sql, $params);
+            return $result;
+        }
+        catch(Exception $e){
+            return $e -> getMessage();
+        }
+    }
 }
