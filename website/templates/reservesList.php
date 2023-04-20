@@ -101,10 +101,10 @@ if (isset($_SESSION["user"]) && $_SESSION["loged"] == "ok") {
                     <?php echo $menu_date; ?>
                   </td>
                   <td>
-                    <?php echo $course; ?>
+                    <?php echo $meal; ?>
                   </td>
                   <td>
-                    <?php if($course == "Lunch" || "Dinner"){
+                    <?php if($meal == "Lunch" || "Dinner"){
                       echo "5,7€";
                     }
                     else{
