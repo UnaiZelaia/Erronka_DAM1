@@ -4,6 +4,7 @@ require('../model/User.class.php');
 session_start();
 
 $date = $_GET["reservationDate"];
+
 $meal = $_GET["reservationMeal"];
 
 

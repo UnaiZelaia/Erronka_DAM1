@@ -177,7 +177,7 @@ if (isset($_SESSION["user"]) && $_SESSION["loged"] == "ok") {
                       <input type="submit" value="Make a reservation" class="btn btn-primary">
                     </form>
                   <?php } ?>
-                </td>
+                </td>Can’t automatically merge
                 <td>
                   Breakfast: Friday<br>
                   <?php

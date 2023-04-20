@@ -66,6 +66,7 @@ class MySQLPDO {
         $sql = "SELECT m.id_menu FROM menu m 
                     INNER JOIN reserve r ON m.id_menu = r.id_menu
                         WHERE UPPER(m.meal) = ? AND r.menu_date = ?";
+
         $params = array(strtoupper($meal), $date);
         $result = MySQLPDO::select($sql, $params);
         return $result[0];
@@ -87,6 +88,7 @@ class MySQLPDO {
     public static function deleteReserve($id_reserve) {
         try{
             $sql ="DELETE FROM reserve WHERE id_reserve=?";
+
             $params = array($id_reserve);
             $result = MySQLPDO::exec($sql, $params);
             return $result;
@@ -119,6 +121,7 @@ class MySQLPDO {
         }
     }
 
+
     public static function selectMenus(){
         try{
             $sql = "SELECT r.menu_date, m.meal, it.item_description, mt.course, r.id_menu FROM menu m INNER JOIN menu_items mt ON mt.id_menu = m.id_menu INNER JOIN reserve r ON m.id_menu = r.id_menu INNER JOIN items it ON mt.id_item = it.id_item
@@ -130,6 +133,16 @@ class MySQLPDO {
             return $result;
         }
         catch(Exception $e){
+
+    public static function menuItems($items){
+        try{
+            $sql = "SELECT * FROM items" ;
+            $params=array($items);
+            $result = MySQLPDO::select($sql, $params);
+            return $result;
+        }
+        catch(Exception $e) {
+
             return $e -> getMessage();
         }
     }

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/PR-SVG-20010719/DTD/svg10.dtd">
+<svg width="29cm" height="31cm" viewBox="171 87 573 616" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <g>
+    <ellipse style="fill: #ffffff" cx="199.325" cy="362.082" rx="6" ry="6"/>
+    <ellipse style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" cx="199.325" cy="362.082" rx="6" ry="6"/>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="175.325" y1="374.082" x2="223.325" y2="374.082"/>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="199.325" y1="368.082" x2="199.325" y2="398.082"/>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="199.325" y1="398.082" x2="175.325" y2="424.082"/>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="199.325" y1="398.082" x2="223.325" y2="424.082"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="199.325" y="448.882">
+      <tspan x="199.325" y="448.882">Employee</tspan>
+    </text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="292.906" y="108" width="450" height="594"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="292.906" y="108" width="450" height="594"/>
+    <rect style="fill: #ffffff" x="292.906" y="88" width="134.9" height="20"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="292.906" y="88" width="134.9" height="20"/>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="294.906" y="102">Manage Transition</text>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="370.43,291.183 299.711,291.183 299.711,398.082 226.757,398.082 "/>
+    <polygon style="fill: #ffffff" points="370.43,299.183 386.43,291.183 370.43,283.183 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="370.43,299.183 386.43,291.183 370.43,283.183 "/>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="386.018,505.53 307.505,505.53 307.505,398.082 226.757,398.082 "/>
+    <polygon style="fill: #ffffff" points="386.018,513.53 402.018,505.53 386.018,497.53 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="386.018,513.53 402.018,505.53 386.018,497.53 "/>
+  </g>
+  <g>
+    <ellipse style="fill: #ffffff" cx="465.866" cy="291.183" rx="77.2" ry="25.7333"/>
+    <ellipse style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" cx="465.866" cy="291.183" rx="77.2" ry="25.7333"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="465.866" y="295.983">
+      <tspan x="465.866" y="295.983">Create Transaction</tspan>
+    </text>
+  </g>
+  <g>
+    <ellipse style="fill: #ffffff" cx="452.329" cy="505.53" rx="48.075" ry="20"/>
+    <ellipse style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" cx="452.329" cy="505.53" rx="48.075" ry="20"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="452.329" y="510.33">
+      <tspan x="452.329" y="510.33">GO Back</tspan>
+    </text>
+  </g>
+  <g>
+    <ellipse style="fill: #ffffff" cx="681.784" cy="281.849" rx="60.2" ry="20.0667"/>
+    <ellipse style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" cx="681.784" cy="281.849" rx="60.2" ry="20.0667"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="681.784" y="286.649">
+      <tspan x="681.784" y="286.649">verify if exist</tspan>
+    </text>
+  </g>
+  <g>
+    <ellipse style="fill: #ffffff" cx="638.602" cy="407.41" rx="59.2" ry="20"/>
+    <ellipse style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" cx="638.602" cy="407.41" rx="59.2" ry="20"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="638.602" y="412.21">
+      <tspan x="638.602" y="412.21">display error</tspan>
+    </text>
+  </g>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke-dasharray: 8; stroke: #000000" x1="596.742" y1="393.268" x2="524.965" y2="314.341"/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="537.174,320.334 522.71,311.86 529.775,327.062 "/>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="558.598" y="347.324">{Extends}</text>
+  </g>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke-dasharray: 8; stroke: #000000" x1="544.048" y1="286.496" x2="614.891" y2="282.249"/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="602.565,287.997 618.237,282.049 601.967,278.015 "/>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="552.808" y="272.786">{Include}</text>
+  </g>
+</svg>
