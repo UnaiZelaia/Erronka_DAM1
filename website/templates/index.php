@@ -104,6 +104,7 @@ if (isset($_SESSION["user"]) && $_SESSION["loged"] == "ok") {
                   <?php if ($meal == "Breakfast" && date("w", strtotime($menu_date)) == 1) { ?>
                     <form method="POST" action="../modules/reservationAction.php">
                       <input name="userId" id="userId" type="hidden" value="<?php echo $_SESSION["user"]->getId() ?>">
+                      <input name="menuId" id="menuId" type="hidden" value="<?php echo $id_menu ?>">
                       <input name="date" id="date" type="hidden" value="<?php echo $menu_date ?>">
                       <input name="day" class="day1" type="hidden" value="" />
                       <input name="type" id="type" type="hidden" value="bf" />
@@ -125,6 +126,7 @@ if (isset($_SESSION["user"]) && $_SESSION["loged"] == "ok") {
                   <?php if ($meal == "Breakfast" && date("w", strtotime($menu_date)) == 2) { ?>
                     <form method="POST" action="../modules/reservationAction.php">
                       <input name="userId" id="userId" type="hidden" value="<?php echo $_SESSION["user"]->getId() ?>">
+                      <input name="menuId" id="menuId" type="hidden" value="<?php echo $id_menu ?>">
                       <input name="date" id="date" type="hidden" value="<?php echo $menu_date ?>">
                       <input name="day" class="day2" type="hidden" value="" />
                       <input name="type" id="type" type="hidden" value="bf" />
@@ -146,6 +148,7 @@ if (isset($_SESSION["user"]) && $_SESSION["loged"] == "ok") {
                   <?php if ($meal == "Breakfast" && date("w", strtotime($menu_date)) == 3) { ?>
                     <form method="POST" action="../modules/reservationAction.php">
                       <input name="userId" id="userId" type="hidden" value="<?php echo $_SESSION["user"]->getId() ?>">
+                      <input name="menuId" id="menuId" type="hidden" value="<?php echo $id_menu ?>">
                       <input name="date" id="date" type="hidden" value="<?php echo $menu_date ?>">
                       <input name="day" class="day3" type="hidden" value="" />
                       <input name="type" id="type" type="hidden" value="bf" />
@@ -167,6 +170,7 @@ if (isset($_SESSION["user"]) && $_SESSION["loged"] == "ok") {
                   <?php if ($meal == "Breakfast" && date("w", strtotime($menu_date)) == 4) { ?>
                     <form method="POST" action="../modules/reservationAction.php">
                       <input name="userId" id="userId" type="hidden" value="<?php echo $_SESSION["user"]->getId() ?>">
+                      <input name="menuId" id="menuId" type="hidden" value="<?php echo $id_menu ?>">
                       <input name="date" id="date" type="hidden" value="<?php echo $menu_date ?>">
                       <input name="day" class="day4" type="hidden" value="" />
                       <input name="type" id="type" type="hidden" value="bf" />
@@ -188,6 +192,7 @@ if (isset($_SESSION["user"]) && $_SESSION["loged"] == "ok") {
                   <?php if ($meal == "Breakfast" && date("w", strtotime($menu_date)) == 5) { ?>
                     <form method="POST" action="../modules/reservationAction.php">
                       <input name="userId" id="userId" type="hidden" value="<?php echo $_SESSION["user"]->getId() ?>">
+                      <input name="menuId" id="menuId" type="hidden" value="<?php echo $id_menu ?>">
                       <input name="date" id="date" type="hidden" value="<?php echo $menu_date ?>">
                       <input name="day" class="day5" type="hidden" value="" />
                       <input name="type" id="type" type="hidden" value="bf" />
@@ -211,6 +216,7 @@ if (isset($_SESSION["user"]) && $_SESSION["loged"] == "ok") {
                   <?php if ($meal == "Lunch" && date("w", strtotime($menu_date)) == 1) { ?>
                     <form method="POST" action="../modules/reservationAction.php">
                       <input name="userId" id="userId" type="hidden" value="<?php echo $_SESSION["user"]->getId() ?>">
+                      <input name="menuId" id="menuId" type="hidden" value="<?php echo $id_menu ?>">
                       <input name="date" id="date" type="hidden" value="<?php echo $menu_date ?>">
                       <input name="day" class="day1" type="hidden" value="" />
                       <input name="type" id="type" type="hidden" value="lu" />
@@ -234,6 +240,7 @@ if (isset($_SESSION["user"]) && $_SESSION["loged"] == "ok") {
                     ?>
                     <form method="POST" action="../modules/reservationAction.php">
                       <input name="userId" id="userId" type="hidden" value="<?php echo $_SESSION["user"]->getId() ?>">
+                      <input name="menuId" id="menuId" type="hidden" value="<?php echo $id_menu ?>">
                       <input name="date" id="date" type="hidden" value="<?php echo $menu_date ?>">
                       <input name="day" class="day2" type="hidden" value="" />
                       <input name="type" id="type" type="hidden" value="lu" />
@@ -257,9 +264,8 @@ if (isset($_SESSION["user"]) && $_SESSION["loged"] == "ok") {
                   <?php if ($meal == "Lunch" && date("w", strtotime($menu_date)) == 3) { ?>
                     <form method="POST" action="../modules/reservationAction.php">
                       <input name="userId" id="userId" type="hidden" value="<?php echo $_SESSION["user"]->getId() ?>">
+                      <input name="menuId" id="menuId" type="hidden" value="<?php echo $id_menu ?>">
                       <input name="date" id="date" type="hidden" value="<?php echo $menu_date ?>">
-                      <input name="day" class="day3" type="hidden" value="" />
-                      <input name="type" id="type" type="hidden" value="lu" />
                       <input type="submit" value="Make a reservation" class="btn btn-primary">
                     </form>
                   <?php } ?>
@@ -278,9 +284,8 @@ if (isset($_SESSION["user"]) && $_SESSION["loged"] == "ok") {
                   <?php if ($meal == "Lunch" && date("w", strtotime($menu_date)) == 4) { ?>
                     <form method="POST" action="../modules/reservationAction.php">
                       <input name="userId" id="userId" type="hidden" value="<?php echo $_SESSION["user"]->getId() ?>">
+                      <input name="menuId" id="menuId" type="hidden" value="<?php echo $id_menu ?>">
                       <input name="date" id="date" type="hidden" value="<?php echo $menu_date ?>">
-                      <input name="day" class="day4" type="hidden" value="" />
-                      <input name="type" id="type" type="hidden" value="lu" />
                       <input type="submit" value="Make a reservation" class="btn btn-primary">
                     </form>
                   <?php } ?>
@@ -299,6 +304,7 @@ if (isset($_SESSION["user"]) && $_SESSION["loged"] == "ok") {
                   <?php if ($meal == "Lunch" && date("w", strtotime($menu_date)) == 5) { ?>
                     <form method="POST" action="../modules/reservationAction.php">
                       <input name="userId" id="userId" type="hidden" value="<?php echo $_SESSION["user"]->getId() ?>">
+                      <input name="menuId" id="menuId" type="hidden" value="<?php echo $id_menu ?>">
                       <input name="date" id="date" type="hidden" value="<?php echo $menu_date ?>">
                       <input name="day" class="day5" type="hidden" value="" />
                       <input name="type" id="type" type="hidden" value="lu" />
@@ -322,6 +328,7 @@ if (isset($_SESSION["user"]) && $_SESSION["loged"] == "ok") {
                   <?php if ($meal == "Dinner" && date("w", strtotime($menu_date)) == 1) { ?>
                     <form method="POST" action="../modules/reservationAction.php">
                       <input name="userId" id="userId" type="hidden" value="<?php echo $_SESSION["user"]->getId() ?>">
+                      <input name="menuId" id="menuId" type="hidden" value="<?php echo $id_menu ?>">
                       <input name="date" id="date" type="hidden" value="<?php echo $menu_date ?>">
                       <input name="day" class="day1" type="hidden" value="" />
                       <input name="type" id="type" type="hidden" value="di" />
@@ -343,6 +350,7 @@ if (isset($_SESSION["user"]) && $_SESSION["loged"] == "ok") {
                   <?php if ($meal == "Dinner" && date("w", strtotime($menu_date)) == 2) { ?>
                     <form method="POST" action="../modules/reservationAction.php">
                       <input name="userId" id="userId" type="hidden" value="<?php echo $_SESSION["user"]->getId() ?>">
+                      <input name="menuId" id="menuId" type="hidden" value="<?php echo $id_menu ?>">
                       <input name="date" id="date" type="hidden" value="<?php echo $menu_date ?>">
                       <input name="day" class="day2" type="hidden" value="2" />
                       <input name="type" id="type" type="hidden" value="di" />
@@ -364,6 +372,7 @@ if (isset($_SESSION["user"]) && $_SESSION["loged"] == "ok") {
                   <?php if ($meal == "Dinner" && date("w", strtotime($menu_date)) == 3) { ?>
                     <form method="POST" action="../modules/reservationAction.php">
                       <input name="userId" id="userId" type="hidden" value="<?php echo $_SESSION["user"]->getId() ?>">
+                      <input name="menuId" id="menuId" type="hidden" value="<?php echo $id_menu ?>">
                       <input name="date" id="date" type="hidden" value="<?php echo $menu_date ?>">
                       <input name="day" class="day3" type="hidden" value="" />
                       <input name="type" id="type" type="hidden" value="di" />
@@ -385,6 +394,7 @@ if (isset($_SESSION["user"]) && $_SESSION["loged"] == "ok") {
                   <?php if ($meal == "Dinner" && date("w", strtotime($menu_date)) == 4) { ?>
                     <form method="POST" action="../modules/reservationAction.php">
                       <input name="userId" id="userId" type="hidden" value="<?php echo $_SESSION["user"]->getId() ?>">
+                      <input name="menuId" id="menuId" type="hidden" value="<?php echo $id_menu ?>">
                       <input name="date" id="date" type="hidden" value="<?php echo $menu_date ?>">
                       <input name="day" class="day4" type="hidden" value="" />
                       <input name="type" id="type" type="hidden" value="di" />

@@ -65,7 +65,7 @@ class MySQLPDO {
     public static function lastOfMealType($meal, $date){
         $sql = "SELECT m.id_menu FROM menu m 
                     INNER JOIN reserve r ON m.id_menu = r.id_menu
-                        WHERE UPPER(m.type) = ? AND r.menu_date = ?";
+                        WHERE UPPER(m.meal) = ? AND r.menu_date = ?";
         $params = array(strtoupper($meal), $date);
         $result = MySQLPDO::select($sql, $params);
         return $result[0];
@@ -86,7 +86,7 @@ class MySQLPDO {
 
     public static function deleteReserve($id_reserve) {
         try{
-            $sql ="delete from reserve where id_reserve=?";
+            $sql ="DELETE FROM reserve WHERE id_reserve=?";
             $params = array($id_reserve);
             $result = MySQLPDO::exec($sql, $params);
             return $result;
@@ -94,12 +94,11 @@ class MySQLPDO {
         catch(Exception $e){
             return $e -> getMessage();
             }
-
-            
     }
+
     public static function listReserve($id_user){
         try{
-            $sql = "SELECT r.id_reserve, r.id_menu, course, menu_name, id_user, menu_date FROM reserve r INNER JOIN menu m ON r.id_menu =m.id_menu WHERE id_user=?";
+            $sql = "SELECT r.id_reserve, r.id_menu, m.meal, m.menu_name, r.id_user, r.menu_date FROM reserve r INNER JOIN menu m ON r.id_menu =m.id_menu WHERE id_user=?";
             $params = array($id_user);
             $result = MySQLPDO::select($sql, $params);
             return $result;
@@ -122,7 +121,7 @@ class MySQLPDO {
 
     public static function selectMenus(){
         try{
-            $sql = "SELECT r.menu_date, m.meal, it.item_description, mt.course FROM menu m INNER JOIN menu_items mt ON mt.id_menu = m.id_menu INNER JOIN reserve r ON m.id_menu = r.id_menu INNER JOIN items it ON mt.id_item = it.id_item
+            $sql = "SELECT r.menu_date, m.meal, it.item_description, mt.course, r.id_menu FROM menu m INNER JOIN menu_items mt ON mt.id_menu = m.id_menu INNER JOIN reserve r ON m.id_menu = r.id_menu INNER JOIN items it ON mt.id_item = it.id_item
                         WHERE id_user = ? AND YEARWEEK(r.menu_date, 1) = YEARWEEK(CURDATE(), 1)
                             ORDER BY mt.course ASC";
 
