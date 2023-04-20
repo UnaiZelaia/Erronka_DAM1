@@ -6,9 +6,9 @@ import java.sql.SQLException;
 
 public class Conexion {
     private Connection connection;
-    private String url = "jdbc:mysql://192.168.122.160/canteen";
-    private String usuario = "unai";
-    private String contraseña = "123";
+    private String url = "jdbc:mysql://192.168.122.160/canteen"; // Reemplazar por url de base de datos en uso
+    private String usuario = "unai"; // Reemplazar por usuario de base de datos
+    private String contraseña = "123"; // Reemplazar por contraseña de usuario
 
     public Connection getConnection() {
         return connection;
