@@ -54,7 +54,7 @@ CREATE TABLE IF NOT EXISTS items(
 
 CREATE TABLE IF NOT EXISTS menu(
     id_menu INTEGER(6) NOT NULL AUTO_INCREMENT,
-    course VARCHAR(50) NOT NULL,
+    meal VARCHAR(50) NOT NULL,
     menu_name VARCHAR(100),
 
     PRIMARY KEY(id_menu)
