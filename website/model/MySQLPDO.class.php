@@ -68,7 +68,7 @@ class MySQLPDO {
                         WHERE UPPER(m.type) = ? AND r.menu_date = ?";
         $params = array(strtoupper($meal), $date);
         $result = MySQLPDO::select($sql, $params);
-        return $result[0];
+        return $result;
     }
 
 
@@ -131,4 +131,5 @@ class MySQLPDO {
             return $e -> getMessage();
         }
     }
+    
 }
