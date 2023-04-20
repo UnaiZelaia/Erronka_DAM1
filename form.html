@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>formularioa</title>
+        <link rel="stylesheet" href="style/style_peliculas.css"/>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <link  rel="stylesheet" href="../Bootstrap 5/css/bootstrap.min.css" />
+        <script src="../Bootstrap 5/js/bootstarp.min.js"></script></head>
+<body>
+    <h2>JavaScript Validation</h2>
+    <div style="margin: auto ;; width: 900px;" class="mb-2 bg-secondary text-white">
+        
+        <form name="formularioa" action="/action_page.php" style="padding: 5px 5px 5px 5px;" onsubmit="return balidatu()" onreset="return garbitu()"
+            method="post">
+            <label for=fname>Izena:</label>
+            <input type="text" name="izena"><br><br>
+            <label for=fname>Email-a:</label>
+            <input type="text" name="email"><br><br>
+            <label for=fname>Helbidea:</label>
+            <input type="text" name="helbidea"><br><br>
+            <label for=fname>Telefonoa:</label>
+            <input type="text" name="telefonoa"><br><br>
+            <label for=fname>Herrialdea:</label>
+            <input type="text" name="herrialdea"><br><br>
+            <label for=fname>Probintzia:</label>
+            <select id="probin" name="probintziak">
+                <option value="Araba">Araba</option>
+                <option value="Bizkaia">Bizkaia</option>
+                <option value="Gipuzkoa">Gipuzkoa</option>
+                <option value="Nafarroa">Nafarroa</option>
+            </select><br><br>
+            <label for=fname>Iruzkinak:</label>
+            <input type="text" name="iruzkinak"><br><br>
+
+            <input type="submit" value="Bidali">
+            <input type="reset" value="Garbitu">
+        </form>
+    </div>
+    <script>
+        function balidatu() {
+            const formularioa = ["izena", "email", "helbidea", "telefonoa", "herrialdea", "iruzkinak"];
+            for (var i = 0; i < formularioa.length; i++) {
+                var x = document.forms["formularioa"][formularioa[i]].value;
+                if (x == "") {
+                    document.getElementById("abisua").innerHTML = "Mesedez bete '" + formularioa[i] + "' eremua";
+                    document.getElementById("abisua").style.color = "grey";
+                    document.getElementById("abisua").style.fontSize = "50px";
+                    document.getElementById("abisua").style.textAlign = "center";
+
+                    return false;
+                }
+            }
+            var em = document.forms["formularioa"]["email"].value;
+            if ((em.includes("@")) == false) {
+                document.getElementById("abisua").innerHTML = "Emailak @ ikurra eduki behar du.";
+                document.getElementById("abisua").style.color = "grey";
+                document.getElementById("abisua").style.fontSize = "50px";
+                document.getElementById("abisua").style.textAlign = "center";
+                return false;
+            }
+            var tlf = document.forms["formularioa"]["telefonoa"].value;
+            if ((tlf.match(/(\+34|0034|34)?[ -]*(6|7|9|8)[ -]*([0-9][ -]*){8}/)) == null) {
+                document.getElementById("abisua").innerHTML = "Telefonoak 9 zenbaki izan behar ditu.";
+                document.getElementById("abisua").style.color = "grey";
+                document.getElementById("abisua").style.fontSize = "50px";
+                document.getElementById("abisua").style.textAlign = "center";
+                return false;
+            }
+        }
+
+        function garbitu() {
+            document.getElementById("abisua").innerHTML = "";
+        }
+    </script>
+
+    <p id="abisua"></p>
+
+</body>
+
+</html>
