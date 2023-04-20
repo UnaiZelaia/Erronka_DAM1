@@ -133,6 +133,8 @@ class MySQLPDO {
             return $result;
         }
         catch(Exception $e){
+            return $e -> getMessage();
+        }
 
     public static function menuItems($items){
         try{
