@@ -2,16 +2,15 @@
 include("../model/User.class.php");
 include("../model/MySQLPDO.class.php");
 
+session_start();
 
-$day = $_GET["day"];
-$type = $_GET["type"];
+if(isset($_POST["userId"]) && isset($_POST["menuId"])){
+    $userId = $_POST["userId"];
+    $date = $_POST["date"];
+    $menuId = $_POST["menuId"];
 
-if(isset($day) && isset($type)){
-    $year = date("Y");
-    $month = date("m");
-    $date = $year . "-" . $month . "-" . $day;
-
-    MySQLPDO::makeReserve($date, $menu, $_SESSSION["user"] -> getId());
+    MySQLPDO::makeReserve($date, $menuId, $userId);
+    header("Location: ../templates/index.php");
 }
 else{
     header("Location: ../templates/reservationError.php");
