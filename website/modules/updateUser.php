@@ -1,21 +1,22 @@
 <?php
+require('../model/MySQLPDO.class.php');
+require('../model/User.class.php');
 
-function updateUser(){
-    session_start();
+if (isset($_POST["name"]) || isset($_POST["surname"]) || isset($_POST["email"])) {
+    if (isset($_POST["name"])) {
+        $name = $_POST["name"];
 
-    if(isset($_SESSION["user"]) && $_SESSION["loged"] == "ok"){
+        MySQLPDO::updateUserName($name, $_SESSION["user"]->getId());
+    }
 
-        $result = MySQLPDO::updateUser($_SESSION["user"]->getId());
+    if (isset($_POST["surname"])) {
+        $surname = $_POST["surname"];
 
-        $_SESSION["user"] -> setId($result["id_user"]);
-        $_SESSION["user"] -> setEmail($result["email"]);
-        $_SESSION["user"] -> setName($result["name"]);
-        $_SESSION["user"] -> setSurname($result["surname"]);
-        $_SESSION["user"] -> setBirthdate($result["birthdate"]);
-        $_SESSION["user"] -> setRole($result["id_role"]);
-        $_SESSION["user"] -> setBalance($result["balance"]);
-        return;
+        MySQLPDO::updateUserSurname($surname, $_SESSION["user"]->getId());
+    }
+
+    if (isset($_POST["email"])) {
+        $email = 
     }
 }
-
 ?>

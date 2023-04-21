@@ -151,12 +151,48 @@ class MySQLPDO {
         }
     }
 
-    public static function updateUser($userId){
+    public static function updateSessionUser($userId){
         try{
             $sql = "SELECT * FROM user WHERE id_user = ?";
             $params = array($userId);
             $result = MySQLPDO::select($sql, $params);
             return $result[0];
+        }
+        catch(Exception $e){
+            return $e -> getMessage();
+        }
+    }
+
+    public static function  updateUserName($name, $idUser){
+        try{
+            $sql = "UPDATE FROM user SET name = ? WHERE id_user = ?";
+            $params = array($name, $idUser);
+            $result = MySQLPDO::exec($sql, $params);
+            return $result;
+        }
+        catch(Exception $e){
+            return $e -> getMessage();
+        }
+    }
+
+    public static function updateUserSurname($surname, $idUser){
+        try{
+            $sql = "UPDATE FROM user SET surname = ? WHERE id_user = ?";
+            $params = array($surname, $idUser);
+            $result = MySQLPDO::exec($sql, $params);
+            return $result;
+        }
+        catch(Exception $e){
+            return $e -> getMessage();
+        }
+    }
+
+    public static function updateUserEmail($email, $idUser){
+        try{
+            $sql = "UPDATE FROM user SET email = ? WHERE id_user = ?";
+            $params = array($email, $idUser);
+            $result = MySQLPDO::exec($sql, $params);
+            return $result;
         }
         catch(Exception $e){
             return $e -> getMessage();

@@ -1,7 +1,7 @@
 <?php
 include("../model/User.class.php");
 include("../model/MySQLPDO.class.php");
-include("../modules/updateUser.php");
+include("../modules/updateSessionUser.php");
 session_start();
 if(isset($_SESSION["user"]) && $_SESSION["loged"] == "ok"){
     updateUser();
@@ -78,7 +78,7 @@ if(isset($_SESSION["user"]) && $_SESSION["loged"] == "ok"){
     <div class="container text-center mb-5">
         <div class="col-10 rounded-4 mt-5 m-auto" id="centro">
             <h3>My user</h3>
-            <form action="" id="userInfoForm" class="rounded-3">
+            <form action="../modules/updateUser.php" id="userInfoForm" class="rounded-3">
                 <div class="form-group mt-3 col-6 m-auto text-light">
                     <label for="name">Name: </label>
                     <input type="text" class="form-control" id="name" name="name"
