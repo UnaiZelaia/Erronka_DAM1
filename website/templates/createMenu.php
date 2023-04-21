@@ -35,7 +35,7 @@ if (isset($_SESSION["user"]) && $_SESSION["loged"] == "ok") {
                     items: 'tr:not(tr:first-child)',
                     cursor: 'pointer',
 
-                    dropOnEmpty: false,
+                    dropOnEmpty: true,
                     start: function(e, ui) {
                         ui.item.addClass("selected");
                     },
@@ -53,7 +53,14 @@ if (isset($_SESSION["user"]) && $_SESSION["loged"] == "ok") {
         <script>
             $(document).ready(function() {
                 // Dar a las imágenes la capacidad de mover las imágenes
-                $("#arrastrar1").draggable({
+                $(<?php
+                $result = MySQLPDO::menuItems();
+                $i = 1;
+                    foreach($result as $items){
+                        extract($items);
+                        echo "arrastrar" . $i;
+
+                    }?>).draggable({
 
 
                 });
@@ -124,7 +131,7 @@ if (isset($_SESSION["user"]) && $_SESSION["loged"] == "ok") {
                         <option value="dinner">dinner</option>
                     </select>
 
-                    <table class="tblLocations table-responsive mt-5 m-auto p-4" cellpadding="0" cellspacing="0" border="1">
+                    <table class="tblLocations table-responsive mt-5 m-auto p-4 table-bordered" cellpadding="0" cellspacing="0" border="1">
                         <thead>
                             <th>items:</th>
                             <th>meal</th>
@@ -133,18 +140,18 @@ if (isset($_SESSION["user"]) && $_SESSION["loged"] == "ok") {
                             <?php
 
                             $i = 1;
-                            $result = MySQLPDO::menuItems();
+                            
                             if (sizeof($result) != 0) {
                                 foreach ($result as $item) {
                                     extract($item); ?>
                                     <tr>
-                                        <td id='<?php echo 'arrastrar' . $i ?>' class=" ">
+                                        <td id='<?php echo 'arrastrar' . $i ?>'>
 
                                             <?php
                                             echo $item_description;
                                             $i++; ?>
                                         </td>
-                                        <td></td>
+                                        <td ></td>
                                     </tr>
 
                             <?php
