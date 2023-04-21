@@ -222,6 +222,18 @@ BEGIN
 END; //
 
 
+DELIMITER //
+CREATE TRIGGER updateBalanceCancelReserve
+AFTER DELETE ON reserve
+FOR EACH ROW
+BEGIN
+
+    UPDATE user SET balance = balance - 5.7
+    WHERE id_user = OLD.id_user;
+
+END; //
+
+
 
 
 

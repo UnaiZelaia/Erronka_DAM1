@@ -111,7 +111,8 @@ class MySQLPDO {
     }
     public static function selectTransactions($idUser){
         try{
-            $sql = "SELECT * FROM transactions WHERE id_user = ?";
+            $sql = "SELECT * FROM transactions WHERE id_user = ?
+                        ORDER BY transaction_date ASC";
             $params = array($idUser);
             $result = MySQLPDO::select($sql, $params);
             return $result;
@@ -146,6 +147,18 @@ class MySQLPDO {
         }
         catch(Exception $e) {
 
+            return $e -> getMessage();
+        }
+    }
+
+    public static function updateUser($userId){
+        try{
+            $sql = "SELECT * FROM user WHERE id_user = ?";
+            $params = array($userId);
+            $result = MySQLPDO::select($sql, $params);
+            return $result[0];
+        }
+        catch(Exception $e){
             return $e -> getMessage();
         }
     }

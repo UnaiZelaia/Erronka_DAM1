@@ -1,8 +1,10 @@
 <?php
 include("../model/User.class.php");
 include("../model/MySQLPDO.class.php");
+include("../modules/updateUser.php");
 session_start();
 if (isset($_SESSION["user"]) && $_SESSION["loged"] == "ok") {
+  updateUser();
   $resultMenu = MySQLPDO::selectMenus();
   ?>
   <!doctype html>
@@ -177,7 +179,7 @@ if (isset($_SESSION["user"]) && $_SESSION["loged"] == "ok") {
                       <input type="submit" value="Make a reservation" class="btn btn-primary">
                     </form>
                   <?php } ?>
-                </td>Can’t automatically merge
+                </td>
                 <td>
                   Breakfast: Friday<br>
                   <?php

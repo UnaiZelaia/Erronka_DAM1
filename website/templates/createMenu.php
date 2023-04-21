@@ -1,8 +1,10 @@
 <?php
 include("../model/User.class.php");
 include("../model/MySQLPDO.class.php");
+include("../modules/updateUser.php");
 session_start();
 if(isset($_SESSION["user"]) && $_SESSION["loged"] == "ok"){
+    updateUser();
 
 ?>
 <!doctype html>

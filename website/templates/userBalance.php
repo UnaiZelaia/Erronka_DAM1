@@ -1,9 +1,11 @@
 <?php
 include("../model/User.class.php");
 include("../model/MySQLPDO.class.php");
+include("../modules/updateUser.php");
 session_start();
-if (isset($_SESSION["user"]) && $_SESSION["loged"] == "ok") {
 
+if (isset($_SESSION["user"]) && $_SESSION["loged"] == "ok") {
+  updateUser();
   ?>
   <!doctype html>
   <html lang="en">
@@ -94,7 +96,8 @@ if (isset($_SESSION["user"]) && $_SESSION["loged"] == "ok") {
             <tbody>
 
               <?php
-              foreach ($transactions as $transac) {
+              $balance = 0;
+              foreach($transactions as $transac) {
                 extract($transac)
                   ?>
 
@@ -109,8 +112,12 @@ if (isset($_SESSION["user"]) && $_SESSION["loged"] == "ok") {
                     <?php echo $transaction_quantity; ?>
                   </td>
                   <td>
-                    <?php print($_SESSION["user"]->getBalance());
-              }
+                    <?php 
+                    $balance = $balance + $transaction_quantity;
+                    echo $balance;
+              } ?>
+            </td>
+      <?php
       } else {
         ?>
                   <h1>El array esta vacio</h1>
