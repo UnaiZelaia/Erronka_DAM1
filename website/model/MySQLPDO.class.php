@@ -153,6 +153,18 @@ class MySQLPDO {
         }
     }
 
+    public static function menuNames(){
+        try{
+            $sql = "SELECT menu_name FROM menu";
+            $params = array();
+            $result = MySQLPDO::select($sql, $params);
+            return $result;
+        }
+        catch(Exception $e){
+            return $e -> getMessage();
+        }
+    }
+
     public static function menuItems($items){
         try{
             $sql = "SELECT * FROM items" ;

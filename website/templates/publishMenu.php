@@ -7,6 +7,7 @@ if (isset($_SESSION["user"]) && $_SESSION["loged"] == "ok" && $_SESSION["user"]-
   updateUser();
   $resultMenu = MySQLPDO::selectMenusWeek();
   $menus = MySQLPDO::listMenus();
+  $menuNames = MySQLPDO::menuNames();
   ?>
   <!doctype html>
   <html lang="en">
@@ -79,47 +80,59 @@ if (isset($_SESSION["user"]) && $_SESSION["loged"] == "ok" && $_SESSION["user"]-
       <!--Start of the content-->
 
       <div class="col-12 container text-center mb-5">
-      <h3 class="mt-5 m-auto">Make a reservation</h3>
+        <h3 class="mt-5 m-auto">Publish a menu</h3>
         <div class="col-12 rounded-4 mt-5 m-auto p-auto d-flex">
-        <div class="col-4 rounded-3 p-4 bg-uni mt-5 flex-item m-auto">
-            <table class="table-responsive table table-bordered bg-light rounded-3">
-              <thead>
-                <tr>
-                  <th>Menu name</th>
-                  <th>Meal type</th>
-                  <th>Menu items</th>
-                </tr>
-              </thead>
-              <tbody>
-                
-                  <?php
-                  foreach ($menus as $menu) {
-                    extract($menu);
-                    echo "<tr><td>" . $menu_name . "</td>";
-                    echo "<td>" . $meal . "</td>";
-                    echo "<td>" . $item_description . "</td></tr>";
-                  }
+          <div class="col-4 rounded-3 p-4 bg-uni mt-5 flex-item m-auto">
+            <div class="accordion" id="accordionExample">
+              <?php
+              $i = 1;
+              foreach ($menuNames as $menuName) {
+                extract($menuName)
                   ?>
-                
-              </tbody>
-            </table>
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="heading<?php echo $i ?>">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                      data-bs-target="#collapse<?php echo $i ?>" aria-expanded="true"
+                      aria-controls="collapse<?php echo $i ?>">
+                      <?php echo $menu_name ?>
+                    </button>
+                  </h2>
+                  <div id="collapse<?php echo $i ?>" class="accordion-collapse collapse"
+                    aria-labelledby="heading<?php echo $i ?>" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                      <?php foreach ($menus as $menu) {
+                        extract($menu);
+                        if($menuName["menu_name"] == $menu_name){
+                        echo "<ul class='list-group'>
+                                <li class='list-group-item' >" . $item_description . "</li>
+                              </ul>";
+                        }
+
+                      } ?>
+                    </div>
+                  </div>
+                </div>
+                <?php
+                $i++;
+              } ?>
+            </div>
+
           </div>
 
-          <form class="col-4 rounded-3 p-4 mt-5 flex-item m-auto" id="reservationForm" action="../modules/makeReserve.php" method="GET">
+          <form class="col-4 rounded-3 p-4 mt-5 flex-item m-auto" id="reservationForm" action="../modules/makeReserve.php"
+            method="GET">
+
+
 
             <div class="form-group mt-5">
-              <label class="text-light" for="reservationDate">Date for the reservation</label>
+              <label class="text-light" for="menuName">Name of the menu</label>
+              <input type="text" name="reservationDate" id="reservationDate" />
+            </div>
+            <div class="form-group mt-5">
+              <label class="text-light" for="reservationDate">Date to publish</label>
               <input type="date" name="reservationDate" id="reservationDate" />
             </div>
 
-            <div class="form-group mt-5">
-              <label class="text-light" for="reservationMeal">Meal for the reservation</label>
-              <select name="reservationMeal" id="reservationMeal">
-                <option value="breakfast">Breakfast</option>
-                <option value="lunch">Lunch</option>
-                <option value="dinner">Dinner</option>
-              </select>
-            </div>
 
             <input type="submit" value="Make reservation" class="btn btn-primary mt-5">
           </form>
