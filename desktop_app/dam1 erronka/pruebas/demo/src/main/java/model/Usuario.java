@@ -18,7 +18,7 @@ import javafx.collections.ObservableList;
 
 
 public class Usuario{
-	private IntegerProperty idUsuario;
+	public  IntegerProperty idUsuario;
 	private StringProperty nombreUsuario;
 	private StringProperty apellidoUsuario;
 	private StringProperty emailUsuario;
