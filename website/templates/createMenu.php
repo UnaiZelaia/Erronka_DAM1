@@ -3,8 +3,11 @@ include("../model/User.class.php");
 include("../model/MySQLPDO.class.php");
 session_start();
 if (isset($_SESSION["user"]) && $_SESSION["loged"] == "ok") {
+if (isset($_SESSION["user"]) && $_SESSION["loged"] == "ok") {
 
 ?>
+    <!doctype html>
+    <html lang="en">
     <!doctype html>
     <html lang="en">
 
@@ -34,7 +37,6 @@ if (isset($_SESSION["user"]) && $_SESSION["loged"] == "ok") {
                 $(".tblLocations").sortable({
                     items: 'td',
                     cursor: 'pointer',
-
                     dropOnEmpty: true,
                     start: function(e, ui) {
                         ui.item.addClass("selected");
@@ -54,31 +56,15 @@ if (isset($_SESSION["user"]) && $_SESSION["loged"] == "ok") {
             $(document).ready(function() {
                 // Dar a las imágenes la capacidad de mover las imágenes
                 $(<?php
-                $result = MySQLPDO::menuItems();
-                $i = 1;
-                    foreach($result as $items){
+                    $result = MySQLPDO::menuItems();
+                    $i = 1;
+                    foreach ($result as $items) {
                         extract($items);
-                        echo "arrastrar" . $i;
+                    }?>).draggable()
 
-                    }?>).draggable({
-
-
-                });
-                // Damos la capacidad al div de recibir a otros elementos, admitiendo sólo a la imagen
-                // cuyo 'id' es 'arrastrar2', y con la condición de que sea soltada estando completamente dentro
-                $("#divDestino").droppable({
-                    accept: "#arrastrar".$i,
-                    tolerance: "fit",
-                    drop: elementoSoltado
-                });
             });
-            // ------------------------------
-            // Al haber definido la propiedad 'accept' para que admita sólo la imagen del logo, no
-            // se producirá efecto alguno si soltamos la otra imagen al no ser admitida.
-            function elementoSoltado(event, ui) {
-                var id = ui.draggable.attr("id");
-                $("#log").text("La imagen con id [" + id + "] ha sido soltada y aceptada");
-            }
+            
+    
         </script>
     </head>
 
@@ -108,6 +94,7 @@ if (isset($_SESSION["user"]) && $_SESSION["loged"] == "ok") {
                             <a class="nav-link" href="calendario.html">CALENDARIO</a>
                         </li>
                     </ul>
+
                 </div>
             </div>
         </nav>
@@ -140,7 +127,7 @@ if (isset($_SESSION["user"]) && $_SESSION["loged"] == "ok") {
                             <?php
 
                             $i = 0;
-                            
+
                             if (sizeof($result) >= 0) {
                                 foreach ($result as $item) {
                                     extract($item); ?>
@@ -151,7 +138,7 @@ if (isset($_SESSION["user"]) && $_SESSION["loged"] == "ok") {
                                             echo $item_description;
                                             $i++; ?>
                                         </td>
-                                        <td ></td>
+                                        <td></td>
                                     </tr>
 
                             <?php
@@ -169,6 +156,7 @@ if (isset($_SESSION["user"]) && $_SESSION["loged"] == "ok") {
                         <input type="submit" value="submit">
                     </div>
                 </div>
+
 
 
 
@@ -223,7 +211,7 @@ if (isset($_SESSION["user"]) && $_SESSION["loged"] == "ok") {
 
     </html>
 <?php
-} else {
+}} else {
     header("Location: ../public/error.html");
 }
 ?>
