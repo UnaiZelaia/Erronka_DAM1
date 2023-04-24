@@ -123,13 +123,28 @@ class MySQLPDO {
     }
 
 
-    public static function selectMenus(){
+    public static function selectMenusWeek(){
         try{
             $sql = "SELECT r.menu_date, m.meal, it.item_description, mt.course, r.id_menu FROM menu m INNER JOIN menu_items mt ON mt.id_menu = m.id_menu INNER JOIN reserve r ON m.id_menu = r.id_menu INNER JOIN items it ON mt.id_item = it.id_item
                         WHERE id_user = ? AND YEARWEEK(r.menu_date, 1) = YEARWEEK(CURDATE(), 1)
                             ORDER BY mt.course ASC";
 
             $params = array(2);
+            $result = MySQLPDO::select($sql, $params);
+            return $result;
+        }
+        catch(Exception $e){
+            return $e -> getMessage();
+        }
+    }
+
+    public static function listMenus(){
+        try{
+            $sql = "SELECT m.menu_name, m.meal, i.item_description  FROM menu m 
+                        INNER JOIN menu_items mi ON m.id_menu = mi.id_menu
+                            INNER JOIN items i ON mi.id_item = i.id_item";
+
+            $params = array();
             $result = MySQLPDO::select($sql, $params);
             return $result;
         }
@@ -198,4 +213,17 @@ class MySQLPDO {
             return $e -> getMessage();
         }
     }
+
+    public static function updateUser($idUser){
+        try{
+            $sql = "SELECT * FROM user WHERE id_user = ?";
+            $params = array($idUser);
+            $result = MySQLPDO::select($sql, $params);
+            return $result[0];
+        }
+        catch(Exception $e){
+            return $e -> getMessage();
+        }
+    }
+
 }

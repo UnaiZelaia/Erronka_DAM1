@@ -16,7 +16,9 @@ if (isset($_POST["name"]) || isset($_POST["surname"]) || isset($_POST["email"]))
     }
 
     if (isset($_POST["email"])) {
-        $email = 
+        $email = $_POST["email"];
+
+        MySQLPDO::updateUserEmail($email, $_SESSION["user"] -> getId());
     }
 }
 ?>

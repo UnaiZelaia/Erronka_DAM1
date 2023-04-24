@@ -5,7 +5,7 @@ include("../modules/updateSessionUser.php");
 session_start();
 if (isset($_SESSION["user"]) && $_SESSION["loged"] == "ok") {
   updateUser();
-  $resultMenu = MySQLPDO::selectMenus();
+  $resultMenu = MySQLPDO::selectMenusWeek();
   ?>
   <!doctype html>
   <html lang="en">
@@ -42,9 +42,21 @@ if (isset($_SESSION["user"]) && $_SESSION["loged"] == "ok") {
             <li class="nav-item">
               <a class="nav-link" href="menu.php">MENU</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="reservation_form.php">RESERVAS</a>
-            </li>
+            <?php
+            if ($_SESSION["user"]->getId() == 4 || 3) {
+              ?>
+              <li class="nav-item">
+                <a class="nav-link" href="publishMenu.php">PUBLISH MENU</a>
+              </li>
+              <?php
+            } else {
+              ?>
+              <li class="nav-item">
+                <a class="nav-link" href="publish.html">PUBLISH MENU</a>
+              </li>
+              <?php
+            }
+            ?>
             <li class="nav-item">
               <a class="nav-link" href="calendario.php">CALENDARIO</a>
             </li>
