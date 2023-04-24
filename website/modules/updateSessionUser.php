@@ -1,11 +1,10 @@
 <?php
 
 function updateUser(){
-    session_start();
 
     if(isset($_SESSION["user"]) && $_SESSION["loged"] == "ok"){
 
-        $result = MySQLPDO::updateUser($_SESSION["user"]->getId());
+        $result = MySQLPDO::updateSessionUser($_SESSION["user"]->getId());
 
         $_SESSION["user"] -> setId($result["id_user"]);
         $_SESSION["user"] -> setEmail($result["email"]);
