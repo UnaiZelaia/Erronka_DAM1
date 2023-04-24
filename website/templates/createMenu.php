@@ -32,7 +32,7 @@ if (isset($_SESSION["user"]) && $_SESSION["loged"] == "ok") {
         <script type="text/javascript">
             $(function() {
                 $(".tblLocations").sortable({
-                    items: 'tr:not(tr:first-child)',
+                    items: 'td',
                     cursor: 'pointer',
 
                     dropOnEmpty: true,
@@ -42,8 +42,8 @@ if (isset($_SESSION["user"]) && $_SESSION["loged"] == "ok") {
                     stop: function(e, ui) {
                         ui.item.removeClass("selected");
                         $(this).find("tr").each(function(index) {
-                            if (index > 0) {
-                                $(this).find("td").eq(2).html(index);
+                            if (index >= 0) {
+                                $(this).find("td").eq().html(index);
                             }
                         });
                     }
@@ -139,9 +139,9 @@ if (isset($_SESSION["user"]) && $_SESSION["loged"] == "ok") {
                         <tbody>
                             <?php
 
-                            $i = 1;
+                            $i = 0;
                             
-                            if (sizeof($result) != 0) {
+                            if (sizeof($result) >= 0) {
                                 foreach ($result as $item) {
                                     extract($item); ?>
                                     <tr>
