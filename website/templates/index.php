@@ -52,7 +52,7 @@ if (isset($_SESSION["user"]) && $_SESSION["loged"] == "ok") {
             } else {
               ?>
               <li class="nav-item">
-                <a class="nav-link" href="publish.html">PUBLISH MENU</a>
+                <a class="nav-link" href="publish.html">RESERVE</a>
               </li>
               <?php
             }
