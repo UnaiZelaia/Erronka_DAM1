@@ -138,6 +138,7 @@ class MySQLPDO {
         }
     }
 
+
     public static function menuItems($items){
         try{
             $sql = "SELECT * FROM items" ;
