@@ -1,6 +1,5 @@
 <?php
 class MySQLPDO {
-
     private static $host = "127.0.0.1"; //o la IP del servidor de BBBDD remoto
     private static $database = "canteen";
     private static $username = "root";
@@ -70,7 +69,7 @@ class MySQLPDO {
 
         $params = array(strtoupper($meal), $date);
         $result = MySQLPDO::select($sql, $params);
-        return $result;
+        return $result[0];
     }
 
 
@@ -112,7 +111,8 @@ class MySQLPDO {
     }
     public static function selectTransactions($idUser){
         try{
-            $sql = "SELECT * FROM transactions WHERE id_user = ?";
+            $sql = "SELECT * FROM transactions WHERE id_user = ?
+                        ORDER BY transaction_date ASC";
             $params = array($idUser);
             $result = MySQLPDO::select($sql, $params);
             return $result;
@@ -134,7 +134,7 @@ class MySQLPDO {
             return $result;
         }
         catch(Exception $e){
-                return $e -> getMessage();
+            return $e -> getMessage();
         }
     }
 
@@ -193,6 +193,41 @@ class MySQLPDO {
             $sql = "UPDATE FROM user SET email = ? WHERE id_user = ?";
             $params = array($email, $idUser);
             $result = MySQLPDO::exec($sql, $params);
+            return $result;
+        }
+        catch(Exception $e){
+            return $e -> getMessage();
+        }
+    }
+    public static function insertMenu($menuName, $menuMeal){
+        try{
+            $sql = "INSERT INTO MENU (menu_name, meal) VALUES(?, ?)";
+            $params = array($menuName, $menuMeal);
+            $result = MySQLPDO::exec($sql, $params);
+            return $result;
+        }
+        catch(Exception $e){
+            return $e -> getMessage();
+        }
+    }
+
+    public static function insertMenuItems($menuId ,$item){
+        try{
+            $sql = "INSERT INTO menu_items (id_menu, id_item) VALUES(?, ?)";
+            $params = array($menuId, $item);
+            $result = MySQLPDO::exec($sql, $params);
+            return $result;
+        }
+        catch(Exception $e){
+            return $e -> getMessage();
+        }
+    }
+
+    public static function selectMenuId(){
+        try{
+            $sql = "SELECT id_menu FROM menu ORDER BY id_menu DESC LIMIT 1";
+            $params = array();
+            $result = MySQLPDO::select($sql, $params);
             return $result;
         }
         catch(Exception $e){
