@@ -40,5 +40,8 @@
     -fx-background-color: #7bbdff;
 }
 
+.imagen1{
+    -fx-background-image: url("path/to/image.jpg");
+}
 
 
