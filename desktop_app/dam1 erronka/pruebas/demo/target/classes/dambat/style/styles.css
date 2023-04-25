@@ -1,19 +1,16 @@
 .buttonn{
-    -fx-background-color: #7bbdff;
-    -fx-background-radius:30 30 30 30;
+    -fx-background-color: linear-gradient(to bottom, #394867, #9BA4B5), radial-gradient(center 50% -40%, radius 200%, #394867 45%, #9BA4B5);
     -fx-cursor: hand;
     -fx-padding: 10px;
     -fx-transition: all 0.2s ease;
 }
 
 .buttonn:hover{
-    -fx-background-color: #77b0e9;
-    -fx-background-color: #77b0e9;
-    -fx-translate-y: -2px;
+    -fx-background-color: linear-gradient(to bottom, #545c6c, #9db3dc), radial-gradient(center 50% -40%, radius 200%, #545c6c 45%, #9db3dc)
 }
 
 .buttonn:pressed{
-    -fx-background-color: #4092e4;
+    -fx-background-color: linear-gradient(to bottom, #263043, #707580), radial-gradient(center 50% -40%, radius 200%, #263043 45%, #707580);
 }
 
 .buttonn:active {
@@ -21,13 +18,22 @@
     -fx-translate-y: 2px;
 }
 
+.textfield{
+    -fx-background-color: linear-gradient(to bottom, #eb8db5, #72a9e8), radial-gradient(center 50% -40%, radius 200%, #eb8db5 45%, #72a9e8);
+}
+
 .vboxx{
-    -fx-background-color: #7bbdff;
-/*     -fx-spacing: 20%;   */
+    -fx-background-color: linear-gradient(to bottom, #176191, #179060), radial-gradient(center 50% -40%, radius 200%, #176191 45%, #179060);
+    -fx-background-blur: 10px;
+    -fx-background-radius:10 10 10 10;
+}
+
+.menuB{
+    -fx-background-color: linear-gradient(to bottom, #0e3e5f, #179060), radial-gradient(center 50% -40%, radius 200%, #0e3e5f 45%, #179060);    -fx-background-blur: 10px;
 }
 
 .loginB{
-    -fx-background-color: #61a5e9;
+    -fx-background-color: linear-gradient(to bottom, #0e3e5f, #179060), radial-gradient(center 50% -40%, radius 200%, #0e3e5f 45%, #179060);
 }
 
 .loginP{
