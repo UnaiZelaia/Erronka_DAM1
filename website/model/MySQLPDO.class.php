@@ -100,7 +100,8 @@ class MySQLPDO {
 
     public static function listReserve($id_user){
         try{
-            $sql = "SELECT r.id_reserve, r.id_menu, m.meal, m.menu_name, r.id_user, r.menu_date FROM reserve r INNER JOIN menu m ON r.id_menu =m.id_menu WHERE id_user=?";
+            $sql = "SELECT r.id_reserve, r.id_menu, m.meal, m.menu_name, r.id_user, r.menu_date FROM reserve r INNER JOIN menu m ON r.id_menu =m.id_menu WHERE id_user=?
+                        ORDER BY r.menu_date ASC";
             $params = array($id_user);
             $result = MySQLPDO::select($sql, $params);
             return $result;
@@ -138,6 +139,20 @@ class MySQLPDO {
         }
     }
 
+    public static function selectMenus(){
+        try{
+            $sql = "SELECT r.menu_date, m.meal, r.id_menu FROM menu m INNER JOIN reserve r ON m.id_menu = r.id_menu
+                        WHERE id_user = ? AND YEARWEEK(r.menu_date, 1) = YEARWEEK(CURDATE(), 1)
+                            ORDER BY r.menu_date asc";
+            $params = array(2);
+            $result = MySQLPDO::select($sql, $params);
+            return $result;
+        }
+        catch(Exception $e){
+            return $e -> getMessage();
+        }
+    }
+
     public static function listMenus(){
         try{
             $sql = "SELECT m.menu_name, m.meal, i.item_description  FROM menu m 
@@ -155,7 +170,7 @@ class MySQLPDO {
 
     public static function menuNames(){
         try{
-            $sql = "SELECT menu_name FROM menu";
+            $sql = "SELECT menu_name, id_menu FROM menu";
             $params = array();
             $result = MySQLPDO::select($sql, $params);
             return $result;

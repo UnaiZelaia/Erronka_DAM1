@@ -27,51 +27,57 @@ if(isset($_SESSION["user"]) && $_SESSION["loged"] == "ok"){
 
 <body>
     <!--Start of the navbar-->
-    <nav class="navbar navbar-expand-sm navbar-dark container-fluid">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="../img/lg.png">
-                Uni Eibar-Ermua Canteen
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="collapsibleNavbar">
-                <ul class="nav navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.php">HOME</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="menu.php">MENU</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="reservation_form.php">RESERVAS</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="calendario.php">CALENDARIO</a>
-                    </li>
+    <nav class="navbar navbar-expand-sm navbar-dark container-fluid bg-uni">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="../img/lg.png">
+          Uni Eibar-Ermua Canteen
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+          <ul class="nav navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="index.php">HOME</a>
+            </li>
+            <?php
+            if ($_SESSION["user"]->getRole() == 4 || $_SESSION["user"]->getRole() == 3) {
+              ?>
+              <li class="nav-item">
+                <a class="nav-link" href="publishMenu.php">PUBLISH MENU</a>
+              </li>
+              <?php
+            } else {
+              ?>
+              <li class="nav-item">
+                <a class="nav-link" href="reservation_form.php">MAKE RESERVATION</a>
+              </li>
+              <?php
+            }
+            ?>
+          </ul>
+          <div class="collapse navbar-collapse d-flex flex-row-reverse">
+            <ul class="nav navbar-nav" id="userLink">
+              <div class="btn-group mr-5">
+                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                  aria-expanded="false">
+                  <?php echo $_SESSION["user"]->getName() ?>
+                </button>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="myUser.php">My user</a></li>
+                  <li><a class="dropdown-item" href="userBalance.php">My balance</a></li>
+                  <li><a class="dropdown-item" href="reservesList.php">My reserves</a></li>
+                  <li><a class="dropdown-item" href="../modules/logout.php">Log out</a></li>
                 </ul>
-                <div class="collapse navbar-collapse d-flex flex-row-reverse">
-                    <ul class="nav navbar-nav" id="userLink">
-                        <div class="btn-group mr-5">
-                            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                                aria-expanded="false">
-                                <?php echo $_SESSION["user"]->getName() ?>
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="myUser.php">My user</a></li>
-                                <li><a class="dropdown-item" href="userBalance.php">My balance</a></li>
-                                <li><a class="dropdown-item" href="reservesList.php">My reserves</a></li>
-                                <li><a class="dropdown-item" href="../modules/logout.php">Log out</a></li>
-                            </ul>
-                        </div>
-                        <li>
-                            <img class="img-fluid nav-item m-auto pl-5" id="userLogo" src="../img/user_logo.png"
-                                alt="User default logo">
-                        </li>
-                    </ul>
-                </div>
-            </div>
+              </div>
+              <li>
+                <img class="img-fluid nav-item m-auto pl-5" id="userLogo" src="../img/user_logo.png"
+                  alt="User default logo">
+              </li>
+            </ul>
+          </div>
         </div>
+      </div>
     </nav>
     <!--End of the navbar-->
     <!--Start of the content-->

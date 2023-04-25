@@ -119,14 +119,19 @@ if (isset($_SESSION["user"]) && $_SESSION["loged"] == "ok" && $_SESSION["user"]-
 
           </div>
 
-          <form class="col-4 rounded-3 p-4 mt-5 flex-item m-auto" id="reservationForm" action="../modules/makeReserve.php"
+          <form class="col-4 rounded-3 p-4 mt-5 flex-item m-auto" id="reservationForm" action="../modules/publishMenu.php"
             method="GET">
-
-
-
             <div class="form-group mt-5">
-              <label class="text-light" for="menuName">Name of the menu</label>
-              <input type="text" name="reservationDate" id="reservationDate" />
+              <label class="text-light" for="menuName">Menu to publish: </label>
+              <select name="reservationMeal" id="reservationMeal">
+                <?php foreach($menuNames as $menus){
+                        extract($menus);
+                  ?>
+                <option value="<?php echo $id_menu ?>"><?php echo $menu_name ?></option>
+                <?php } ?>
+
+              </select>
+
             </div>
             <div class="form-group mt-5">
               <label class="text-light" for="reservationDate">Date to publish</label>
