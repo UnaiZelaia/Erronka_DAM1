@@ -5,7 +5,7 @@ include("../modules/updateSessionUser.php");
 session_start();
 if (isset($_SESSION["user"]) && $_SESSION["loged"] == "ok" && $_SESSION["user"]->getRole() == 4) {
   updateUser();
-  $resultMenu = MySQLPDO::selectMenusWeek();
+  $resultMenuItems = MySQLPDO::selectMenusWeek();
   $menus = MySQLPDO::listMenus();
   $menuNames = MySQLPDO::menuNames();
   ?>
@@ -30,52 +30,58 @@ if (isset($_SESSION["user"]) && $_SESSION["loged"] == "ok" && $_SESSION["user"]-
 
     <body onload="javascript:setHtmlWeek()">
       <!--Start of the navbar-->
-      <nav class="navbar navbar-expand-sm navbar-dark container-fluid">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="../img/lg.png">
-            Uni Eibar-Ermua Canteen
-          </a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="collapsibleNavbar">
-            <ul class="nav navbar-nav ml-auto">
+      <nav class="navbar navbar-expand-sm navbar-dark container-fluid bg-uni">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="../img/lg.png">
+          Uni Eibar-Ermua Canteen
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+          <ul class="nav navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="index.php">HOME</a>
+            </li>
+            <?php
+            if ($_SESSION["user"]->getRole() == 4 || $_SESSION["user"]->getRole() == 3) {
+              ?>
               <li class="nav-item">
-                <a class="nav-link" href="index.php">HOME</a>
+                <a class="nav-link" href="publishMenu.php">PUBLISH MENU</a>
               </li>
+              <?php
+            } else {
+              ?>
               <li class="nav-item">
-                <a class="nav-link" href="menu.php">MENU</a>
+                <a class="nav-link" href="reservation_form.php">MAKE RESERVATION</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="reservation_form.php">RESERVAS</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="calendario.php">CALENDARIO</a>
+              <?php
+            }
+            ?>
+          </ul>
+          <div class="collapse navbar-collapse d-flex flex-row-reverse">
+            <ul class="nav navbar-nav" id="userLink">
+              <div class="btn-group mr-5">
+                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                  aria-expanded="false">
+                  <?php echo $_SESSION["user"]->getName() ?>
+                </button>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="myUser.php">My user</a></li>
+                  <li><a class="dropdown-item" href="userBalance.php">My balance</a></li>
+                  <li><a class="dropdown-item" href="reservesList.php">My reserves</a></li>
+                  <li><a class="dropdown-item" href="../modules/logout.php">Log out</a></li>
+                </ul>
+              </div>
+              <li>
+                <img class="img-fluid nav-item m-auto pl-5" id="userLogo" src="../img/user_logo.png"
+                  alt="User default logo">
               </li>
             </ul>
-            <div class="collapse navbar-collapse d-flex flex-row-reverse">
-              <ul class="nav navbar-nav" id="userLink">
-                <div class="btn-group mr-5">
-                  <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                    aria-expanded="false">
-                    <?php echo $_SESSION["user"]->getName() ?>
-                  </button>
-                  <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="myUser.php">My user</a></li>
-                    <li><a class="dropdown-item" href="userBalance.php">My balance</a></li>
-                    <li><a class="dropdown-item" href="reservesList.php">My reserves</a></li>
-                    <li><a class="dropdown-item" href="../modules/logout.php">Log out</a></li>
-                  </ul>
-                </div>
-                <li>
-                  <img class="img-fluid nav-item m-auto pl-5" id="userLogo" src="../img/user_logo.png"
-                    alt="User default logo">
-                </li>
-              </ul>
-            </div>
           </div>
         </div>
-      </nav>
+      </div>
+    </nav>
       <!--End of the navbar-->
       <!--Start of the content-->
 
@@ -139,7 +145,7 @@ if (isset($_SESSION["user"]) && $_SESSION["loged"] == "ok" && $_SESSION["user"]-
             </div>
 
 
-            <input type="submit" value="Make reservation" class="btn btn-primary mt-5">
+            <input type="submit" value="Publish menu" class="btn btn-primary mt-5">
           </form>
         </div>
       </div>
@@ -157,70 +163,235 @@ if (isset($_SESSION["user"]) && $_SESSION["loged"] == "ok" && $_SESSION["user"]-
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>
-                Menu for Breakfast: Monday
-                <br>
+            <tr name="BreakfastRow">
+              <td name="BreakfastMonday">
+                Breakfast:<br><br>
+                <?php
+                foreach ($resultMenuItems as $menu) {
+                  extract($menu);
+                  if ($meal == "Breakfast") {
+                    if (date("w", strtotime($menu_date)) == 1) {
+
+                      echo "-" . $item_description . "<br>";
+                    }
+                  }
+                } ?>
               </td>
-              <td>
-                Menu for Breakfast: Tuesday
-                <br>
+
+              <td name="BreakfastTuesday">
+                Breakfast:<br><br>
+                <?php
+                foreach ($resultMenuItems as $menu) {
+                  extract($menu);
+                  if ($meal == "Breakfast") {
+                    if (date("w", strtotime($menu_date)) == 2) {
+
+                      echo "-" . $item_description . "<br>";
+                    }
+                  }
+                }
+                ?>
               </td>
-              <td>
-                Menu for Breakfast: Wednesday
-                <br>
+
+              <td name="BreakfastWednesday">
+                Breakfast:<br><br>
+                <?php
+                foreach ($resultMenuItems as $menu) {
+                  extract($menu);
+                  if ($meal == "Breakfast") {
+                    if (date("w", strtotime($menu_date)) == 3) {
+
+                      echo "-" . $item_description . "<br>";
+                    }
+                  }
+                }
+                ?>
               </td>
-              <td>
-                Menu for Breakfast: Thursday
-                <br>
+
+              <td name="BreakfastThursday">
+                Breakfast:<br><br>
+                <?php
+                foreach ($resultMenuItems as $menu) {
+                  extract($menu);
+                  if ($meal == "Breakfast") {
+                    if (date("w", strtotime($menu_date)) == 4) {
+
+                      echo "-" . $item_description . "<br>";
+                    }
+                  }
+                }
+                ?>
               </td>
-              <td>
-                Menu for Breakfast: Friday
-                <br>
+
+              <td name="BreakfastFriday">
+                Breakfast:<br><br>
+                <?php
+                foreach ($resultMenuItems as $menu) {
+                  extract($menu);
+                  if ($meal == "Breakfast") {
+                    if (date("w", strtotime($menu_date)) == 5) {
+
+                      echo "-" . $item_description . "<br>";
+                    }
+                  }
+                }
+                ?>
+              </td>
+
+            <tr name="LunchRow">
+
+
+              <td name="LunchMonday">
+                Lunch:<br><br>
+                <?php
+                foreach ($resultMenuItems as $menu) {
+                  extract($menu);
+                  if ($meal == "Lunch") {
+                    if (date("w", strtotime($menu_date)) == 1) {
+
+                      echo "-" . $item_description . "<br>";
+                    }
+                  }
+                }
+                ?>
+              </td>
+
+              <td name="LunchTuesday">
+                Lunch:<br><br>
+                <?php
+                foreach ($resultMenuItems as $menu) {
+                  extract($menu);
+                  if ($meal == "Lunch") {
+                    if (date("w", strtotime($menu_date)) == 2) {
+
+                      echo "-" . $item_description . "<br>";
+                    }
+                  }
+                }
+                ?>
+              </td>
+
+              <td name="LunchWednesday">
+                Lunch:<br><br>
+                <?php
+                foreach ($resultMenuItems as $menu) {
+                  extract($menu);
+                  if ($meal == "Lunch") {
+                    if (date("w", strtotime($menu_date)) == 3) {
+
+                      echo "-" . $item_description . "<br>";
+                    }
+                  }
+                }
+                ?>
+              </td>
+
+              <td name="LunchThursday">
+                Lunch:<br><br>
+                <?php
+                foreach ($resultMenuItems as $menu) {
+                  extract($menu);
+                  if ($meal == "Lunch") {
+                    if (date("w", strtotime($menu_date)) == 4) {
+
+                      echo "-" . $item_description . "<br>";
+                    }
+                  }
+                }
+                ?>
+              </td>
+
+              <td name="LunchFriday">
+                Lunch:<br><br>
+                <?php
+                foreach ($resultMenuItems as $menu) {
+                  extract($menu);
+                  if ($meal == "Lunch") {
+                    if (date("w", strtotime($menu_date)) == 5) {
+
+                      echo "-" . $item_description . "<br>";
+                    }
+                  }
+                }
+                ?>
               </td>
             </tr>
-            <tr>
-              <td>
-                Menu for Lunch: Monday
-                <br>
+
+            <tr name="DinnerRow">
+
+              <td name="dinnerMonday">
+                Dinner:<br><br>
+                <?php
+                foreach ($resultMenuItems as $menu) {
+                  extract($menu);
+                  if ($meal == "Dinner") {
+                    if (date("w", strtotime($menu_date)) == 1) {
+
+                      echo "-" . $item_description . "<br>";
+                    }
+                  }
+                }
+                ?>
               </td>
-              <td>
-                Menu for Lunch: Tuesday
-                <br>
+
+              <td name="dinnerTuesday">
+                Dinner:<br><br>
+                <?php
+                foreach ($resultMenuItems as $menu) {
+                  extract($menu);
+                  if ($meal == "Dinner") {
+                    if (date("w", strtotime($menu_date)) == 2) {
+
+                      echo "-" . $item_description . "<br>";
+                    }
+                  }
+                }
+                ?>
               </td>
-              <td>
-                Menu for Lunch: Wednesday
-                <br>
+
+              <td name="dinnerWednesday">
+                Dinner:<br><br>
+                <?php
+                foreach ($resultMenuItems as $menu) {
+                  extract($menu);
+                  if ($meal == "Dinner") {
+                    if (date("w", strtotime($menu_date)) == 3) {
+
+                      echo "-" . $item_description . "<br>";
+                    }
+                  }
+                }
+                ?>
               </td>
-              <td>
-                Menu for Lunch: Thursday
-                <br>
+
+              <td name="dinnerThursday">
+                Dinner:<br><br>
+                <?php
+                foreach ($resultMenuItems as $menu) {
+                  extract($menu);
+                  if ($meal == "Dinner") {
+                    if (date("w", strtotime($menu_date)) == 4) {
+
+                      echo "-" . $item_description . "<br>";
+                    }
+                  }
+                }
+                ?>
               </td>
-              <td>
-                Menu for Lunch: Friday
-                <br>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                Menu for Dinner: Monday
-                <br>
-              </td>
-              <td>
-                Menu for Dinner: Tuesday
-                <br>
-              </td>
-              <td>
-                Menu for Dinner: Wednesday
-                <br>
-              </td>
-              <td>
-                Menu for Dinner: Thursday
-                <br>
-              </td>
-              <td>
-                Menu for Dinner: Friday
-                <br>
+
+              <td name="dinnerFriday">
+                Dinner:<br><br>
+                <?php
+                foreach ($resultMenuItems as $menu) {
+                  extract($menu);
+                  if ($meal == "Dinner") {
+                    if (date("w", strtotime($menu_date)) == 5) {
+
+                      echo "-" . $item_description . "<br>";
+                    }
+                  }
+                }
+                ?>
               </td>
             </tr>
           </tbody>

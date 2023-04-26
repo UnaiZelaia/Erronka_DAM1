@@ -2,15 +2,18 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/bootstrap-bundle.css">
-    <script src="../js/bootstrap.bundle.js"></script>
-    <script src="../js/bootstrap.bundle.min.js"></script>
-    <link rel="stylesheet" href="../style/style.css">
+    <meta charset="utf-8">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="../img/lg.png" type="image/x-icon">
     <title>Canteen log in</title>
-</head>
+    <link rel="stylesheet" href="../style/style.css">
+    <script src="../js/calendar.js"></script>
+  </head>
 <nav class="navbar navbar-expand-sm navbar-dark container-fluid">
     <div class="container-fluid">
         <a class="navbar-brand" href="../img/lg.png">
@@ -25,7 +28,7 @@
                     <a class="nav-link" href="index.html">HOME</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="calendario.html">CALENDAR</a>
+                    <a class="nav-link" href="calendario.php">CALENDAR</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="aboutUs.html">ABOUT US</a>
@@ -33,7 +36,7 @@
                     <li class="nav-item rounded-3 bg-primary ms-2">
                         <a class="nav-link" href="login_form.html">LOG IN</a>
                     </li>
-                    <li class="nav-item rounded-3 bg-primary">
+                    <li class="nav-item rounded-3 bg-primary ms-2">
                         <a class="nav-link" href="signup_form.html">SIGN UP</a>
                     </li>
             </ul>
@@ -46,8 +49,8 @@
 <body class="bg-muted">
     <div class="container text-center mb-5">
         <div class="col-12 rounded-4 mt-5" id="centro">
-            <img id="uniLogo" class="col-4 rounded-top" src="../img/uni_eibar.png" alt="uni-eibar logo">
-            <form id="loginForm" name="loginForm" class="m-auto col-4 rounded-bottom p-4 text-light" method="POST"
+            <img id="uniLogo" class="col-6 rounded-top" src="../img/uni_eibar.png" alt="uni-eibar logo">
+            <form id="loginForm" name="loginForm" class="m-auto col-6 rounded-bottom p-4 text-light" method="POST"
                 action="../modules/loginAction.php">
                 <h2 class="pt-5 text-decoration-underline">Uni-Eibar canteen system</h2>
                 <h4>Log in</h4>
@@ -92,7 +95,7 @@
                         <h5>Links</h5>
                         <ul class="list-unstyled">
                             <li><a href="index.html">HOME</a></li>
-                            <li><a href="calendario.html">CALENDAR</a></li>.
+                            <li><a href="calendario.php">CALENDAR</a></li>.
                             <li><a href="aboutUs.html">ABOUT US</a></li>
                         </ul>
                     </div>

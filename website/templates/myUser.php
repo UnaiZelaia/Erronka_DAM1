@@ -84,7 +84,7 @@ if(isset($_SESSION["user"]) && $_SESSION["loged"] == "ok"){
     <div class="container text-center mb-5">
         <div class="col-10 rounded-4 mt-5 m-auto" id="centro">
             <h3>My user</h3>
-            <form action="../modules/updateUser.php" id="userInfoForm" class="rounded-3">
+            <form action="../modules/updateUser.php" id="userInfoForm" class="rounded-3" method="POST">
                 <div class="form-group mt-3 col-6 m-auto text-light">
                     <label for="name">Name: </label>
                     <input type="text" class="form-control" id="name" name="name"
@@ -98,7 +98,7 @@ if(isset($_SESSION["user"]) && $_SESSION["loged"] == "ok"){
                 <div class="form-group mt-3 col-6 m-auto text-light">
                     <label for="email">Email: </label>
                     <input type="email" class="form-control" id="email" name="email"
-                        value="<?php echo $_SESSION["user"]->getEmail() ?>" />
+                        value="<?php echo $_SESSION["user"]->getEmail() ?>"/>
                 </div>
                 <div class="form-group mt-3 col-6 m-auto text-light">
                     <label for="birthdate">Birthdate: </label>
@@ -112,7 +112,7 @@ if(isset($_SESSION["user"]) && $_SESSION["loged"] == "ok"){
                 </div>
                 <button type="submit" class=" mt-3 btn btn-primary col-2 m-auto text-light mb-3">Update my data</button>
                 <div role="button" class="btn btn-primary mt-3 col-2 m-auto text-light mb-3">
-                    <a href="passwordChange.php">Change password</a>
+                    <a href="newPassword.php">Change password</a>
                 </div>
 
             </form>
