@@ -27,7 +27,5 @@ if(isset($result["email"])){
         exit();
     }
 }
-else{
-    header("Location: ../public/loginError.html");
-}
+
 ?>

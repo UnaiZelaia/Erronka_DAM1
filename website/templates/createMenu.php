@@ -3,7 +3,7 @@ include("../model/User.class.php");
 include("../model/MySQLPDO.class.php");
 session_start();
 if (isset($_SESSION["user"]) && $_SESSION["loged"] == "ok") {
-if (isset($_SESSION["user"]) && $_SESSION["loged"] == "ok") {
+
 
 ?>
     <!doctype html>
@@ -33,25 +33,39 @@ if (isset($_SESSION["user"]) && $_SESSION["loged"] == "ok") {
         <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
         <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
         <script type="text/javascript">
+            $(document).ready(function() {
+                // Dar a las imágenes la capacidad de mover las imágenes
+                $("#arrastrar1").draggable({
+
+
+                });
+                // Damos la capacidad al div de recibir a otros elementos, admitiendo sólo a la imagen
+                // cuyo 'id' es 'arrastrar2', y con la condición de que sea soltada estando completamente dentro
+                $("#divDestino").droppable({
+                    accept: "#arrastrar".$i,
+                    tolerance: "fit",
+                    drop: elementoSoltado
+                });
+            });
             $(function() {
-                $(".tblLocations").sortable({
-                    items: 'td',
-                    cursor: 'pointer',
-                    dropOnEmpty: true,
-                    start: function(e, ui) {
-                        ui.item.addClass("selected");
-                    },
-                    stop: function(e, ui) {
-                        ui.item.removeClass("selected");
-                        $(this).find("tr").each(function(index) {
-                            if (index >= 0) {
-                                $(this).find("td").eq().html(index);
-                            }
-                        });
-                    }
+                $('.event').on("dragstart", function(event) {
+                    var dt = event.originalEvent.dataTransfer;
+                    dt.setData('Text', $(this).attr('id'));
+                });
+                $('table td').on("dragenter dragover drop", function(event) {
+                    event.preventDefault();
+                    if (event.type === 'drop') {
+                        var data = event.originalEvent.dataTransfer.getData('Text', $(this).attr('id'));
+                        de = $('#' + data).detach();
+                        de.appendTo($(this));
+                    };
+                });
+                $('#addRow').on('click', function() {
+                    $('#targetTable > tbody:last-child').append('<tr><td></td><td></td><td></td></tr>');
                 });
             });
         </script>
+
         <script>
             $(document).ready(function() {
                 // Dar a las imágenes la capacidad de mover las imágenes
@@ -60,11 +74,9 @@ if (isset($_SESSION["user"]) && $_SESSION["loged"] == "ok") {
                     $i = 1;
                     foreach ($result as $items) {
                         extract($items);
-                    }?>).draggable()
+                    } ?>)
 
             });
-            
-    
         </script>
     </head>
 
@@ -107,18 +119,20 @@ if (isset($_SESSION["user"]) && $_SESSION["loged"] == "ok") {
             <h1 class="mb-5 m-auto justify-content-center"> New Menu </h1>
             <div class="col-8 rounded-3 container-fluid text-light mt-5 m-auto p-4" id="divDestino">
                 <div>
-                    Menu:
-                    <input type="text" class="form-control" placeholder="">
-                </div>
-                <div>
-                    Type:
-                    <select class="form-control">
-                        <option value="breakfast">breakfast</option>
-                        <option value="lunch">lunch</option>
-                        <option value="dinner">dinner</option>
-                    </select>
+                    <form action="../modules/createMenu.php" method="post">
+                        Menu:
+                        <input type="text" class="form-control" name="name" id="name">
 
-                    <table class="tblLocations table-responsive mt-5 m-auto p-4 table-bordered" cellpadding="0" cellspacing="0" border="1">
+                        Type:
+                        <select class="form-control" name="type" id="type">
+                            <option value="breakfast">breakfast</option>
+                            <option value="lunch">lunch</option>
+                            <option value="dinner">dinner</option>
+                        </select>
+                        <input type="submit" value="submit">
+                    </form>
+
+                    <table class="tblLocations table-responsive mt-5 m-auto p-4 table-bordered" cellpadding="0" cellspacing="0" border="1" name="items" id="items">
                         <thead>
                             <th>items:</th>
                             <th>meal</th>
@@ -126,42 +140,35 @@ if (isset($_SESSION["user"]) && $_SESSION["loged"] == "ok") {
                         <tbody>
                             <?php
 
-                            $i = 0;
-
                             if (sizeof($result) >= 0) {
                                 foreach ($result as $item) {
                                     extract($item); ?>
                                     <tr>
-                                        <td id='<?php echo 'arrastrar' . $i ?>'>
-
-                                            <?php
-                                            echo $item_description;
-                                            $i++; ?>
+                                        <td><span class="event" id="a" draggable="true">
+                                            
+                                                <?php
+                                                echo $item_description;
+                                                ?>
+                                            
                                         </td>
-                                        <td></td>
+                                        <td>
+                                            <div>
+
+                                            </div>
+                                        </td>
                                     </tr>
 
                             <?php
                                 }
                             }
                             ?>
-                            <td>
 
-
-                            </td>
                         </tbody>
                     </table>
 
-                    <div>
-                        <input type="submit" value="submit">
-                    </div>
                 </div>
 
-
-
-
             </div>
-
 
         </div>
 
@@ -211,7 +218,7 @@ if (isset($_SESSION["user"]) && $_SESSION["loged"] == "ok") {
 
     </html>
 <?php
-}} else {
+} else {
     header("Location: ../public/error.html");
 }
 ?>
