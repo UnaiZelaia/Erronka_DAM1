@@ -32,52 +32,142 @@ if (isset($_SESSION["user"]) && $_SESSION["loged"] == "ok") {
         <!-- JQUERY UI -->
         <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
         <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
-        <script type="text/javascript">
-            $(document).ready(function() {
-                // Dar a las imágenes la capacidad de mover las imágenes
-                $("#arrastrar1").draggable({
-
-
-                });
-                // Damos la capacidad al div de recibir a otros elementos, admitiendo sólo a la imagen
-                // cuyo 'id' es 'arrastrar2', y con la condición de que sea soltada estando completamente dentro
-                $("#divDestino").droppable({
-                    accept: "#arrastrar".$i,
-                    tolerance: "fit",
-                    drop: elementoSoltado
-                });
-            });
-            $(function() {
-                $('.event').on("dragstart", function(event) {
-                    var dt = event.originalEvent.dataTransfer;
-                    dt.setData('Text', $(this).attr('id'));
-                });
-                $('table td').on("dragenter dragover drop", function(event) {
-                    event.preventDefault();
-                    if (event.type === 'drop') {
-                        var data = event.originalEvent.dataTransfer.getData('Text', $(this).attr('id'));
-                        de = $('#' + data).detach();
-                        de.appendTo($(this));
-                    };
-                });
-                $('#addRow').on('click', function() {
-                    $('#targetTable > tbody:last-child').append('<tr><td></td><td></td><td></td></tr>');
-                });
-            });
-        </script>
-
         <script>
+            var items = [];
             $(document).ready(function() {
                 // Dar a las imágenes la capacidad de mover las imágenes
-                $(<?php
+                <?php
                     $result = MySQLPDO::menuItems();
                     $i = 1;
                     foreach ($result as $items) {
                         extract($items);
-                    } ?>)
+                    ?>
+                        items.push( "<?php echo $item_description ?>");
+                    
+                    <?php
+                    }
+                    ?>});
 
+            // Get the list element from the HTML document
+            const list = document.getElementById("myTable")
+
+
+            console.log('"Java" + "Script" = \"' + 'Java' + 'Script\"');
+            // '"Java" + "Script" = "JavaScript"'
+
+
+            items.forEach(item => {
+                const tr = document.createElement('tr');
+                const tdcolumn1 = document.createElement('td');
+                tdcolumn1.classList.add("column1");
+                tdcolumn1.textContent = item;
+                const tdcolumn2 = document.createElement('td');
+                tdcolumn2.classList.add("column2");
+                tr.appendChild(tdcolumn1);
+                tr.appendChild(tdcolumn2);
+                list.appendChild(tr);
             });
+            // Loop through each item in the array and create an  element for it
+            // <?php
+                // if (sizeof($result) >= 0) {
+                //     foreach ($result as $item) {
+                //         extract($item); 
+                ?>
+            //         var maintr = document.createElement('tr');
+            //         var tdcolumn1 = document.createElement('td');
+            //         tdcolumn1.classList.add("column1");
+            //         tdcolumn1.textContent = "<-?php echo $item_description ?>";
+            //         var tdcolumn2 = document.createElement('td');
+            //         tdcolumn2.classList.add("column2");
+            //         maintr.appendChild(tdcolumn1);
+            //         maintr.appendChild(tdcolumn2);
+            //         list.appendChild(maintr);
+
+            // <-?php
+
+            //     }
+            //} ?>
+
+
+            // Get all cells in the table
+            const cells = document.querySelectorAll('#myTable td');
+
+            // Add drag and drop event listeners to each cell
+            cells.forEach(cell => {
+                cell.draggable = true;
+                cell.addEventListener('dragstart', handleDragStart);
+                cell.addEventListener('dragover', handleDragOver);
+                cell.addEventListener('dragenter', handleDragEnter);
+                cell.addEventListener('dragleave', handleDragLeave);
+                cell.addEventListener('drop', handleDrop);
+                cell.addEventListener('dragend', handleDragEnd);
+            });
+
+            // Set variables for the cell being dragged, the empty column being dragged to, and the original column of the cell
+            let draggedCell = null;
+            let draggedToEmptyColumn = false;
+            let originalColumn = null;
+
+            // Drag functions
+            function handleDragStart(e) {
+                draggedCell = e.target;
+                originalColumn = e.target.parentNode.className;
+                e.dataTransfer.effectAllowed = 'move';
+            }
+
+            function handleDragOver(e) {
+                e.preventDefault();
+                e.dataTransfer.dropEffect = 'move';
+            }
+
+            function handleDragEnter(e) {
+                if (e.target.classList.contains('column2') && e.target.innerHTML === '') {
+                    draggedToEmptyColumn = true;
+                    e.target.classList.add('over');
+                } else if (e.target.classList.contains('column1') && e.target.innerHTML === '') {
+                    draggedToEmptyColumn = false;
+                    e.target.classList.add('over');
+                }
+            }
+
+            function handleDragLeave(e) {
+                if (e.target.classList.contains('column2') || e.target.classList.contains('column1')) {
+                    e.target.classList.remove('over');
+                }
+            }
+
+            function handleDrop(e) {
+                e.preventDefault();
+                const dropCell = e.target;
+                if (draggedToEmptyColumn && dropCell.classList.contains('column2') && dropCell.innerHTML === '') {
+                    // Move the contents of the dragged cell to the empty column
+                    dropCell.innerHTML = draggedCell.innerHTML;
+                    draggedCell.innerHTML = '';
+
+                    // Update the classes of the cells to keep them in their respective columns
+                    draggedCell.classList.remove('over');
+                    dropCell.classList.remove('over');
+                    draggedCell.classList.add('column2');
+                } else if (!draggedToEmptyColumn && dropCell.classList.contains('column1') && dropCell.innerHTML === '') {
+                    // Move the contents of the dragged cell to the non-empty column
+                    dropCell.innerHTML = draggedCell.innerHTML;
+                    draggedCell.innerHTML = '';
+
+                    // Update the classes of the cells to keep them in their respective columns
+                    draggedCell.classList.remove('over');
+                    dropCell.classList.remove('over');
+                    draggedCell.classList.add('column1');
+                }
+            }
+
+            function handleDragEnd(e) {
+                draggedCell = null;
+                draggedToEmptyColumn = false;
+                originalColumn = null;
+            }
         </script>
+
+
     </head>
 
     <body>
@@ -132,49 +222,45 @@ if (isset($_SESSION["user"]) && $_SESSION["loged"] == "ok") {
                         <input type="submit" value="submit">
                     </form>
 
-                    <table class="tblLocations table-responsive mt-5 m-auto p-4 table-bordered" cellpadding="0" cellspacing="0" border="1" name="items" id="items">
-                        <thead>
-                            <th>items:</th>
-                            <th>meal</th>
-                        </thead>
-                        <tbody>
-                            <?php
+                    <div id="container">
+                        <table id="myTable" class="tblLocations table-responsive mt-5 m-auto p-4 table-bordered" cellpadding="0" cellspacing="0" border="1">
+                            <tr>
+                                <th>Meal</th>
+                                <th>Menu</th>
+                            </tr>
+                            <tbody>
+                                <?php
 
-                            if (sizeof($result) >= 0) {
-                                foreach ($result as $item) {
-                                    extract($item); ?>
-                                    <tr>
-                                        <td><span class="event" id="a" draggable="true">
-                                            
-                                                <?php
-                                                echo $item_description;
-                                                ?>
-                                            
-                                        </td>
-                                        <td>
-                                            <div>
+                                if (sizeof($result) >= 0) {
+                                    foreach ($result as $item) {
+                                        extract($item); ?>
+                                        <tr>
+                                            <td>
 
-                                            </div>
-                                        </td>
-                                    </tr>
+                                                
 
-                            <?php
+                                            </td>
+                                            <td>
+                                                <div>
+
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                <?php
+                                    }
                                 }
-                            }
-                            ?>
+                                ?>
 
-                        </tbody>
-                    </table>
+                            </tbody>
+                        </table>
+
+                    </div>
 
                 </div>
 
             </div>
-
         </div>
-
-
-
-
 
         <!--End of the content-->
 
