@@ -56,6 +56,8 @@ if (isset($_SESSION["user"]) && $_SESSION["loged"] == "ok") {
                 });
             </script>
             <script>
+
+
                 $(document).ready(function() {
                     // Dar a las imágenes la capacidad de mover las imágenes
                     $(<?php
@@ -68,10 +70,10 @@ if (isset($_SESSION["user"]) && $_SESSION["loged"] == "ok") {
                 });
                 items = []
                 var contentRows = document.body.getElementsByClassName("contentColumn");
-                contentRows.foreach(item) {
+                contentRows.foreach(function(item) {
                     items.push(item.innerHTML);
 
-                }
+                })
                 print_r(items);
 
 
