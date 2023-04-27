@@ -47,3 +47,9 @@ class Menu():
             for row in values:
                 print(row)
             f.close()
+    def deleteMenu(self):
+        f = open("../files/Menus.csv", "r+")
+
+        with f:
+            reader = csv.DictReader(f)
+            values = reader.reader

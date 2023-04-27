@@ -34,7 +34,7 @@ class User:
                 writer.writerow({"id": self.id_user, "name": self.name, "surname": self.surname, "email": self.email, "role": self.role})
 
     def printUsers(self):
-        f = open("files/Users.csv", "r+")
+        f = open("../files/Users.csv", "r+")
 
         with f:
             reader = csv.DictReader(f)
@@ -42,7 +42,14 @@ class User:
 
             for row in values:
                 print(row)
-            f.close
+            f.close()
+
+    def deleteUser(self):
+        f = open("../files/Users.csv", "r+")
+
+        with f:
+            reader = csv.DictReader(f)
+            values = reader.reader
 
 
 
