@@ -66,6 +66,14 @@ if (isset($_SESSION["user"]) && $_SESSION["loged"] == "ok") {
                         } ?>)
 
                 });
+
+                var contentRows = document.body.getElementsByClassName
+                contentRows.forEach(  {
+                    
+                    
+                });
+
+
             </script>
         </head>
 
@@ -141,7 +149,7 @@ if (isset($_SESSION["user"]) && $_SESSION["loged"] == "ok") {
                                         echo $item_description;
                                         $i++; ?>
                                     </td>
-                                    <td ></td>
+                                    <td class="contentColumn" ></td>
                                 </tr>
                             <?php
                             }
