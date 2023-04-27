@@ -5,6 +5,7 @@ include("../modules/updateSessionUser.php");
 session_start();
 if(isset($_SESSION["user"]) && $_SESSION["loged"] == "ok"){
   updateUser();
+  $resultMenuItems = MySQLPDO::selectMenusWeek();
 ?>
 
 <!doctype html>
