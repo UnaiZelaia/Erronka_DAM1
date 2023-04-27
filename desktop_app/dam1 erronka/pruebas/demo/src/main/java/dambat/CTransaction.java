@@ -75,25 +75,6 @@ public class CTransaction implements Initializable{
             
         });
     }
-     @FXML
-     public void actualizarRegistro(){
-       
-        Usuario u = new Usuario(tNombre.getText(), tApellido.getText(), Double.valueOf(tMony.getText()));    
-        conexion.establecerConexion();
-        int resultado = u.actualizarRegistro(conexion.getConnection());
-        conexion.cerrarConexion();
-        if (resultado == 1){
-
-            listaUs.set(tablaUsuario.getSelectionModel().getSelectedIndex(),u);   //para hacer que la lista se actualice automaticamente, funciona mal
-            Alert mensaje = new Alert(AlertType.INFORMATION);
-            mensaje.setTitle("updated user");
-            mensaje.setContentText("The user has been updated successfully");
-            mensaje.setHeaderText("Result:");
-            mensaje.show();
-            
-        }
-
-    }
 
     public void nuevoRegistro2(){
         String payment = "";
