@@ -12,7 +12,8 @@ if(isset($_POST["userId"]) && isset($_POST["menuId"])){
     $lastMenu = MySQLPDO::selectMenuId();
     $lastMenu = $lastMenu[0]["id_menu"];
     foreach($items as $item){
-        MySQLPDO::insertMenuItems($lastMenu, $item);
+        $itemId = MySQLPDO::selectItemId($item);
+        MySQLPDO::insertMenuItems($lastMenu, $itemId);
     }
     header("Location: ../templates/createMenu.php");
 }
@@ -20,6 +21,7 @@ else{
     header("Location: ../templates/error.php");
 }
 ?>
+
 
 
 

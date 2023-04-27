@@ -222,6 +222,23 @@ class MySQLPDO {
             return $e -> getMessage();
         }
     }
+    public static function selectItemId($item){
+        try{
+            $item = strtoupper($item);
+            $sql = "SELECT id_item FROM items where UPPER(item_description) = $item ";
+            $params=array();
+            $result = MySQLPDO::select($sql, $params);
+            return $result;
+        }
+        catch(Exception $e) {
+
+            return $e -> getMessage();
+        }
+
+
+
+    }
+
 
     public static function selectMenuId(){
         try{
