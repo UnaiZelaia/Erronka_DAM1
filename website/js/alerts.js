@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    $.fn.createAlert = function(type, message) {
+    $.fn.createAlert = function(message) {
         alert(message.toString());
       }
     });
