@@ -1,5 +1,4 @@
 import pickle
-import datetime
 from src.model.User import User
 from src.model.Reserve import Reserve
 from src.model.Menu import Menu

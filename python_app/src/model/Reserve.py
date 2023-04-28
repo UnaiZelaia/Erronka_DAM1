@@ -8,9 +8,5 @@ class Reserve:
         self.id_menu = id_menu
         self.date = date
 
-
     def print(self):
         print(self.id_user, self.id_menu, self.date)
-
-
-

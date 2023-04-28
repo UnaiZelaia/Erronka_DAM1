@@ -24,6 +24,7 @@ if(isset($_SESSION["user"]) && $_SESSION["loged"] == "ok"){
   <link rel="stylesheet" href="../style/style.css">
   <script src="../js/calendar.js"></script>
   <script src="../js/alerts.js"></script>
+  <script src="../js/validation.js"></script>
 </head>
 <?php
   if(isset($_GET["a"])){
@@ -115,7 +116,7 @@ if(isset($_SESSION["user"]) && $_SESSION["loged"] == "ok"){
       <form class="col-6 rounded-3 m-auto p-4" id="reservationForm" action="../modules/makeReserve.php" method="GET">
 
         <div class="form-group mt-5">
-          <label class="text-light" for="reservationDate">Date for the reservation</label>
+          <label class="text-light" for="reservationDate" onchange="TDate()">Date for the reservation</label>
           <input type="date" name="reservationDate" id="reservationDate" />
         </div>
 
