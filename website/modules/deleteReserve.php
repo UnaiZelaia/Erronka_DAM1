@@ -10,10 +10,10 @@ if(isset($idReserve) && isset($_SESSION["user"])){
     
 
     MySQLPDO::deleteReserve($idReserve);
-    header("Location: ../templates/reservesList.php");
+    header("Location: ../templates/reservesList.php?a=1");
 }
 else{
-    header("Location: ../public/errorPage.html");
+    header("Location: ../templates/reservesList.php?a=0");
 }
 
 ?>

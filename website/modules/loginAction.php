@@ -23,11 +23,11 @@ if(isset($result["email"])){
         exit();
     }
     else{
-        header("Location: ../public/loginError.html");
+        header("Location: ../public/login_form.html?a=0");
         exit();
     }
 }
 else{
-    header("Location: ../public/loginError.html");
+    header("Location: ../public/login_form.html?a=0");
 }
 ?>

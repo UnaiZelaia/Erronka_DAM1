@@ -180,15 +180,14 @@ class MySQLPDO {
         }
     }
 
-    public static function menuItems($items){
+    public static function menuItems(){
         try{
             $sql = "SELECT * FROM items" ;
-            $params=array($items);
+            $params=array();
             $result = MySQLPDO::select($sql, $params);
             return $result;
         }
         catch(Exception $e) {
-
             return $e -> getMessage();
         }
     }

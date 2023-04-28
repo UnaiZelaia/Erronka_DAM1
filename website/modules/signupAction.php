@@ -19,9 +19,9 @@ if (isset($_POST["email"])) {
     }
     MySQLPDO::signup($user);
 
-    header("Location: ../public/login_form.html");
+    header("Location: ../public/login_form.html?a=1");
 }
 else{
-    header("Location: ../public/errorSignup.html");
+    header("Location: ../public/signup_form.html?a=0");
 }
 ?>

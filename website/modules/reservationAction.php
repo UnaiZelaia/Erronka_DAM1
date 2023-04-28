@@ -10,9 +10,9 @@ if(isset($_POST["userId"]) && isset($_POST["menuId"])){
     $menuId = $_POST["menuId"];
 
     MySQLPDO::makeReserve($date, $menuId, $userId);
-    header("Location: ../templates/index.php");
+    header("Location: ../templates/index.php?a=1");
 }
 else{
-    header("Location: ../templates/reservationError.php");
+    header("Location: ../templates/index.php?a=0");
 }
 ?>
