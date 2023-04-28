@@ -1,3 +1,3 @@
-from view import ResidentMain
+from view import optionsResident
 
-ResidentMain.printResidentMain()
+optionsResident.printResidentMain()

@@ -4,21 +4,22 @@ import pickle
 class Resident:
     role = "Resident"
 
-    def __init__(self, id_user, name, surname, email, allergy):
+    def __init__(self, id_user, name, surname, email, role, allergy):
         self.id_user = id_user
         self.name = name
         self.surname = surname
         self.email = email
+        self.role = role
         self.allergy = allergy
 
     def print(self):
-        if __name__ == "Resident":
+        if __name__ == "resident":
             print(self.id_user, self.name, self.surname, self.email, self.role, self.allergy)
 
     def newResident(self):
         with open("files/Residents.pickle", "ab") as f:
-            pickle.dump({"id": self.id_user, "name": self.name, "surname": self.surname, "email": self.email,
-                         "role": self.role, "allergy": self.allergy}, f)
+            pickle.dump({"Id": self.id_user, "Name": self.name, "Surname": self.surname, "Email": self.email,
+                         "Role": self.role, "Allergy": self.allergy}, f)
 
     @staticmethod
     def printResidents():
@@ -35,7 +36,7 @@ class Resident:
             try:
                 while True:
                     resident = pickle.load(f)
-                    if resident["id"] != self.id_user and resident["name"] != self.name:
+                    if resident["Id"] != self.id_user:
                         residents.append(resident)
             except EOFError:
                 pass
