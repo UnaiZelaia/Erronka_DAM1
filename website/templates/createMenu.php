@@ -67,11 +67,27 @@ if (isset($_SESSION["user"]) && $_SESSION["loged"] == "ok") {
 
                 });
 
-                var contentRows = document.body.getElementsByClassName
-                contentRows.forEach(  {
+                items = []  
+                function addMealToArray() {
+                    var contentRows = document.getElementsByClassName("contentColumn");
+                    Array.from(contentRows).forEach((item)=> {
+                            if (item.textContent != "") {
+                                items.push(item.textContent.trim());
+                            }
+    
+                    })
+    
+                    items.forEach(function(item){
+    
+                        console.log(item);
+    
+                    });
+
+                    
+                }
+
                     
                     
-                });
 
 
             </script>
@@ -127,12 +143,11 @@ if (isset($_SESSION["user"]) && $_SESSION["loged"] == "ok") {
                         </select>
                         <input type="submit" value="submit">
                     </form>
-
                     <table class="tblLocations table-responsive mt-5 m-auto p-4 table-bordered" cellpadding="0" cellspacing="0" border="1">
                         <thead>
                             <tr>
-                                <th>Items:</th>
-                                <th>Meal</th>
+                                <th>MEAL</th>
+                                <th>MENU</th>
                             </tr>
                         </thead>
                         <tbody>
