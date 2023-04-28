@@ -1,8 +1,10 @@
 <?php
 include("../model/User.class.php");
 include("../model/MySQLPDO.class.php");
+include("../modules/updateUser.php");
 session_start();
 if(isset($_SESSION["user"]) && $_SESSION["loged"] == "ok"){
+    updateUser();
 
 ?>
 <!doctype html>
@@ -53,6 +55,24 @@ if(isset($_SESSION["user"]) && $_SESSION["loged"] == "ok"){
                     <li class="nav-item">
                         <a class="nav-link" href="menu.html">MENU</a>
                     </li>
+                    <?php
+                    if($_SESSION["user"] -> getId() == 4 || 3){
+                    ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="publish.html">PUBLISH MENU</a>
+                    </li>
+
+                    <?php
+                    }
+                    else{
+                    ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="publish.html">PUBLISH MENU</a>
+                    </li>
+                    <?php
+                    }
+                    ?>
+
                     <li class="nav-item">
                         <a class="nav-link" href="login_form.html">RESERVAS</a>
                     </li>

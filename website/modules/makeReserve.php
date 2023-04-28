@@ -10,11 +10,17 @@ $meal = $_GET["reservationMeal"];
 
 if(isset($date) && isset($meal) && isset($_SESSION["user"])){
     $idMeal = MySQLPDO::lastOfMealType($meal, $date);
+    if(isset($idMeal)){
+        extract($idMeal);
 
-    $dateFormatted = date("d-m-Y", strtotime($date));
+        $dateFormatted = date("Y-m-d", strtotime($date));
 
-    MySQLPDO::makeReserve($dateFormatted, $_SESSION["user"] -> getId(), $idMeal);
-    header("Location: ../templates/index.php");
+        MySQLPDO::makeReserve($dateFormatted, $id_menu, $_SESSION["user"] -> getId());
+        header("Location: ../templates/reservation_form.php");
+    }
+    else{
+        header("Location: ../templates/reservation_form.php");
+    }
 }
 else{
     header("Location: ../public/errorPage.html");
