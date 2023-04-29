@@ -51,4 +51,5 @@ public class ReportsController implements Initializable{
     private void pasoPag() throws IOException {
         App.setRoot("Menu");
     }
+
 }

@@ -215,11 +215,22 @@ public class Usuario{
 
 	public int eliminarRegistro(Connection connection){
 		try {
-			PreparedStatement instruccion = connection.prepareStatement("DELETE FROM user WHERE user.id_user = ?;"); //evita injeccion sql al enviar datos de esta forma y no con statement
+			PreparedStatement instruccion1 = connection.prepareStatement("SELECT * FROM `transactions` WHERE id_user = ?");
+			instruccion1.setInt(1, idUsuario.get());
+			ResultSet resultados = instruccion1.executeQuery();
+			if (resultados.next()) {
+				PreparedStatement instruccion2 = connection.prepareStatement("DELETE FROM transactions WHERE id_user = ?");
+				instruccion2.setInt(1, idUsuario.get());
+				instruccion2.executeUpdate();
+			}
+			PreparedStatement instruccion3 = connection.prepareStatement("DELETE FROM user WHERE id_user = ?");
+			instruccion3.setInt(1, idUsuario.get());
+			int filasAfectadas = instruccion3.executeUpdate();
+			return filasAfectadas;
 			
-			instruccion.setInt(1,idUsuario.get());
+
 	
-			return instruccion.executeUpdate();
+
 
 		} catch (SQLException e) {
 			e.printStackTrace();
