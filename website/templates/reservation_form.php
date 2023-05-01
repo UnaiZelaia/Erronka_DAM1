@@ -116,8 +116,8 @@ if(isset($_SESSION["user"]) && $_SESSION["loged"] == "ok"){
       <form class="col-6 rounded-3 m-auto p-4" id="reservationForm" action="../modules/makeReserve.php" method="GET">
 
         <div class="form-group mt-5">
-          <label class="text-light" for="reservationDate" onchange="TDate()">Date for the reservation</label>
-          <input type="date" name="reservationDate" id="reservationDate" />
+          <label class="text-light" for="reservationDate" >Date for the reservation</label>
+          <input type="date" name="reservationDate" onchange="TDate()" id="reservationDate" />
         </div>
 
         <div class="form-group mt-5">
