@@ -65,7 +65,8 @@ class MySQLPDO {
     public static function lastOfMealType($meal, $date){
         $sql = "SELECT m.id_menu FROM menu m 
                     INNER JOIN reserve r ON m.id_menu = r.id_menu
-                        WHERE UPPER(m.meal) = ? AND r.menu_date = ?";
+                        WHERE UPPER(m.meal) = ? AND r.menu_date = ?
+                            LIMIT 1";
 
         $params = array(strtoupper($meal), $date);
         $result = MySQLPDO::select($sql, $params);

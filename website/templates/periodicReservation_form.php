@@ -6,7 +6,6 @@ session_start();
 if(isset($_SESSION["user"]) && $_SESSION["loged"] == "ok"){
   updateUser();
 ?>
-
 <!doctype html>
 <html lang="en">
 
@@ -17,11 +16,14 @@ if(isset($_SESSION["user"]) && $_SESSION["loged"] == "ok"){
     crossorigin="anonymous"></script>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="shortcut icon" href="../img/lg.png" type="image/x-icon">
   <title>TEMPLATE</title>
   <link rel="stylesheet" href="../style/style.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="../js/calendar.js"></script>
+  <script src="../js/alerts.js"></script>
 </head>
 
 <body onload="javascript:setHtmlWeek()">
@@ -74,15 +76,18 @@ if(isset($_SESSION["user"]) && $_SESSION["loged"] == "ok"){
   </nav>
   <!--End of the navbar-->
   <!--Start of the content-->
-
   <div class="container text-center mb-5">
     <div class="col-12 rounded-4 mt-5">
-      <h3>Make a reservation</h3>
-      <form class="col-6 rounded-3 m-auto p-4" id="reservationForm" action="../modules/makeReserve.php" method="GET">
+      <h3>Make a periodic reservation</h3>
+      <form class="col-6 rounded-3 m-auto p-4" id="reservationForm" action="../modules/makePeriodicReserve.php" method="GET">
 
         <div class="form-group mt-5">
-          <label class="text-light" for="reservationDate">Date for the reservation</label>
-          <input type="date" name="reservationDate" id="reservationDate" />
+          <label class="text-light" for="reservationDate">Date for the start of the reservation</label>
+          <input type="date" name="reservationDate" id="reservationDate"/>
+        </div>
+        <div class="form-group mt-5">
+          <label class="text-light" for="reservationMeal">Amount of weeks</label>
+          <input type="number" name="reservationWeek" id="reservationWeek" min="1" max="10"/>
         </div>
 
         <div class="form-group mt-5">
@@ -93,120 +98,12 @@ if(isset($_SESSION["user"]) && $_SESSION["loged"] == "ok"){
             <option value="dinner">Dinner</option>
           </select>
         </div>
-
-        <?php if ($_SESSION["user"]->getRole() == 2) : ?>
-          <input type="submit" value="Make reservation" class="btn btn-primary mt-5">
-          <a href="periodicReservation_form.php">
-          <input type="button" href="/periodicReservation_form.php"value="Make periodic reservation" class="btn btn-primary mt-5">
-          </a>
-        <?php else : ?>
-          <input type="submit" value="Make reservation" class="btn btn-primary mt-5">
-        <?php endif; ?>
-
-
-
-        
+        <input type="submit" value="Make reservation" class="btn btn-primary mt-5">
       </form>
     </div>
   </div>
 
-  <div class="col-8 m-auto mt-3 table-responsive">
-    <h4 id="MonthHeader">Menu for week: </h4>
-    <table class="table table-bordered">
-      <thead>
-        <tr>
-          <th id="weekMon">Monday </th>
-          <th id="weekTue">Tuesday </th>
-          <th id="weekWed">Wednesday </th>
-          <th id="weekThu">Thursday </th>
-          <th id="weekFri">Friday </th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>
-            Menu for Breakfast: Monday
-            <br>
-          </td>
-          <td>
-            Menu for Breakfast: Tuesday
-            <br>
-          </td>
-          <td>
-            Menu for Breakfast: Wednesday
-            <br>
-          </td>
-          <td>
-            Menu for Breakfast: Thursday
-            <br>
-          </td>
-          <td>
-            Menu for Breakfast: Friday
-            <br>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            Menu for Lunch: Monday
-            <br>
-          </td>
-          <td>
-            Menu for Lunch: Tuesday
-            <br>
-          </td>
-          <td>
-            Menu for Lunch: Wednesday
-            <br>
-          </td>
-          <td>
-            Menu for Lunch: Thursday
-            <br>
-          </td>
-          <td>
-            Menu for Lunch: Friday
-            <br>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            Menu for Dinner: Monday
-            <br>
-          </td>
-          <td>
-            Menu for Dinner: Tuesday
-            <br>
-          </td>
-          <td>
-            Menu for Dinner: Wednesday
-            <br>
-          </td>
-          <td>
-            Menu for Dinner: Thursday
-            <br>
-          </td>
-          <td>
-            Menu for Dinner: Friday
-            <br>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  
   <!--End of the content-->
   <!--Start of the footer-->
   <footer>
@@ -243,6 +140,9 @@ if(isset($_SESSION["user"]) && $_SESSION["loged"] == "ok"){
   <!--End of the footer-->
 </body>
 </html>
+
+
+
 <?php
 }else{
   header("Location: ../public/error.html");

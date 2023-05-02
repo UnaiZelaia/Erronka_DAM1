@@ -120,7 +120,7 @@ if (isset($_SESSION["user"]) && $_SESSION["loged"] == "ok") {
                   </form>
                   </td>
                 </tr>
-
+                    
               <?php
               }
             }
