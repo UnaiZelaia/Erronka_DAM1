@@ -235,6 +235,8 @@ END; //
 
 
 DELIMITER //
+
+
 CREATE TRIGGER cancelReserveDeleteTransaction
 AFTER DELETE ON reserve
 FOR EACH ROW

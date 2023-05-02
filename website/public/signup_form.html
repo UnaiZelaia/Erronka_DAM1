@@ -13,6 +13,7 @@
     <title>Canteen sign up</title>
     <link rel="stylesheet" href="../style/style.css">
     <script src="../js/calendar.js"></script>
+    <script src="../js/validation.js"></script>
   </head>
 
 <body class="bg-muted">
@@ -51,8 +52,8 @@
     <div class="container text-center mb-5">
         <div class="col-12 rounded-4 mt-5" id="centro">
             <img id="uniLogo" class="col-4 rounded-top" src="../img/uni_eibar.png" alt="uni-eibar logo">
-            <form id="signupForm" class="m-auto col-4 rounded-bottom p-4 text-light" method="POST"
-                action="../modules/signupAction.php">
+            <form onsubmit="validatePassword()" id="signupForm" class="m-auto col-4 rounded-bottom p-4 text-light" method="POST"
+                action="../modules/signupAction.php" >
                 <h2 class="pt-5 text-decoration-underline">Uni-Eibar canteen system</h2>
                 <h4 class="pt-2">Registration</h4>
 

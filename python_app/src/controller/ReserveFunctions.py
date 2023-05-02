@@ -114,12 +114,76 @@ def readReserves():
     for st in objects:
         st.print()
 
-            #print(st.date, " - ", st.id_user, " - ", st.id_menu)
 
+def deleteReserve():
+    f = open("../files/Reserves.pkl", "rb+")
 
-def deleteReserve(self, user, menu, date):
-    f = open("../files/Reserves.pkl", "r+")
+    objects = []
+    cont = 1
+    c = 1
+    i = 1
+    while cont == 1:
+        try:
+            objects.append(pickle.load(f))
+        except EOFError:
+            cont = 0
 
-    def save_object(obj, filename):
-        with open(filename, 'ab') as outp:  # Overwrites any existing file.
-            pickle.dump(obj, outp, pickle.HIGHEST_PROTOCOL)
+    while c == 1:
+        for obj in objects:
+            print(str(i) + "- ", end="")
+            Reserve.print(obj)
+            i = i + 1
+        i = 1
+
+        opt = int(input("Select the index of the reserve you want to delete: "))
+        objects.pop(opt - 1)
+        fd = open("../files/Reserves.pkl", "wb+")
+        for obj in objects:
+            pickle.dump(obj, fd, pickle.HIGHEST_PROTOCOL)
+        print("The reservation was deleted successfully")
+        c = int(input("Press 1 to keep delete another reservation. Press any other key to stop deleting."))
+    readReserves()
+
+def updateReserve():
+    f = open("../files/Reserves.pkl", "rb+")
+
+    objects = []
+    cont = 1
+    c = 1
+    i = 1
+    while cont == 1:
+        try:
+            objects.append(pickle.load(f))
+        except EOFError:
+            cont = 0
+
+    while c == 1:
+        for obj in objects:
+            print(str(i) + "- ", end="")
+            Reserve.print(obj)
+            i = i + 1
+        i = 1
+
+        opt = int(input("Select the index of the reserve you want to update: "))
+        print("\t1- Update date")
+        print("\t2- Update user")
+        print("\t3- Update menu")
+        print("\tAny key- Go back")
+        opt2 = int(input("Select which field you want to update: "))
+        match(opt2):
+            case 1:
+                objects[opt - 1].setDate()
+            case 2:
+                objects[opt - 1].setId_user()
+            case 3:
+                objects[opt - 1].setId_menu()
+            case default:
+                readReserves()
+        fw = open("../files/Reserves.pkl", "wb+")
+
+        for obj2 in objects:
+            pickle.dump(obj, fw, pickle.HIGHEST_PROTOCOL)
+
+        print("Objects have been updated")
+        c = int(input("Press 1 to update another reservation. Press any other key to stop deleting."))
+    readReserves()
