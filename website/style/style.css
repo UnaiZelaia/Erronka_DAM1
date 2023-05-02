@@ -1,0 +1,41 @@
+.bg-uni{
+    background-color: #5E4384;
+}
+
+#uniLogo{
+    background-color: #5E4384;
+}
+
+#loginForm{
+    background-color: #5E4384;
+}
+
+#signupForm{
+    background-color: #5E4384;
+}
+
+#userInfoForm{
+    background-color: #5E4384;
+}
+
+#reservationForm{
+    background-color: #5E4384;
+}
+
+#userLogo{
+    height: 2rem;
+    width: 2rem;
+}
+
+a{
+    text-decoration: none;
+    color: white;
+}
+
+body {
+    background-color: rgba(229, 205, 245, 0.4);
+}
+
+.container-fluid {
+    background-color: #705a89;
+}

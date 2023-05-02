@@ -23,7 +23,7 @@ class Resident:
 
     @staticmethod
     def printResidents():
-        with open("files/Residents.pickle", "rb") as f:
+        with open("../files/Residents.pkl", "rb") as f:
             try:
                 while True:
                     print(pickle.load(f))
@@ -31,7 +31,7 @@ class Resident:
                 pass
 
     def deleteResident(self):
-        with open("files/Residents.pickle", "rb") as f:
+        with open("../files/Residents.pkl", "rb") as f:
             residents = []
             try:
                 while True:
@@ -41,6 +41,6 @@ class Resident:
             except EOFError:
                 pass
 
-        with open("files/Residents.pickle", "wb") as f:
+        with open("../files/Residents.pkl", "wb") as f:
             for resident in residents:
                 pickle.dump(resident, f)
