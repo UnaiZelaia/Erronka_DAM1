@@ -1,9 +1,9 @@
 <?php
 class MySQLPDO {
-    private static $host = "192.168.122.160"; //o la IP del servidor de BBBDD remoto
+    private static $host = "127.0.0.1"; //o la IP del servidor de BBBDD remoto
     private static $database = "canteen";
-    private static $username = "unai";
-    private static $password = "123";
+    private static $username = "root";
+    private static $password = "";
     private static $base;
     
     public static function connect() {
@@ -136,6 +136,7 @@ class MySQLPDO {
         }
         catch(Exception $e){
             return $e -> getMessage();
+
         }
     }
 
@@ -240,13 +241,38 @@ class MySQLPDO {
         }
     }
 
+    public static function insertMenu($menuName, $menuMeal){
+        try{
+            $sql = "INSERT INTO MENU (menu_name, meal) VALUES(?, ?)";
+            $params = array($menuName, $menuMeal);
+            $result = MySQLPDO::exec($sql, $params);
+            return $result;
+            }
+        catch(Exception $e){
+            return $e -> getMessage();
+        }
+    }
+
+
     public static function updateUser($idUser){
         try{
             $sql = "SELECT * FROM user WHERE id_user = ?";
             $params = array($idUser);
             $result = MySQLPDO::select($sql, $params);
             return $result[0];
+
         }
+        catch(Exception $e){
+            return $e -> getMessage();
+        }
+    }
+
+
+    public static function insertMenuItems($menuId ,$item){
+        try{
+            $sql = "INSERT INTO menu_items (id_menu, id_item) VALUES(?, ?)";
+            $params = array($menuId, $item);
+            }
         catch(Exception $e){
             return $e -> getMessage();
         }
@@ -256,6 +282,7 @@ class MySQLPDO {
         try{
             $sql = "UPDATE user SET hash_password = ? WHERE id_user = ?";
             $params = array($pass, $idUser);
+
             $result = MySQLPDO::exec($sql, $params);
             return $result;
         }
@@ -264,4 +291,33 @@ class MySQLPDO {
         }
     }
 
+    public static function selectItemId($item){
+        try{
+            $item = strtoupper($item);
+            $sql = "SELECT id_item FROM items where UPPER(item_description) = $item ";
+            $params=array();
+            $result = MySQLPDO::select($sql, $params);
+            return $result;
+        }
+        catch(Exception $e) {
+
+            return $e -> getMessage();
+        }
+
+
+
+    }
+
+
+    public static function selectMenuId(){
+        try{
+            $sql = "SELECT id_menu FROM menu ORDER BY id_menu DESC LIMIT 1";
+            $params = array();
+            $result = MySQLPDO::select($sql, $params);
+            return $result;
+        }
+        catch(Exception $e){
+            return $e -> getMessage();
+        }
+    }
 }
