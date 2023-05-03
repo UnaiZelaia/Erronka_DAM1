@@ -401,68 +401,14 @@ if (isset($_SESSION["user"]) && $_SESSION["loged"] == "ok") {
 
 
                 </div>
-
-
-
-
             </div>
         </footer>
         <!--End of the footer-->
     </body>
 
     </html>
-
-
-            </div>
-
-
-
-
-
-            <!--End of the content-->
-
-            <!--Start of the footer-->
-            <footer class="container-fluid mb-0">
-                <div class="mt-5 p-4 text-light text-center container-fluid">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-sm-4">
-                                <h5>Direction</h5>
-                                <ul class="list-unstyled">
-                                    <li>Otaola Hiribidea, 29</li>
-                                    <li>20600 Eibar, Gipuzkoa</li>
-                                    <li>canteen@uni.eus</li>
-                                    <li>943 89 92 11</li>
-                                </ul>
-                            </div>
-                            <div class="col-sm-4">
-                                <img width="200" height="200" src="../img/lg.png">
-                            </div>
-                            <div class="col-sm-4">
-                                <h5>Links</h5>
-                                <ul class="list-unstyled">
-                                    <li><a href="index.html">HOME</a></li>
-                                    <li><a href="menu.html">MENU</a></li>
-                                    <li><a href="reservas.html">RESERVAS</a></li>
-                                    <li><a href="calendario.html">CALENDARIO</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-12 text-center">
-                                <p>Uni Ermua-Eibar Canteen ©2023</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </footer>
-            <!--End of the footer-->
-        </body>
-
-        </html>
-<?php
-    } 
-    else {
+    <?php
+} else {
     header("Location: ../public/error.html");
 }
 ?>
