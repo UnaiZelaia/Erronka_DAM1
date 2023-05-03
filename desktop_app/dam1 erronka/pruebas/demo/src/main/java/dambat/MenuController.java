@@ -21,7 +21,14 @@ public class MenuController {
     private void goTransaction() throws IOException {
             App.setRoot("CreateTransaction");  
     }
+
+    @FXML
+    private void goReports() throws IOException {
+            App.setRoot("Reports");  
+    }
 }
+
+
 
 
 

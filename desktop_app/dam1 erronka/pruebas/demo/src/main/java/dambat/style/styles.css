@@ -18,6 +18,26 @@
     -fx-translate-y: 2px;
 }
 
+
+
+.buttonn2{
+    -fx-background-color: #7bbdff;
+    -fx-cursor: hand;
+    -fx-transition: all 0.2s ease;
+}
+
+.buttonn2:hover{
+    -fx-background-color: #55aaff;
+}
+
+.buttonn2:pressed{
+    -fx-background-color: #0080ff;}
+
+.buttonn2:active {
+    -fx-background-color: #4092e4;
+    -fx-translate-y: 2px;
+}
+
 .textfield{
     -fx-background-color: linear-gradient(to bottom, #eb8db5, #72a9e8), radial-gradient(center 50% -40%, radius 200%, #eb8db5 45%, #72a9e8);
 }
@@ -25,7 +45,6 @@
 .vboxx{
     -fx-background-color: linear-gradient(to bottom, #176191, #179060), radial-gradient(center 50% -40%, radius 200%, #176191 45%, #179060);
     -fx-background-blur: 10px;
-    -fx-background-radius:10 10 10 10;
 }
 
 .menuB{

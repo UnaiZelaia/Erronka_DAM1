@@ -1,31 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.chart.CategoryAxis?>
-<?import javafx.scene.chart.LineChart?>
-<?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="401.0" prefWidth="847.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dambat.ReportsController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="401.0" prefWidth="847.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dambat.ReportsController">
    <children>
-      <TableView fx:id="tablaTransaction" prefHeight="401.0" prefWidth="510.0">
+      <TableView fx:id="tablaTransaction" prefHeight="401.0" prefWidth="847.0">
         <columns>
             <TableColumn fx:id="clmId" prefWidth="111.0" text="ID Transaction" />
-          <TableColumn fx:id="clmNombre" prefWidth="163.0" text="Name" />
-          <TableColumn fx:id="clmDate" prefWidth="120.0" text="Transaction date" />
-            <TableColumn fx:id="clmBalance" prefWidth="115.0" text="Balance" />
+          <TableColumn fx:id="clmNombre" prefWidth="336.0" text="Name" />
+          <TableColumn fx:id="clmDate" prefWidth="169.0" text="Transaction date" />
+            <TableColumn fx:id="clmBalance" prefWidth="230.0" text="Balance" />
         </columns>
       </TableView>
-      <Button layoutX="705.0" layoutY="362.0" mnemonicParsing="false" onAction="#pasoPag" text="GO TO CREATE USER" />
-      <LineChart layoutX="510.0" prefHeight="361.0" prefWidth="339.0">
-        <xAxis>
-          <CategoryAxis side="BOTTOM" />
-        </xAxis>
-        <yAxis>
-          <NumberAxis side="LEFT" />
-        </yAxis>
-      </LineChart>
+      <Button layoutX="705.0" layoutY="362.0" mnemonicParsing="false" onAction="#pasoPag" text="GO BACK" />
    </children>
 </AnchorPane>

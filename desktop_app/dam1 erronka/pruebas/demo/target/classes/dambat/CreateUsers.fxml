@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="401.0" prefWidth="335.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dambat.CUsersController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="401.0" prefWidth="335.0" styleClass="vboxx" stylesheets="@../../java/dambat/style/styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dambat.CUsersController">
    <children>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" />
       <GridPane layoutX="18.0" layoutY="14.0" prefHeight="334.0" prefWidth="286.0">
@@ -84,7 +84,7 @@
             <TextField fx:id="tRol" GridPane.columnIndex="1" GridPane.rowIndex="6" />
          </children>
       </GridPane>
-      <Button layoutX="90.0" layoutY="365.0" mnemonicParsing="false" onAction="#nuevoRegistro" text="Create" />
-      <Button layoutX="203.0" layoutY="365.0" mnemonicParsing="false" onAction="#pasoPag" text="GO BACK" />
+      <Button layoutX="90.0" layoutY="365.0" mnemonicParsing="false" onAction="#nuevoRegistro" styleClass="buttonn2" text="Create" />
+      <Button layoutX="203.0" layoutY="365.0" mnemonicParsing="false" onAction="#pasoPag" styleClass="buttonn2" text="GO BACK" />
    </children>
 </AnchorPane>
