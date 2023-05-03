@@ -14,7 +14,10 @@ if(isset($oldPass) && isset($newPass) && isset($confirmPass) && $newPass == $con
         $hashPass = password_hash($newPass, PASSWORD_DEFAULT);
 
         MySQLPDO::updatePassword($hashPass, $_SESSION["user"] -> getId());
-        header("Location: ../templates/myUser.php");
+        header("Location: ../templates/myUser.php?a=1");
+    }
+    else{
+        header("Location: ../templates/myUser.php?a=0");
     }
 }
 

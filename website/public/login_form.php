@@ -13,7 +13,32 @@
     <title>Canteen log in</title>
     <link rel="stylesheet" href="../style/style.css">
     <script src="../js/calendar.js"></script>
+    <script src="../js/alerts.js"></script>
   </head>
+  <?php
+  if(isset($_GET["a"])){
+    $a = $_GET["a"];
+    if($a == 1){
+      //success
+      ?><script>
+        $(document).ready(function() {
+        $(this).createAlert("Sign up successful!\n Your user was created.")
+        });
+      </script>
+      <?php
+    }
+    elseif($a == 0){
+      //error   
+      ?>
+      <script>
+      $(document).ready(function() {
+      $(this).createAlert("There was an error with your login. PLease try again.")
+        });
+      </script>
+      <?php 
+  }
+}
+  ?>
 <nav class="navbar navbar-expand-sm navbar-dark container-fluid">
     <div class="container-fluid">
         <a class="navbar-brand" href="../img/lg.png">
@@ -34,7 +59,7 @@
                     <a class="nav-link" href="aboutUs.html">ABOUT US</a>
                 </li>
                     <li class="nav-item rounded-3 bg-primary ms-2">
-                        <a class="nav-link" href="login_form.html">LOG IN</a>
+                        <a class="nav-link" href="login_form.php">LOG IN</a>
                     </li>
                     <li class="nav-item rounded-3 bg-primary ms-2">
                         <a class="nav-link" href="signup_form.html">SIGN UP</a>

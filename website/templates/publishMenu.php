@@ -24,10 +24,35 @@ if (isset($_SESSION["user"]) && $_SESSION["loged"] == "ok" && $_SESSION["user"]-
     <title>TEMPLATE</title>
     <link rel="stylesheet" href="../style/style.css">
     <script src="../js/calendar.js"></script>
+    <script src="../js/alerts.js"></script>
   </head>
 
-  <body>
+  <?php
+  if(isset($_GET["a"])){
+    $a = $_GET["a"];
+    if($a == 1){
+      //success
+      ?><script>
+        $(document).ready(function() {
+        $(this).createAlert("Menu published successfully")
+        });
+      </script>
+      <?php
+    }
+    elseif($a == 0){
+      //error
+      ?>
+      <script>
+      $(document).ready(function() {
+      $(this).createAlert("There was an error while publishing the menu. Please try again.")
+        });
+      </script>
+      <?php 
+  }
+}
+  ?>
 
+  <body>
     <body onload="javascript:setHtmlWeek()">
       <!--Start of the navbar-->
       <nav class="navbar navbar-expand-sm navbar-dark container-fluid bg-uni">
@@ -48,6 +73,9 @@ if (isset($_SESSION["user"]) && $_SESSION["loged"] == "ok" && $_SESSION["user"]-
               ?>
               <li class="nav-item">
                 <a class="nav-link" href="publishMenu.php">PUBLISH MENU</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="createMenu.php">CREATE MENU</a>
               </li>
               <?php
             } else {

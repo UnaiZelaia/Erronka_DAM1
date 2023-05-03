@@ -1,9 +1,12 @@
 // Validation functions for the sing up form 
 function validatePassword(){
     let pass = document.forms["signupForm"]["password"].value;
+    let newpass1 = document.forms["newpasswd"]["newPassword1"].value;
+    let newpass2 = document.forms["newpasswd"]["newPassword2"].value;
+
     let pattern = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,15}$");
 
-    if(!pattern.test(pass)){
+    if(!pattern.test(newpass1 && newpass2)){
         alert("Your password must be between 8 and 15 character and contain at least one uppercase, lowercase, number and special character.")
     }
 }
@@ -71,4 +74,15 @@ function balidatu() {
 
 function garbitu() {
     document.getElementById("abisua").innerHTML = "";
+}
+
+function TDate() {
+    var UserDate = document.getElementById("reservationDate").value;
+    var ToDate = new Date();
+
+    if (new Date(UserDate).getTime() <= ToDate.getTime()) {
+          alert("The Date must be Bigger or Equal to today date");
+          return false;
+     }
+    return true;
 }

@@ -189,7 +189,6 @@ class MySQLPDO {
             return $result;
         }
         catch(Exception $e) {
-
             return $e -> getMessage();
         }
     }

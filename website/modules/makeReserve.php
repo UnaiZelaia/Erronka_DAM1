@@ -16,14 +16,14 @@ if(isset($date) && isset($meal) && isset($_SESSION["user"])){
         $dateFormatted = date("Y-m-d", strtotime($date));
 
         MySQLPDO::makeReserve($dateFormatted, $id_menu, $_SESSION["user"] -> getId());
-        header("Location: ../templates/reservation_form.php");
+        header("Location: ../templates/reservation_form.php?a=1");
     }
     else{
-        header("Location: ../templates/reservation_form.php");
+        header("Location: ../templates/reservation_form.php?a=0");
     }
 }
 else{
-    header("Location: ../public/errorPage.html");
+    header("Location: ../templates/reservation_form.php?a=0");
 }
 
 ?>

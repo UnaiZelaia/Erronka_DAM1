@@ -24,11 +24,9 @@ if (isset($_POST["name"]) || isset($_POST["surname"]) || isset($_POST["email"]))
     }
     catch(Exception $e){
     }
-    header("Location: ../templates/myUser.php");
+    header("Location: ../templates/myUser.php?a=1");
 }
 else{
-    echo $_POST["name"];
-    echo $_POST["surname"];
-    echo $_POST["email"];
+    header("Location: ../templates/myUser.php?a=0");
 }
 ?>

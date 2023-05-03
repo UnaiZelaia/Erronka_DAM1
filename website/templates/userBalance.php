@@ -45,6 +45,9 @@ if (isset($_SESSION["user"]) && $_SESSION["loged"] == "ok") {
               <li class="nav-item">
                 <a class="nav-link" href="publishMenu.php">PUBLISH MENU</a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link" href="createMenu.php">CREATE MENU</a>
+              </li>
               <?php
             } else {
               ?>

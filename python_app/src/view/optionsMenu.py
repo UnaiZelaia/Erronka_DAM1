@@ -44,18 +44,30 @@ def printReserveSubmenu():
     print("\t1- Show reservations.")
     print("\t2- Create a new reservation.")
     print("\t3- Delete a reservation.")
-    print("\t4- Go back.")
+    print("\t4- Update a reservation.")
+    print("\t5- Go back.")
     print("============================================================")
     opt = int(input("Select an option: "))
 
     match(opt):
         case 1:
             ReserveFunctions.readReserves()
+            printReserveSubmenu()
         case 2:
             reserve = ReserveFunctions.createReserveObject()
             ReserveFunctions.writeReserveToFile(reserve)
+            printReserveSubmenu()
+        case 3:
+            ReserveFunctions.deleteReserve()
+            printReserveSubmenu()
         case 4:
+            ReserveFunctions.updateReserve()
+            printReserveSubmenu()
+        case 5:
             printMainMenu()
+        case default:
+            print("Select a valid option.")
+            printReserveSubmenu()
 
 
 

@@ -23,7 +23,34 @@ if (isset($_SESSION["user"]) && $_SESSION["loged"] == "ok") {
     <title>TEMPLATE</title>
     <link rel="stylesheet" href="../style/style.css">
     <script src="../js/calendar.js"></script>
+    <script src="../js/alerts.js"></script>
+    <script src="../js/validation.js"></script>
   </head>
+  <?php
+  if(isset($_GET["a"])){
+    $a = $_GET["a"];
+    if($a == 1){
+      //success
+      ?><script>
+        $(document).ready(function() {
+        $(this).createAlert("Password updated successfully")
+        });
+      </script>
+      <?php
+    }
+    elseif($a == 0){
+      //error
+      ?>
+      <script>
+      $(document).ready(function() {
+      $(this).createAlert("There was an error while updating your password. Please try again.")
+        });
+      </script>
+      <?php 
+  }
+}
+  ?>
+
   <!--Start of the navbar-->
   <nav class="navbar navbar-expand-sm navbar-dark container-fluid bg-uni">
       <div class="container-fluid">
@@ -43,6 +70,9 @@ if (isset($_SESSION["user"]) && $_SESSION["loged"] == "ok") {
               ?>
               <li class="nav-item">
                 <a class="nav-link" href="publishMenu.php">PUBLISH MENU</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="createMenu.php">CREATE MENU</a>
               </li>
               <?php
             } else {
@@ -84,7 +114,7 @@ if (isset($_SESSION["user"]) && $_SESSION["loged"] == "ok") {
         <div class="col-10 rounded-3 mt-5 m-auto" id="centro">
         <h3>Change my password</h3>
 
-        <form class="rounded-3 bg-uni p-4" method="POST" action="../modules/updatePassword.php">
+        <form class="rounded-3 bg-uni p-4" method="POST" action="../modules/updatePassword.php" onsubmit="return validatePassword()" id="newpasswd" name="newpasswd">
           <div class="form-group mt-3 col-6 m-auto text-light">
               <label for="oldPassword">Old password</label><br>
               <input type="password" name="oldPassword" id="oldPassword" >
