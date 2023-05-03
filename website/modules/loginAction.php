@@ -30,4 +30,3 @@ if(isset($result["email"])){
 else{
     header("Location: ../public/login_form.php?a=0");
 }
-?>
