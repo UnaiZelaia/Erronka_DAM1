@@ -1,6 +1,7 @@
 <?php
 require('../model/MySQLPDO.class.php');
 require('../model/User.class.php');
+
 session_start();
 
 if (isset($_POST["name"]) || isset($_POST["surname"]) || isset($_POST["email"])) {
