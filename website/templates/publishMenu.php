@@ -24,7 +24,6 @@ if (isset($_SESSION["user"]) && $_SESSION["loged"] == "ok" && $_SESSION["user"]-
     <title>TEMPLATE</title>
     <link rel="stylesheet" href="../style/style.css">
     <script src="../js/calendar.js"></script>
-<<<<<<< HEAD
     <script src="../js/alerts.js"></script>
   </head>
 
@@ -54,12 +53,6 @@ if (isset($_SESSION["user"]) && $_SESSION["loged"] == "ok" && $_SESSION["user"]-
   ?>
 
   <body>
-=======
-  </head>
-
-  <body>
-
->>>>>>> 7a7786032cc83dded0a472fc4bb9e56441e5a999
     <body onload="javascript:setHtmlWeek()">
       <!--Start of the navbar-->
       <nav class="navbar navbar-expand-sm navbar-dark container-fluid bg-uni">
@@ -81,12 +74,9 @@ if (isset($_SESSION["user"]) && $_SESSION["loged"] == "ok" && $_SESSION["user"]-
               <li class="nav-item">
                 <a class="nav-link" href="publishMenu.php">PUBLISH MENU</a>
               </li>
-<<<<<<< HEAD
               <li class="nav-item">
                 <a class="nav-link" href="createMenu.php">CREATE MENU</a>
               </li>
-=======
->>>>>>> 7a7786032cc83dded0a472fc4bb9e56441e5a999
               <?php
             } else {
               ?>

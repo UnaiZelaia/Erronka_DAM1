@@ -1,11 +1,7 @@
 <?php
 include("../model/User.class.php");
 include("../model/MySQLPDO.class.php");
-<<<<<<< HEAD
 include("../modules/updateSessionUser.php");
-=======
-include("../modules/updateUser.php");
->>>>>>> 7a7786032cc83dded0a472fc4bb9e56441e5a999
 session_start();
 if (isset($_SESSION["user"]) && $_SESSION["loged"] == "ok") {
     ?>

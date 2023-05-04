@@ -40,11 +40,7 @@ $resultMenuItems = MySQLPDO::selectMenusWeek();
                     <a class="nav-link" href="aboutUs.html">ABOUT US</a>
                 </li>
                     <li class="nav-item rounded-3 bg-primary ms-2">
-<<<<<<< HEAD
                         <a class="nav-link ms-2" href="login_form.php">LOG IN</a>
-=======
-                        <a class="nav-link ms-2" href="login_form.html">LOG IN</a>
->>>>>>> 7a7786032cc83dded0a472fc4bb9e56441e5a999
                     </li>
                     <li class="nav-item rounded-3 bg-primary ms-2">
                         <a class="nav-link ms-2" href="signup_form.html ">SIGN UP</a>
