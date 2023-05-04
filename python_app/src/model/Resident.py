@@ -44,8 +44,24 @@ class Resident:
         with open("../files/Residents.pickle", "wb") as f:
             for resident in residents:
                 pickle.dump(resident, f)
+
     def changeResident(self, id_user, new_allergy):
         resident_exists = False
         with open("../files/Residents.pickle", "rb") as f:
-            
+            residents = []
+            try:
+                while True:
+                    resident = pickle.load(f)
+                    if resident["Id"] == id_user:
+                        resident_exists = True
+                        resident["Allergy"] = new_allergy
+                    residents.append(resident)
+            except EOFError:
+                pass
 
+        if not resident_exists:
+            print(f"Resident with id {id_user} not found.")
+
+        with open("../files/Residents.pickle", "wb") as f:
+            for resident in residents:
+                pickle.dump(resident, f)
