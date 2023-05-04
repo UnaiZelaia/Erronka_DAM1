@@ -1,9 +1,9 @@
 <?php
 class MySQLPDO {
-    private static $host = "127.0.0.1"; //o la IP del servidor de BBBDD remoto
+    private static $host = "192.168.122.160"; //o la IP del servidor de BBBDD remoto
     private static $database = "canteen";
-    private static $username = "root";
-    private static $password = "";
+    private static $username = "unai";
+    private static $password = "123";
     private static $base;
     
     public static function connect() {
@@ -65,11 +65,12 @@ class MySQLPDO {
     public static function lastOfMealType($meal, $date){
         $sql = "SELECT m.id_menu FROM menu m 
                     INNER JOIN reserve r ON m.id_menu = r.id_menu
-                        WHERE UPPER(m.meal) = ? AND r.menu_date = ?";
+                        WHERE UPPER(m.meal) = ? AND r.menu_date = ?
+                            LIMIT 1";
 
         $params = array(strtoupper($meal), $date);
         $result = MySQLPDO::select($sql, $params);
-        return $result[0];
+        return $result;
     }
 
 
@@ -100,7 +101,8 @@ class MySQLPDO {
 
     public static function listReserve($id_user){
         try{
-            $sql = "SELECT r.id_reserve, r.id_menu, m.meal, m.menu_name, r.id_user, r.menu_date FROM reserve r INNER JOIN menu m ON r.id_menu =m.id_menu WHERE id_user=?";
+            $sql = "SELECT r.id_reserve, r.id_menu, m.meal, m.menu_name, r.id_user, r.menu_date FROM reserve r INNER JOIN menu m ON r.id_menu =m.id_menu WHERE id_user=?
+                        ORDER BY r.menu_date ASC";
             $params = array($id_user);
             $result = MySQLPDO::select($sql, $params);
             return $result;
@@ -123,7 +125,7 @@ class MySQLPDO {
     }
 
 
-    public static function selectMenus(){
+    public static function selectMenusWeek(){
         try{
             $sql = "SELECT r.menu_date, m.meal, it.item_description, mt.course, r.id_menu FROM menu m INNER JOIN menu_items mt ON mt.id_menu = m.id_menu INNER JOIN reserve r ON m.id_menu = r.id_menu INNER JOIN items it ON mt.id_item = it.id_item
                         WHERE id_user = ? AND YEARWEEK(r.menu_date, 1) = YEARWEEK(CURDATE(), 1)
@@ -135,9 +137,50 @@ class MySQLPDO {
         }
         catch(Exception $e){
             return $e -> getMessage();
+
         }
     }
 
+    public static function selectMenus(){
+        try{
+            $sql = "SELECT r.menu_date, m.meal, r.id_menu FROM menu m INNER JOIN reserve r ON m.id_menu = r.id_menu
+                        WHERE id_user = ? AND YEARWEEK(r.menu_date, 1) = YEARWEEK(CURDATE(), 1)
+                            ORDER BY r.menu_date asc";
+            $params = array(2);
+            $result = MySQLPDO::select($sql, $params);
+            return $result;
+        }
+        catch(Exception $e){
+            return $e -> getMessage();
+        }
+    }
+
+    public static function listMenus(){
+        try{
+            $sql = "SELECT m.menu_name, m.meal, i.item_description  FROM menu m 
+                        INNER JOIN menu_items mi ON m.id_menu = mi.id_menu
+                            INNER JOIN items i ON mi.id_item = i.id_item";
+
+            $params = array();
+            $result = MySQLPDO::select($sql, $params);
+            return $result;
+        }
+        catch(Exception $e){
+            return $e -> getMessage();
+        }
+    }
+
+    public static function menuNames(){
+        try{
+            $sql = "SELECT menu_name, id_menu FROM menu";
+            $params = array();
+            $result = MySQLPDO::select($sql, $params);
+            return $result;
+        }
+        catch(Exception $e){
+            return $e -> getMessage();
+        }
+    }
 
     public static function menuItems(){
         try{
@@ -147,7 +190,6 @@ class MySQLPDO {
             return $result;
         }
         catch(Exception $e) {
-
             return $e -> getMessage();
         }
     }
@@ -166,7 +208,7 @@ class MySQLPDO {
 
     public static function  updateUserName($name, $idUser){
         try{
-            $sql = "UPDATE FROM user SET name = ? WHERE id_user = ?";
+            $sql = "UPDATE user SET name = ? WHERE id_user = ?";
             $params = array($name, $idUser);
             $result = MySQLPDO::exec($sql, $params);
             return $result;
@@ -178,7 +220,7 @@ class MySQLPDO {
 
     public static function updateUserSurname($surname, $idUser){
         try{
-            $sql = "UPDATE FROM user SET surname = ? WHERE id_user = ?";
+            $sql = "UPDATE user SET surname = ? WHERE id_user = ?";
             $params = array($surname, $idUser);
             $result = MySQLPDO::exec($sql, $params);
             return $result;
@@ -190,7 +232,7 @@ class MySQLPDO {
 
     public static function updateUserEmail($email, $idUser){
         try{
-            $sql = "UPDATE FROM user SET email = ? WHERE id_user = ?";
+            $sql = "UPDATE user SET email = ? WHERE id_user = ?";
             $params = array($email, $idUser);
             $result = MySQLPDO::exec($sql, $params);
             return $result;
@@ -199,10 +241,49 @@ class MySQLPDO {
             return $e -> getMessage();
         }
     }
+
     public static function insertMenu($menuName, $menuMeal){
         try{
             $sql = "INSERT INTO MENU (menu_name, meal) VALUES(?, ?)";
             $params = array($menuName, $menuMeal);
+            $result = MySQLPDO::exec($sql, $params);
+            return $result;
+            }
+        catch(Exception $e){
+            return $e -> getMessage();
+        }
+    }
+
+
+    public static function updateUser($idUser){
+        try{
+            $sql = "SELECT * FROM user WHERE id_user = ?";
+            $params = array($idUser);
+            $result = MySQLPDO::select($sql, $params);
+            return $result[0];
+
+        }
+        catch(Exception $e){
+            return $e -> getMessage();
+        }
+    }
+
+
+    public static function insertMenuItems($menuId ,$item){
+        try{
+            $sql = "INSERT INTO menu_items (id_menu, id_item) VALUES(?, ?)";
+            $params = array($menuId, $item);
+            }
+        catch(Exception $e){
+            return $e -> getMessage();
+        }
+    }
+
+    public static function updatePassword($pass, $idUser){
+        try{
+            $sql = "UPDATE user SET hash_password = ? WHERE id_user = ?";
+            $params = array($pass, $idUser);
+
             $result = MySQLPDO::exec($sql, $params);
             return $result;
         }
@@ -211,17 +292,6 @@ class MySQLPDO {
         }
     }
 
-    public static function insertMenuItems($menuId ,$item){
-        try{
-            $sql = "INSERT INTO menu_items (id_menu, id_item) VALUES(?, ?)";
-            $params = array($menuId, $item);
-            $result = MySQLPDO::exec($sql, $params);
-            return $result;
-        }
-        catch(Exception $e){
-            return $e -> getMessage();
-        }
-    }
     public static function selectItemId($item){
         try{
             $item = strtoupper($item);

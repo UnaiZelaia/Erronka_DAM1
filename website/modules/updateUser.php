@@ -2,22 +2,31 @@
 require('../model/MySQLPDO.class.php');
 require('../model/User.class.php');
 
+session_start();
+
 if (isset($_POST["name"]) || isset($_POST["surname"]) || isset($_POST["email"])) {
-    if (isset($_POST["name"])) {
-        $name = $_POST["name"];
+    $name = $_POST["name"];
+    $surname = $_POST["surname"];
+    $email = $_POST["email"];
 
-        MySQLPDO::updateUserName($name, $_SESSION["user"]->getId());
+    try{
+    MySQLPDO::updateUserName($name, $_SESSION["user"]->getId());
     }
-
-    if (isset($_POST["surname"])) {
-        $surname = $_POST["surname"];
-
+    catch(Exception $e){
+    }
+    try{
         MySQLPDO::updateUserSurname($surname, $_SESSION["user"]->getId());
     }
-
-    if (isset($_POST["email"])) {
-        $email = $_POST["email"];
+    catch(Exception $e){
     }
-
+    try{
+        MySQLPDO::updateUserEmail($email, $_SESSION["user"] -> getId());
+    }
+    catch(Exception $e){
+    }
+    header("Location: ../templates/myUser.php?a=1");
+}
+else{
+    header("Location: ../templates/myUser.php?a=0");
 }
 ?>

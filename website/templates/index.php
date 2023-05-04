@@ -1,15 +1,18 @@
 <?php
 include("../model/User.class.php");
 include("../model/MySQLPDO.class.php");
+include("../modules/updateSessionUser.php");
 session_start();
 if (isset($_SESSION["user"]) && $_SESSION["loged"] == "ok") {
+  updateUser();
+  $resultMenuItems = MySQLPDO::selectMenusWeek();
   $resultMenu = MySQLPDO::selectMenus();
   ?>
   <!doctype html>
   <html lang="en">
 
   <head>
-    <meta charset="utf-8">
+  <meta charset="utf-8">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
       crossorigin="anonymous"></script>
@@ -19,9 +22,34 @@ if (isset($_SESSION["user"]) && $_SESSION["loged"] == "ok") {
     <link rel="shortcut icon" href="../img/lg.png" type="image/x-icon">
     <title>TEMPLATE</title>
     <link rel="stylesheet" href="../style/style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <script src="../js/calendar.js"></script>
+    <script src="../js/alerts.js"></script>
   </head>
-
+  <?php
+  if(isset($_GET["a"])){
+    $a = $_GET["a"];
+    if($a == 1){
+      //success
+      ?><script>
+        $(document).ready(function() {
+        $(this).createAlert("The reservation was successful")
+        });
+      </script>
+      <?php
+    }
+    elseif($a == 0){
+      //error   
+      ?>
+      <script>
+      $(document).ready(function() {
+      $(this).createAlert("There was an error with your reservation. PLease try again.")
+        });
+      </script>
+      <?php 
+  }
+}
+  ?>
   <body onload="javascript:setHtmlWeek()">
     <!--Start of the navbar-->
     <nav class="navbar navbar-expand-sm navbar-dark container-fluid bg-uni">
@@ -37,15 +65,24 @@ if (isset($_SESSION["user"]) && $_SESSION["loged"] == "ok") {
             <li class="nav-item">
               <a class="nav-link" href="index.php">HOME</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="menu.php">MENU</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="reservation_form.php">RESERVAS</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="calendario.php">CALENDARIO</a>
-            </li>
+            <?php
+            if ($_SESSION["user"]->getRole() == 4 || $_SESSION["user"]->getRole() == 3) {
+              ?>
+              <li class="nav-item">
+                <a class="nav-link" href="publishMenu.php">PUBLISH MENU</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="createMenu.php">CREATE MENU</a>
+              </li>
+              <?php
+            } else {
+              ?>
+              <li class="nav-item">
+                <a class="nav-link" href="reservation_form.php">MAKE RESERVATION</a>
+              </li>
+              <?php
+            }
+            ?>
           </ul>
           <div class="collapse navbar-collapse d-flex flex-row-reverse">
             <ul class="nav navbar-nav" id="userLink">
@@ -86,348 +123,463 @@ if (isset($_SESSION["user"]) && $_SESSION["loged"] == "ok") {
             </tr>
           </thead>
           <tbody>
-            <?php
-            if (sizeof($resultMenu) != 0) {
-              ?>
-              <tr>
-                <td>
-                  Breakfast: Monday<br>
-                  <?php
-                  foreach ($resultMenu as $menu) {
-                    extract($menu);
-                    if ($meal == "Breakfast" && date("w", strtotime($menu_date)) == 1) {
+            <tr name="BreakfastRow">
+              <td name="BreakfastMonday">
+                Breakfast:<br><br>
+                <?php
+                foreach ($resultMenuItems as $menu) {
+                  extract($menu);
+                  if ($meal == "Breakfast") {
+                    if (date("w", strtotime($menu_date)) == 1) {
+
                       echo "-" . $item_description . "<br>";
                     }
                   }
-                  ?>
-                  <br>
-                  <?php if ($meal == "Breakfast" && date("w", strtotime($menu_date)) == 1) { ?>
-                    <form method="POST" action="../modules/reservationAction.php">
-                      <input name="userId" id="userId" type="hidden" value="<?php echo $_SESSION["user"]->getId() ?>">
-                      <input name="menuId" id="menuId" type="hidden" value="<?php echo $id_menu ?>">
-                      <input name="date" id="date" type="hidden" value="<?php echo $menu_date ?>">
-                      <input name="day" class="day1" type="hidden" value="" />
-                      <input name="type" id="type" type="hidden" value="bf" />
-                      <input type="submit" value="Make a reservation" class="btn btn-primary">
-                    </form>
-                  <?php } ?>
-                </td>
-                <td>
-                  Breakfast: Tuesday<br>
-                  <?php
-                  foreach ($resultMenu as $menu) {
-                    extract($menu);
-                    if ($meal == "Breakfast" && date("w", strtotime($menu_date)) == 2) {
+                }
+                foreach ($resultMenu as $menus) {
+                  extract($menus);
+                  if ($meal == "Breakfast") {
+                    if (date("w", strtotime($menu_date)) == 1) {
+                      ?>
+                      <form method="POST" action="../modules/reservationAction.php">
+                        <input name="userId" id="userId" type="hidden" value="<?php echo $_SESSION["user"]->getId() ?>">
+                        <input name="menuId" id="menuId" type="hidden" value="<?php echo $id_menu ?>">
+                        <input name="date" id="date" type="hidden" value="<?php echo $menu_date ?>">
+                        <input type="submit" value="Make a reservation" class="btn btn-primary">
+                      </form>
+                      <?php
+                    }
+                  }
+                }
+                ?>
+              </td>
+
+              <td name="BreakfastTuesday">
+                Breakfast:<br><br>
+                <?php
+                foreach ($resultMenuItems as $menu) {
+                  extract($menu);
+                  if ($meal == "Breakfast") {
+                    if (date("w", strtotime($menu_date)) == 2) {
+
                       echo "-" . $item_description . "<br>";
                     }
                   }
-                  ?>
-                  <br>
-                  <?php if ($meal == "Breakfast" && date("w", strtotime($menu_date)) == 2) { ?>
-                    <form method="POST" action="../modules/reservationAction.php">
-                      <input name="userId" id="userId" type="hidden" value="<?php echo $_SESSION["user"]->getId() ?>">
-                      <input name="menuId" id="menuId" type="hidden" value="<?php echo $id_menu ?>">
-                      <input name="date" id="date" type="hidden" value="<?php echo $menu_date ?>">
-                      <input name="day" class="day2" type="hidden" value="" />
-                      <input name="type" id="type" type="hidden" value="bf" />
-                      <input type="submit" value="Make a reservation" class="btn btn-primary">
-                    </form>
-                  <?php } ?>
-                </td>
-                <td>
-                  Breakfast: Wednesday<br>
-                  <?php
-                  foreach ($resultMenu as $menu) {
-                    extract($menu);
-                    if ($meal == "Breakfast" && date("w", strtotime($menu_date)) == 3) {
+                }
+                foreach ($resultMenu as $menus) {
+                  extract($menus);
+                  if ($meal == "Breakfast") {
+                    if (date("w", strtotime($menu_date)) == 2) {
+                      ?>
+                      <form method="POST" action="../modules/reservationAction.php">
+                        <input name="userId" id="userId" type="hidden" value="<?php echo $_SESSION["user"]->getId() ?>">
+                        <input name="menuId" id="menuId" type="hidden" value="<?php echo $id_menu ?>">
+                        <input name="date" id="date" type="hidden" value="<?php echo $menu_date ?>">
+                        <input type="submit" value="Make a reservation" class="btn btn-primary">
+                      </form>
+                      <?php
+                    }
+                  }
+                }
+                ?>
+              </td>
+
+              <td name="BreakfastWednesday">
+                Breakfast:<br><br>
+                <?php
+                foreach ($resultMenuItems as $menu) {
+                  extract($menu);
+                  if ($meal == "Breakfast") {
+                    if (date("w", strtotime($menu_date)) == 3) {
+
                       echo "-" . $item_description . "<br>";
                     }
                   }
-                  ?>
-                  <br>
-                  <?php if ($meal == "Breakfast" && date("w", strtotime($menu_date)) == 3) { ?>
-                    <form method="POST" action="../modules/reservationAction.php">
-                      <input name="userId" id="userId" type="hidden" value="<?php echo $_SESSION["user"]->getId() ?>">
-                      <input name="menuId" id="menuId" type="hidden" value="<?php echo $id_menu ?>">
-                      <input name="date" id="date" type="hidden" value="<?php echo $menu_date ?>">
-                      <input name="day" class="day3" type="hidden" value="" />
-                      <input name="type" id="type" type="hidden" value="bf" />
-                      <input type="submit" value="Make a reservation" class="btn btn-primary">
-                    </form>
-                  <?php } ?>
-                </td>
-                <td>
-                  Breakfast: Thursday<br>
-                  <?php
-                  foreach ($resultMenu as $menu) {
-                    extract($menu);
-                    if ($meal == "Breakfast" && date("w", strtotime($menu_date)) == 4) {
+                }
+                foreach ($resultMenu as $menus) {
+                  extract($menus);
+                  if ($meal == "Breakfast") {
+                    if (date("w", strtotime($menu_date)) == 3) {
+                      ?>
+                      <form method="POST" action="../modules/reservationAction.php">
+                        <input name="userId" id="userId" type="hidden" value="<?php echo $_SESSION["user"]->getId() ?>">
+                        <input name="menuId" id="menuId" type="hidden" value="<?php echo $id_menu ?>">
+                        <input name="date" id="date" type="hidden" value="<?php echo $menu_date ?>">
+                        <input type="submit" value="Make a reservation" class="btn btn-primary">
+                      </form>
+                      <?php
+                    }
+                  }
+                }
+                ?>
+              </td>
+
+              <td name="BreakfastThursday">
+                Breakfast:<br><br>
+                <?php
+                foreach ($resultMenuItems as $menu) {
+                  extract($menu);
+                  if ($meal == "Breakfast") {
+                    if (date("w", strtotime($menu_date)) == 4) {
+
                       echo "-" . $item_description . "<br>";
                     }
                   }
-                  ?>
-                  <br>
-                  <?php if ($meal == "Breakfast" && date("w", strtotime($menu_date)) == 4) { ?>
-                    <form method="POST" action="../modules/reservationAction.php">
-                      <input name="userId" id="userId" type="hidden" value="<?php echo $_SESSION["user"]->getId() ?>">
-                      <input name="menuId" id="menuId" type="hidden" value="<?php echo $id_menu ?>">
-                      <input name="date" id="date" type="hidden" value="<?php echo $menu_date ?>">
-                      <input name="day" class="day4" type="hidden" value="" />
-                      <input name="type" id="type" type="hidden" value="bf" />
-                      <input type="submit" value="Make a reservation" class="btn btn-primary">
-                    </form>
-                  <?php } ?>
-                </td>Can’t automatically merge
-                <td>
-                  Breakfast: Friday<br>
-                  <?php
-                  foreach ($resultMenu as $menu) {
-                    extract($menu);
-                    if ($meal == "Breakfast" && date("w", strtotime($menu_date)) == 5) {
+                }
+                foreach ($resultMenu as $menus) {
+                  extract($menus);
+                  if ($meal == "Breakfast") {
+                    if (date("w", strtotime($menu_date)) == 4) {
+                      ?>
+                      <form method="POST" action="../modules/reservationAction.php">
+                        <input name="userId" id="userId" type="hidden" value="<?php echo $_SESSION["user"]->getId() ?>">
+                        <input name="menuId" id="menuId" type="hidden" value="<?php echo $id_menu ?>">
+                        <input name="date" id="date" type="hidden" value="<?php echo $menu_date ?>">
+                        <input type="submit" value="Make a reservation" class="btn btn-primary">
+                      </form>
+                      <?php
+                    }
+                  }
+                }
+                ?>
+              </td>
+
+              <td name="BreakfastFriday">
+                Breakfast:<br><br>
+                <?php
+                foreach ($resultMenuItems as $menu) {
+                  extract($menu);
+                  if ($meal == "Breakfast") {
+                    if (date("w", strtotime($menu_date)) == 5) {
+
                       echo "-" . $item_description . "<br>";
                     }
                   }
-                  ?>
-                  <br>
-                  <?php if ($meal == "Breakfast" && date("w", strtotime($menu_date)) == 5) { ?>
-                    <form method="POST" action="../modules/reservationAction.php">
-                      <input name="userId" id="userId" type="hidden" value="<?php echo $_SESSION["user"]->getId() ?>">
-                      <input name="menuId" id="menuId" type="hidden" value="<?php echo $id_menu ?>">
-                      <input name="date" id="date" type="hidden" value="<?php echo $menu_date ?>">
-                      <input name="day" class="day5" type="hidden" value="" />
-                      <input name="type" id="type" type="hidden" value="bf" />
-                      <input type="submit" value="Make a reservation" class="btn btn-primary">
-                    </form>
-                  <?php } ?>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  Lunch: Monday<br>
-                  <?php
-                  foreach ($resultMenu as $menu) {
-                    extract($menu);
-                    if ($meal == "Lunch" && date("w", strtotime($menu_date)) == 1) {
+                }
+                foreach ($resultMenu as $menus) {
+                  extract($menus);
+                  if ($meal == "Breakfast") {
+                    if (date("w", strtotime($menu_date)) == 5) {
+                      ?>
+                      <form method="POST" action="../modules/reservationAction.php">
+                        <input name="userId" id="userId" type="hidden" value="<?php echo $_SESSION["user"]->getId() ?>">
+                        <input name="menuId" id="menuId" type="hidden" value="<?php echo $id_menu ?>">
+                        <input name="date" id="date" type="hidden" value="<?php echo $menu_date ?>">
+                        <input type="submit" value="Make a reservation" class="btn btn-primary">
+                      </form>
+                      <?php
+                    }
+                  }
+                }
+                ?>
+              </td>
+
+            <tr name="LunchRow">
+
+
+              <td name="LunchMonday">
+                Lunch:<br><br>
+                <?php
+                foreach ($resultMenuItems as $menu) {
+                  extract($menu);
+                  if ($meal == "Lunch") {
+                    if (date("w", strtotime($menu_date)) == 1) {
+
                       echo "-" . $item_description . "<br>";
                     }
                   }
-                  ?>
-                  <br>
-                  <?php if ($meal == "Lunch" && date("w", strtotime($menu_date)) == 1) { ?>
-                    <form method="POST" action="../modules/reservationAction.php">
-                      <input name="userId" id="userId" type="hidden" value="<?php echo $_SESSION["user"]->getId() ?>">
-                      <input name="menuId" id="menuId" type="hidden" value="<?php echo $id_menu ?>">
-                      <input name="date" id="date" type="hidden" value="<?php echo $menu_date ?>">
-                      <input name="day" class="day1" type="hidden" value="" />
-                      <input name="type" id="type" type="hidden" value="lu" />
-                      <input type="submit" value="Make a reservation" class="btn btn-primary">
-                    </form>
-                  <?php } ?>
-                </td>
-                <td>
-                  Lunch: Tuesday<br>
-                  <?php
-                  foreach ($resultMenu as $menu) {
-                    extract($menu);
-                    if ($meal == "Lunch" && date("w", strtotime($menu_date)) == 2) {
+                }
+                foreach ($resultMenu as $menus) {
+                  extract($menus);
+                  if ($meal == "Lunch") {
+                    if (date("w", strtotime($menu_date)) == 1) {
+                      ?>
+                      <form method="POST" action="../modules/reservationAction.php">
+                        <input name="userId" id="userId" type="hidden" value="<?php echo $_SESSION["user"]->getId() ?>">
+                        <input name="menuId" id="menuId" type="hidden" value="<?php echo $id_menu ?>">
+                        <input name="date" id="date" type="hidden" value="<?php echo $menu_date ?>">
+                        <input type="submit" value="Make a reservation" class="btn btn-primary">
+                      </form>
+                      <?php
+                    }
+                  }
+                }
+                ?>
+              </td>
+
+              <td name="LunchTuesday">
+                Lunch:<br><br>
+                <?php
+                foreach ($resultMenuItems as $menu) {
+                  extract($menu);
+                  if ($meal == "Lunch") {
+                    if (date("w", strtotime($menu_date)) == 2) {
+
                       echo "-" . $item_description . "<br>";
                     }
                   }
-                  ?>
-                  <br>
-                  <?php
-                  if ($meal == "Lunch" && date("w", strtotime($menu_date)) == 2) {
-                    ?>
-                    <form method="POST" action="../modules/reservationAction.php">
-                      <input name="userId" id="userId" type="hidden" value="<?php echo $_SESSION["user"]->getId() ?>">
-                      <input name="menuId" id="menuId" type="hidden" value="<?php echo $id_menu ?>">
-                      <input name="date" id="date" type="hidden" value="<?php echo $menu_date ?>">
-                      <input name="day" class="day2" type="hidden" value="" />
-                      <input name="type" id="type" type="hidden" value="lu" />
-                      <input type="submit" value="Make a reservation" class="btn btn-primary">
-                    </form>
-                    <?php
+                }
+                foreach ($resultMenu as $menus) {
+                  extract($menus);
+                  if ($meal == "Lunch") {
+                    if (date("w", strtotime($menu_date)) == 2) {
+                      ?>
+                      <form method="POST" action="../modules/reservationAction.php">
+                        <input name="userId" id="userId" type="hidden" value="<?php echo $_SESSION["user"]->getId() ?>">
+                        <input name="menuId" id="menuId" type="hidden" value="<?php echo $id_menu ?>">
+                        <input name="date" id="date" type="hidden" value="<?php echo $menu_date ?>">
+                        <input type="submit" value="Make a reservation" class="btn btn-primary">
+                      </form>
+                      <?php
+                    }
                   }
-                  ?>
-                </td>
-                <td>
-                  Lunch: Wednesday<br>
-                  <?php
-                  foreach ($resultMenu as $menu) {
-                    extract($menu);
-                    if ($meal == "Lunch" && date("w", strtotime($menu_date)) == 3) {
+                }
+                ?>
+              </td>
+
+              <td name="LunchWednesday">
+                Lunch:<br><br>
+                <?php
+                foreach ($resultMenuItems as $menu) {
+                  extract($menu);
+                  if ($meal == "Lunch") {
+                    if (date("w", strtotime($menu_date)) == 3) {
+
                       echo "-" . $item_description . "<br>";
                     }
                   }
-                  ?>
-                  <br>
-                  <?php if ($meal == "Lunch" && date("w", strtotime($menu_date)) == 3) { ?>
-                    <form method="POST" action="../modules/reservationAction.php">
-                      <input name="userId" id="userId" type="hidden" value="<?php echo $_SESSION["user"]->getId() ?>">
-                      <input name="menuId" id="menuId" type="hidden" value="<?php echo $id_menu ?>">
-                      <input name="date" id="date" type="hidden" value="<?php echo $menu_date ?>">
-                      <input type="submit" value="Make a reservation" class="btn btn-primary">
-                    </form>
-                  <?php } ?>
-                </td>
-                <td>
-                  Lunch: Thursday<br>
-                  <?php
-                  foreach ($resultMenu as $menu) {
-                    extract($menu);
-                    if ($meal == "Lunch" && date("w", strtotime($menu_date)) == 4) {
+                }
+                foreach ($resultMenu as $menus) {
+                  extract($menus);
+                  if ($meal == "Lunch") {
+                    if (date("w", strtotime($menu_date)) == 3) {
+                      ?>
+                      <form method="POST" action="../modules/reservationAction.php">
+                        <input name="userId" id="userId" type="hidden" value="<?php echo $_SESSION["user"]->getId() ?>">
+                        <input name="menuId" id="menuId" type="hidden" value="<?php echo $id_menu ?>">
+                        <input name="date" id="date" type="hidden" value="<?php echo $menu_date ?>">
+                        <input type="submit" value="Make a reservation" class="btn btn-primary">
+                      </form>
+                      <?php
+                    }
+                  }
+                }
+                ?>
+              </td>
+
+              <td name="LunchThursday">
+                Lunch:<br><br>
+                <?php
+                foreach ($resultMenuItems as $menu) {
+                  extract($menu);
+                  if ($meal == "Lunch") {
+                    if (date("w", strtotime($menu_date)) == 4) {
+
                       echo "-" . $item_description . "<br>";
                     }
                   }
-                  ?>
-                  <br>
-                  <?php if ($meal == "Lunch" && date("w", strtotime($menu_date)) == 4) { ?>
-                    <form method="POST" action="../modules/reservationAction.php">
-                      <input name="userId" id="userId" type="hidden" value="<?php echo $_SESSION["user"]->getId() ?>">
-                      <input name="menuId" id="menuId" type="hidden" value="<?php echo $id_menu ?>">
-                      <input name="date" id="date" type="hidden" value="<?php echo $menu_date ?>">
-                      <input type="submit" value="Make a reservation" class="btn btn-primary">
-                    </form>
-                  <?php } ?>
-                </td>
-                <td>
-                  Lunch: Friday<br>
-                  <?php
-                  foreach ($resultMenu as $menu) {
-                    extract($menu);
-                    if ($meal == "Lunch" && date("w", strtotime($menu_date)) == 5) {
+                }
+                foreach ($resultMenu as $menus) {
+                  extract($menus);
+                  if ($meal == "Lunch") {
+                    if (date("w", strtotime($menu_date)) == 4) {
+                      ?>
+                      <form method="POST" action="../modules/reservationAction.php">
+                        <input name="userId" id="userId" type="hidden" value="<?php echo $_SESSION["user"]->getId() ?>">
+                        <input name="menuId" id="menuId" type="hidden" value="<?php echo $id_menu ?>">
+                        <input name="date" id="date" type="hidden" value="<?php echo $menu_date ?>">
+                        <input type="submit" value="Make a reservation" class="btn btn-primary">
+                      </form>
+                      <?php
+                    }
+                  }
+                }
+                ?>
+              </td>
+
+              <td name="LunchFriday">
+                Lunch:<br><br>
+                <?php
+                foreach ($resultMenuItems as $menu) {
+                  extract($menu);
+                  if ($meal == "Lunch") {
+                    if (date("w", strtotime($menu_date)) == 5) {
+
                       echo "-" . $item_description . "<br>";
                     }
                   }
-                  ?>
-                  <br>
-                  <?php if ($meal == "Lunch" && date("w", strtotime($menu_date)) == 5) { ?>
-                    <form method="POST" action="../modules/reservationAction.php">
-                      <input name="userId" id="userId" type="hidden" value="<?php echo $_SESSION["user"]->getId() ?>">
-                      <input name="menuId" id="menuId" type="hidden" value="<?php echo $id_menu ?>">
-                      <input name="date" id="date" type="hidden" value="<?php echo $menu_date ?>">
-                      <input name="day" class="day5" type="hidden" value="" />
-                      <input name="type" id="type" type="hidden" value="lu" />
-                      <input type="submit" value="Make a reservation" class="btn btn-primary">
-                    </form>
-                  <?php } ?>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  Dinner: Monday<br>
-                  <?php
-                  foreach ($resultMenu as $menu) {
-                    extract($menu);
-                    if ($meal == "Dinner" && date("w", strtotime($menu_date)) == 1) {
+                }
+                foreach ($resultMenu as $menus) {
+                  extract($menus);
+                  if ($meal == "Lunch") {
+                    if (date("w", strtotime($menu_date)) == 5) {
+                      ?>
+                      <form method="POST" action="../modules/reservationAction.php">
+                        <input name="userId" id="userId" type="hidden" value="<?php echo $_SESSION["user"]->getId() ?>">
+                        <input name="menuId" id="menuId" type="hidden" value="<?php echo $id_menu ?>">
+                        <input name="date" id="date" type="hidden" value="<?php echo $menu_date ?>">
+                        <input type="submit" value="Make a reservation" class="btn btn-primary">
+                      </form>
+                      <?php
+                    }
+                  }
+                }
+                ?>
+              </td>
+            </tr>
+
+            <tr name="DinnerRow">
+
+              <td name="dinnerMonday">
+                Dinner:<br><br>
+                <?php
+                foreach ($resultMenuItems as $menu) {
+                  extract($menu);
+                  if ($meal == "Dinner") {
+                    if (date("w", strtotime($menu_date)) == 1) {
+
                       echo "-" . $item_description . "<br>";
                     }
                   }
-                  ?>
-                  <br>
-                  <?php if ($meal == "Dinner" && date("w", strtotime($menu_date)) == 1) { ?>
-                    <form method="POST" action="../modules/reservationAction.php">
-                      <input name="userId" id="userId" type="hidden" value="<?php echo $_SESSION["user"]->getId() ?>">
-                      <input name="menuId" id="menuId" type="hidden" value="<?php echo $id_menu ?>">
-                      <input name="date" id="date" type="hidden" value="<?php echo $menu_date ?>">
-                      <input name="day" class="day1" type="hidden" value="" />
-                      <input name="type" id="type" type="hidden" value="di" />
-                      <input type="submit" value="Make a reservation" class="btn btn-primary">
-                    </form>
-                  <?php } ?>
-                </td>
-                <td>
-                  Dinner: Tuesday<br>
-                  <?php
-                  foreach ($resultMenu as $menu) {
-                    extract($menu);
-                    if ($meal == "Dinner" && date("w", strtotime($menu_date)) == 2) {
+                }
+                foreach ($resultMenu as $menus) {
+                  extract($menus);
+                  if ($meal == "Dinner") {
+                    if (date("w", strtotime($menu_date)) == 1) {
+                      ?>
+                      <form method="POST" action="../modules/reservationAction.php">
+                        <input name="userId" id="userId" type="hidden" value="<?php echo $_SESSION["user"]->getId() ?>">
+                        <input name="menuId" id="menuId" type="hidden" value="<?php echo $id_menu ?>">
+                        <input name="date" id="date" type="hidden" value="<?php echo $menu_date ?>">
+                        <input type="submit" value="Make a reservation" class="btn btn-primary">
+                      </form>
+                      <?php
+                    }
+                  }
+                }
+                ?>
+              </td>
+
+              <td name="dinnerTuesday">
+                Dinner:<br><br>
+                <?php
+                foreach ($resultMenuItems as $menu) {
+                  extract($menu);
+                  if ($meal == "Dinner") {
+                    if (date("w", strtotime($menu_date)) == 2) {
+
                       echo "-" . $item_description . "<br>";
                     }
                   }
-                  ?>
-                  <br>
-                  <?php if ($meal == "Dinner" && date("w", strtotime($menu_date)) == 2) { ?>
-                    <form method="POST" action="../modules/reservationAction.php">
-                      <input name="userId" id="userId" type="hidden" value="<?php echo $_SESSION["user"]->getId() ?>">
-                      <input name="menuId" id="menuId" type="hidden" value="<?php echo $id_menu ?>">
-                      <input name="date" id="date" type="hidden" value="<?php echo $menu_date ?>">
-                      <input name="day" class="day2" type="hidden" value="2" />
-                      <input name="type" id="type" type="hidden" value="di" />
-                      <input type="submit" value="Make a reservation" class="btn btn-primary">
-                    </form>
-                  <?php } ?>
-                </td>
-                <td>
-                  Dinner: Wednesday<br>
-                  <?php
-                  foreach ($resultMenu as $menu) {
-                    extract($menu);
-                    if ($meal == "Dinner" && date("w", strtotime($menu_date)) == 3) {
+                }
+                foreach ($resultMenu as $menus) {
+                  extract($menus);
+                  if ($meal == "Dinner") {
+                    if (date("w", strtotime($menu_date)) == 2) {
+                      ?>
+                      <form method="POST" action="../modules/reservationAction.php">
+                        <input name="userId" id="userId" type="hidden" value="<?php echo $_SESSION["user"]->getId() ?>">
+                        <input name="menuId" id="menuId" type="hidden" value="<?php echo $id_menu ?>">
+                        <input name="date" id="date" type="hidden" value="<?php echo $menu_date ?>">
+                        <input type="submit" value="Make a reservation" class="btn btn-primary">
+                      </form>
+                      <?php
+                    }
+                  }
+                }
+                ?>
+              </td>
+
+              <td name="dinnerWednesday">
+                Dinner:<br><br>
+                <?php
+                foreach ($resultMenuItems as $menu) {
+                  extract($menu);
+                  if ($meal == "Dinner") {
+                    if (date("w", strtotime($menu_date)) == 3) {
+
                       echo "-" . $item_description . "<br>";
                     }
                   }
-                  ?>
-                  <br>
-                  <?php if ($meal == "Dinner" && date("w", strtotime($menu_date)) == 3) { ?>
-                    <form method="POST" action="../modules/reservationAction.php">
-                      <input name="userId" id="userId" type="hidden" value="<?php echo $_SESSION["user"]->getId() ?>">
-                      <input name="menuId" id="menuId" type="hidden" value="<?php echo $id_menu ?>">
-                      <input name="date" id="date" type="hidden" value="<?php echo $menu_date ?>">
-                      <input name="day" class="day3" type="hidden" value="" />
-                      <input name="type" id="type" type="hidden" value="di" />
-                      <input type="submit" value="Make a reservation" class="btn btn-primary">
-                    </form>
-                  <?php } ?>
-                </td>
-                <td>
-                  Dinner: Thursday<br>
-                  <?php
-                  foreach ($resultMenu as $menu) {
-                    extract($menu);
-                    if ($meal == "Dinner" && date("w", strtotime($menu_date)) == 4) {
+                }
+                foreach ($resultMenu as $menus) {
+                  extract($menus);
+                  if ($meal == "Dinner") {
+                    if (date("w", strtotime($menu_date)) == 3) {
+                      ?>
+                      <form method="POST" action="../modules/reservationAction.php">
+                        <input name="userId" id="userId" type="hidden" value="<?php echo $_SESSION["user"]->getId() ?>">
+                        <input name="menuId" id="menuId" type="hidden" value="<?php echo $id_menu ?>">
+                        <input name="date" id="date" type="hidden" value="<?php echo $menu_date ?>">
+                        <input type="submit" value="Make a reservation" class="btn btn-primary">
+                      </form>
+                      <?php
+                    }
+                  }
+                }
+                ?>
+              </td>
+
+              <td name="dinnerThursday">
+                Dinner:<br><br>
+                <?php
+                foreach ($resultMenuItems as $menu) {
+                  extract($menu);
+                  if ($meal == "Dinner") {
+                    if (date("w", strtotime($menu_date)) == 4) {
+
                       echo "-" . $item_description . "<br>";
                     }
                   }
-                  ?>
-                  <br>
-                  <?php if ($meal == "Dinner" && date("w", strtotime($menu_date)) == 4) { ?>
-                    <form method="POST" action="../modules/reservationAction.php">
-                      <input name="userId" id="userId" type="hidden" value="<?php echo $_SESSION["user"]->getId() ?>">
-                      <input name="menuId" id="menuId" type="hidden" value="<?php echo $id_menu ?>">
-                      <input name="date" id="date" type="hidden" value="<?php echo $menu_date ?>">
-                      <input name="day" class="day4" type="hidden" value="" />
-                      <input name="type" id="type" type="hidden" value="di" />
-                      <input type="submit" value="Make a reservation" class="btn btn-primary">
-                    </form>
-                  <?php } ?>
-                </td>
-                <td>
-                  Dinner: Friday<br>
-                  <?php
-                  foreach ($resultMenu as $menu) {
-                    extract($menu);
-                    if ($meal == "Dinner" && date("w", strtotime($menu_date)) == 5) {
+                }
+                foreach ($resultMenu as $menus) {
+                  extract($menus);
+                  if ($meal == "Dinner") {
+                    if (date("w", strtotime($menu_date)) == 4) {
+                      ?>
+                      <form method="POST" action="../modules/reservationAction.php">
+                        <input name="userId" id="userId" type="hidden" value="<?php echo $_SESSION["user"]->getId() ?>">
+                        <input name="menuId" id="menuId" type="hidden" value="<?php echo $id_menu ?>">
+                        <input name="date" id="date" type="hidden" value="<?php echo $menu_date ?>">
+                        <input type="submit" value="Make a reservation" class="btn btn-primary">
+                      </form>
+                      <?php
+                    }
+                  }
+                }
+                ?>
+              </td>
+
+              <td name="dinnerFriday">
+                Dinner:<br><br>
+                <?php
+                foreach ($resultMenuItems as $menu) {
+                  extract($menu);
+                  if ($meal == "Dinner") {
+                    if (date("w", strtotime($menu_date)) == 5) {
+
                       echo "-" . $item_description . "<br>";
                     }
                   }
-                  ?>
-                  <br>
-                  <?php if ($meal == "Dinner" && date("w", strtotime($menu_date)) == 5) { ?>
-                    <form method="POST" action="../modules/reservationAction.php">
-                      <input name="userId" id="userId" type="hidden" value="<?php echo $_SESSION["user"]->getId() ?>">
-                      <input name="date" id="date" type="hidden" value="<?php echo $menu_date ?>">
-                      <input name="menuId" id="menuId" type="hidden" value="<?php echo $id_menu ?>">
-                      <input name="day" class="day5" type="hidden" value="" />
-                      <input name="type" id="type" type="hidden" value="di" />
-                      <input type="submit" value="Make a reservation" class="btn btn-primary">
-                    </form>
-                  <?php } ?>
-                </td>
-              </tr>
-              <?php
-            }
-            ?>
+                }
+                foreach ($resultMenu as $menus) {
+                  extract($menus);
+                  if ($meal == "Dinner") {
+                    if (date("w", strtotime($menu_date)) == 5) {
+                      ?>
+                      <form method="POST" action="../modules/reservationAction.php">
+                        <input name="userId" id="userId" type="hidden" value="<?php echo $_SESSION["user"]->getId() ?>">
+                        <input name="menuId" id="menuId" type="hidden" value="<?php echo $id_menu ?>">
+                        <input name="date" id="date" type="hidden" value="<?php echo $menu_date ?>">
+                        <input type="submit" value="Make a reservation" class="btn btn-primary">
+                      </form>
+                      <?php
+                    }
+                  }
+                }
+                ?>
+              </td>
+            </tr>
           </tbody>
         </table>
       </div>

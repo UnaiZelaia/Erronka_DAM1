@@ -3,9 +3,10 @@ include("../model/User.class.php");
 include("../model/MySQLPDO.class.php");
 include("../modules/updateSessionUser.php");
 session_start();
-
 if (isset($_SESSION["user"]) && $_SESSION["loged"] == "ok") {
   updateUser();
+  $resultMenuItems = MySQLPDO::selectMenusWeek();
+  $resultMenu = MySQLPDO::selectMenus();
   ?>
   <!doctype html>
   <html lang="en">
@@ -22,11 +23,36 @@ if (isset($_SESSION["user"]) && $_SESSION["loged"] == "ok") {
     <title>TEMPLATE</title>
     <link rel="stylesheet" href="../style/style.css">
     <script src="../js/calendar.js"></script>
+    <script src="../js/alerts.js"></script>
+    <script src="../js/validation.js"></script>
   </head>
+  <?php
+  if(isset($_GET["a"])){
+    $a = $_GET["a"];
+    if($a == 1){
+      //success
+      ?><script>
+        $(document).ready(function() {
+        $(this).createAlert("Password updated successfully")
+        });
+      </script>
+      <?php
+    }
+    elseif($a == 0){
+      //error
+      ?>
+      <script>
+      $(document).ready(function() {
+      $(this).createAlert("There was an error while updating your password. Please try again.")
+        });
+      </script>
+      <?php 
+  }
+}
+  ?>
 
-  <body>
-    <!--Start of the navbar-->
-    <nav class="navbar navbar-expand-sm navbar-dark container-fluid bg-uni">
+  <!--Start of the navbar-->
+  <nav class="navbar navbar-expand-sm navbar-dark container-fluid bg-uni">
       <div class="container-fluid">
         <a class="navbar-brand" href="../img/lg.png">
           Uni Eibar-Ermua Canteen
@@ -83,65 +109,48 @@ if (isset($_SESSION["user"]) && $_SESSION["loged"] == "ok") {
     </nav>
     <!--End of the navbar-->
     <!--Start of the content-->
+    <body>
+    <div class="container text-center mb-5">
+        <div class="col-10 rounded-3 mt-5 m-auto" id="centro">
+        <h3>Change my password</h3>
 
-    <div class="col-8 m-auto mt-3 text-center">
-      <h1 class="mb-4">My balance history</h1>
+        <form class="rounded-3 bg-uni p-4" method="POST" action="../modules/updatePassword.php" onsubmit="return validatePassword()" id="newpasswd" name="newpasswd">
+          <div class="form-group mt-3 col-6 m-auto text-light">
+              <label for="oldPassword">Old password</label><br>
+              <input type="password" name="oldPassword" id="oldPassword" >
+          </div>
 
-      <?php
-      $transactions = MySQLPDO::selectTransactions($_SESSION["user"]->getId());
-      if (sizeof($transactions) != 0) {
-        ?>
+          <div class="form-group mt-3 col-6 m-auto text-light">
+              <label for="newPassword1">New password</label><br>
+              <input type="password" name="newPassword1" id="newPassword1" >
+          </div>
 
-        <div class="table-responsive">
-          <table class="table table-bordered rounded-3 col-8">
-            <thead>
-              <tr>
-                <th>Date of the transaction</th>
-                <th>Type of transaction</th>
-                <th>Transaction amount</th>
-                <th>Total balance</th>
-              </tr>
-            </thead>
-            <tbody>
+          <div class="form-group mt-3 col-6 m-auto text-light">
+              <label for="newPassword2">Confirm new password</label><br>
+              <input type="password" name="newPassword2" id="newPassword2" >
+          </div>
 
-              <?php
-              $balance = 0;
-              foreach($transactions as $transac) {
-                extract($transac)
-                  ?>
+          <button type="submit" class=" mt-3 btn btn-primary col-2 m-auto text-light mb-3">Update my password</button>
 
-                <tr>
-                  <td>
-                    <?php echo $transaction_date; ?>
-                  </td>
-                  <td>
-                    <?php echo $transaction_method; ?>
-                  </td>
-                  <td>
-                    <?php echo $transaction_quantity; ?>
-                  </td>
-                  <td>
-                    <?php 
-                    $balance = $balance + $transaction_quantity;
-                    echo $balance;
-              } ?>
-            </td>
-      <?php
-      } else {
-        ?>
-                  <h1>El array esta vacio</h1>
-                  <?php
-      } ?>
-                </th>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+        </form>
+
+
+
+        </div>
     </div>
+    </body>
 
 
 
-    <!--End of the content-->
+
+
+
+
+
+
+
+
+  <!--End of the content-->
     <!--Start of the footer-->
     <footer class="container-fluid mb-0">
       <div class="mt-5 p-4 text-light text-center container-fluid">
