@@ -182,7 +182,7 @@ def updateReserve():
         fw = open("../files/Reserves.pkl", "wb+")
 
         for obj2 in objects:
-            pickle.dump(obj, fw, pickle.HIGHEST_PROTOCOL)
+            pickle.dump(obj2, fw, pickle.HIGHEST_PROTOCOL)
 
         print("Objects have been updated")
         c = int(input("Press 1 to update another reservation. Press any other key to stop deleting."))

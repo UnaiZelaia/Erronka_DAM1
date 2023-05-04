@@ -273,6 +273,9 @@ class MySQLPDO {
         try{
             $sql = "INSERT INTO menu_items (id_menu, id_item) VALUES(?, ?)";
             $params = array($menuId, $item);
+
+            $result = MySQLPDO::exec($sql, $params);
+            return $result;
             }
         catch(Exception $e){
             return $e -> getMessage();
@@ -294,9 +297,8 @@ class MySQLPDO {
 
     public static function selectItemId($item){
         try{
-            $item = strtoupper($item);
-            $sql = "SELECT id_item FROM items where UPPER(item_description) = $item ";
-            $params=array();
+            $sql = "SELECT id_item FROM items where UPPER(item_description) = UPPER(?) ";
+            $params=array($item);
             $result = MySQLPDO::select($sql, $params);
             return $result;
         }
@@ -308,7 +310,6 @@ class MySQLPDO {
 
 
     }
-
 
     public static function selectMenuId(){
         try{
