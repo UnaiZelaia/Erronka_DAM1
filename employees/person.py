@@ -1,26 +1,26 @@
+class Person:
+    def __init__(self):
+        self.Id = int(input("enter person Id  "))
+        self.name =  input("enter person name  ") 
+        self.surname = input("enter person surname  ")
+        
 
-class person:
-    def __init__(self, name, position, salary):
-        self.name = name
-        self.position = position
-        self.salary = salary
-    # getter method
+    def get_Id(self):
+        return self.Id
 
-    def get_name(name):
+    def get_name(self):
         return self.name
 
-    def get_position(position):
-        return self.position
-
-    def get_salary(salary):
-        return self.salary
+    def get_surname(self):
+        return self.surname
 
     # setter method
-    def set_name(self, nm):
-        self.name = x
+    def Id(self):
+        self.Id = int(input("enter person Id  "))
 
-    def set_position(self, po):
-        self.position = y
+    def name(self):
+        self.name = input("enter person name  ")
 
-    def set_salary(self, sa):
-        self.salary = sa
+    def surname(self):
+        self.surname = input("enter person surname  ")
+
