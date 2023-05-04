@@ -5,7 +5,7 @@ import functions
 def employeesubmenu():
     repeat = True
     while repeat:
-        print("Employees menu")3
+        print("Employees menu")
         print("1-Add ")
         print("2-Read ")
         print("3-Edit")
