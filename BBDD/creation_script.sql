@@ -54,7 +54,7 @@ CREATE TABLE IF NOT EXISTS items(
 
 CREATE TABLE IF NOT EXISTS menu(
     id_menu INTEGER(6) NOT NULL AUTO_INCREMENT,
-    course VARCHAR(50) NOT NULL,
+    meal VARCHAR(50) NOT NULL,
     menu_name VARCHAR(100),
 
     PRIMARY KEY(id_menu)
@@ -222,11 +222,25 @@ BEGIN
 END; //
 
 
+DELIMITER //
+CREATE TRIGGER updateBalanceCancelReserve
+AFTER DELETE ON reserve
+FOR EACH ROW
+BEGIN
+
+    UPDATE user SET balance = balance - 5.7
+    WHERE id_user = OLD.id_user;
+
+END; //
 
 
+DELIMITER //
+CREATE TRIGGER cancelReserveDeleteTransaction
+AFTER DELETE ON reserve
+FOR EACH ROW
+BEGIN
 
+    DELETE FROM transactions WHERE id_user = OLD.id_user AND transaction_date = OLD.menu_date; 
 
-
-
-
+END; //
 
