@@ -14,9 +14,7 @@ $week = $_GET["reservationWeek"];
 
 
 if(isset($date) && isset($meal) && isset($week) && isset($_SESSION["user"])){
-    
-    $dateFormatted = date("d-m-Y", strtotime($date));
-    
+        
     for ($i = 0; $i < $week; $i++) {
         $idMeal = MySQLPDO::lastOfMealType($meal, $date);
         if(!isset($idMeal[0])) {
