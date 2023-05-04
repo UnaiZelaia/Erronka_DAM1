@@ -1,14 +1,20 @@
 // Validation functions for the sing up form 
 function validatePassword() {
-    let pass = document.forms["signupForm"]["password"].value;
-    let newpass1 = getElementById["newpasswd"]["newPassword1"].value;
-    let newpass2 = getElementById["newpasswd"]["newPassword2"].value;
+    let pass = document.getElementById("oldPassword").value;
+    let newpass1 = document.getElementById("newPassword1").value;
+    let newpass2 = document.getElementById("newPassword2").value;
 
-    let pattern = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,15}$");
+    let pattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,15}$/;
 
-    if (!pattern.test(newpass1 && newpass2)) {
-        alert("Your password must be between 8 and 15 character and contain at least one uppercase, lowercase, number and special character.")
+    if (!pattern.test(newpass1) || !pattern.test(newpass2)) {
+        alert("Your password must be between 8 and 15 characters and contain at least one uppercase letter, one lowercase letter, one number, and one special character.");
+        return false;
     }
+    if (newpass1 !== newpass2) {
+        alert("New passwords do not match.");
+        return false;
+    }
+    return true;
 }
 
 function validateEmptyName() {
