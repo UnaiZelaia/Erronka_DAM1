@@ -17,13 +17,13 @@ class Resident:
             print(self.id_user, self.name, self.surname, self.email, self.role, self.allergy)
 
     def newResident(self):
-        with open("../files/Residents.pickle", "ab") as f:
+        with open("../../files/Residents.pkl", "ab") as f:
             pickle.dump({"Id": self.id_user, "Name": self.name, "Surname": self.surname, "Email": self.email,
                          "Role": self.role, "Allergy": self.allergy}, f)
 
     @staticmethod
     def printResidents():
-        with open("../files/Residents.pickle", "rb") as f:
+        with open("../../files/Residents.pkl", "rb") as f:
             try:
                 while True:
                     print(pickle.load(f))
@@ -31,7 +31,7 @@ class Resident:
                 pass
 
     def deleteResident(self):
-        with open("../files/Residents.pickle", "rb") as f:
+        with open("../../files/Residents.pkl", "rb") as f:
             residents = []
             try:
                 while True:
@@ -41,13 +41,13 @@ class Resident:
             except EOFError:
                 pass
 
-        with open("../files/Residents.pickle", "wb") as f:
+        with open("../../files/Residents.pkl", "wb") as f:
             for resident in residents:
                 pickle.dump(resident, f)
 
     def changeResident(self, id_user, new_allergy):
         resident_exists = False
-        with open("../files/Residents.pickle", "rb") as f:
+        with open("../../files/Residents.pkl", "rb") as f:
             residents = []
             try:
                 while True:
@@ -62,6 +62,6 @@ class Resident:
         if not resident_exists:
             print(f"Resident with id {id_user} not found.")
 
-        with open("../files/Residents.pickle", "wb") as f:
+        with open("../../files/Residents.pkl", "wb") as f:
             for resident in residents:
                 pickle.dump(resident, f)

@@ -7,15 +7,15 @@ def employeesubmenu():
     while repeat:
         print("\n============================================================")
         print("             Employees menu")
-        print("1-Add ")
-        print("2-Read ")
-        print("3-Edit")
-        print("4-Delete")
-        print("============================================================ \n")
+        print("1- Add a new employee")
+        print("2- Read all the employees")
+        print("3- Edit an employee")
+        print("4- Delete an employee")
+        print("============================================================\n")
         a = int(input("Select the option that you want:  "))
         if a == 1:
             e1 = Employee()
-            Employeesfunctions.add(e1, '../../files/employee.pkl')
+            Employeesfunctions.add(e1, "../../files/employee.pkl")
         elif a == 2:
             print("These are the employees:  \n ")
             Employeesfunctions.read("../../files/employee.pkl")

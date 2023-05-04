@@ -7,8 +7,8 @@ from MAIN.src.controller import ReserveFunctions
 def printMainMenu():
     c = 1
     while c == 1:
-        print("============================================================")
-        print("Select on of the options:")
+        print("\n============================================================")
+        print("             Select on of the options:")
         print("\t1- Manage reservations.")
         print("\t2- Create new user.")
         print("\t3- Create new menu")
@@ -16,7 +16,7 @@ def printMainMenu():
         print("\t5- Print menus")
         print("\t6- Print reserves")
         print("\t7- Exit application")
-        print("============================================================")
+        print("============================================================\n")
         opt = int(input("Select an option: "))
 
         match opt:
@@ -40,14 +40,14 @@ def printMainMenu():
 
 
 def printReserveSubmenu():
-    print("============================================================")
-    print("Managing reservations: Choose an option.")
+    print("\n============================================================")
+    print("             Managing reservations: Choose an option.")
     print("\t1- Show reservations.")
     print("\t2- Create a new reservation.")
     print("\t3- Delete a reservation.")
     print("\t4- Update a reservation.")
     print("\t5- Go back.")
-    print("============================================================")
+    print("============================================================\n")
     opt = int(input("Select an option: "))
 
     match opt:

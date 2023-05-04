@@ -1,5 +1,3 @@
-from MAIN.src.model.Employees import *
-from MAIN.src.model.Person import *
 import pickle
 
 
@@ -25,7 +23,7 @@ def add(obj, filename):
     # Overwrites any existing file.
     with open(filename, 'ab') as outp:
         pickle.dump(obj, outp, pickle.HIGHEST_PROTOCOL)
-    print("Employee added successfully")
+    print("\nEmployee added successfully!")
 
 
 def delete(filename):
@@ -40,7 +38,7 @@ def delete(filename):
             try:
                 objects.append(pickle.load(inp))
             except EOFError:
-                print("end of employees\n")
+                print("End of employees\n")
                 cont = 0
         for i, em in enumerate(objects):
             if em.Id == employee_id:
@@ -65,7 +63,7 @@ def edit(filename):
             try:
                 objects.append(pickle.load(inp))
             except EOFError:
-                print("end of employees\n")
+                print("End of employees \n")
                 cont = 0
         for i, em in enumerate(objects):
             if em.get_Id() == employee_id:

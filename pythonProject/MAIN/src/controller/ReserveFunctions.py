@@ -55,28 +55,28 @@ def createReserveObject():
 
 
 def writeUserToFile(user):
-    f = open("../files/Users.pkl", "ab")
+    f = open("../../files/Users.pkl", "ab")
 
     with f as outp:
         pickle.dump(user, outp, pickle.HIGHEST_PROTOCOL)
 
 
 def writeMenuToFile(menu):
-    f = open("../files/Menus.pkl", "ab")
+    f = open("../../files/Menus.pkl", "ab")
 
     with f as outp:
         pickle.dump(menu, outp, pickle.HIGHEST_PROTOCOL)
 
 
 def writeReserveToFile(reserve):
-    f = open("../files/Reserves.pkl", "ab")
+    f = open("../../files/Reserves.pkl", "ab")
 
     with f as outp:
         pickle.dump(reserve, outp, pickle.HIGHEST_PROTOCOL)
 
 
 def readUsers():
-    f = open("../files/Users.pkl", "rb")
+    f = open("../../files/Users.pkl", "rb")
 
     objects = []
     cont = 1
@@ -90,7 +90,7 @@ def readUsers():
 
 
 def readMenus():
-    f = open("../files/Menus.pkl", "rb")
+    f = open("../../files/Menus.pkl", "rb")
 
     objects = []
     cont = 1
@@ -104,8 +104,7 @@ def readMenus():
 
 
 def readReserves():
-    f = open("../files/Reserves.pkl", "rb")
-
+    f = open("../../files/Reserves.pkl", "rb")
     objects = []
     cont = 1
     while cont == 1:
@@ -118,7 +117,7 @@ def readReserves():
 
 
 def deleteReserve():
-    f = open("../files/Reserves.pkl", "rb+")
+    f = open("../../files/Reserves.pkl", "rb+")
 
     objects = []
     cont = 1
@@ -139,7 +138,7 @@ def deleteReserve():
 
         opt = int(input("Select the index of the reserve you want to delete: "))
         objects.pop(opt - 1)
-        fd = open("../files/Reserves.pkl", "wb+")
+        fd = open("../../files/Reserves.pkl", "wb+")
         for obj in objects:
             pickle.dump(obj, fd, pickle.HIGHEST_PROTOCOL)
         print("The reservation was deleted successfully")
@@ -148,7 +147,7 @@ def deleteReserve():
 
 
 def updateReserve():
-    f = open("../files/Reserves.pkl", "rb+")
+    f = open("../../files/Reserves.pkl", "rb+")
 
     objects = []
     cont = 1
@@ -182,7 +181,7 @@ def updateReserve():
                 objects[opt - 1].setId_menu()
             case default:
                 readReserves()
-        fw = open("../files/Reserves.pkl", "wb+")
+        fw = open("../../files/Reserves.pkl", "wb+")
 
         for obj2 in objects:
             pickle.dump(obj2, fw, pickle.HIGHEST_PROTOCOL)

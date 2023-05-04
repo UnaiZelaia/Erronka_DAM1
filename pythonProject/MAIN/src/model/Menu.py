@@ -1,4 +1,4 @@
-class Menu():
+class Menu:
 
     def __init__(self, name, items):
         self.name = name

@@ -1,4 +1,3 @@
-import csv
 class Reserve:
 
     def __init__(self, id_user, id_menu, date):
@@ -6,10 +5,8 @@ class Reserve:
         self.id_menu = id_menu
         self.date = date
 
-
     def print(self):
         print(self.id_user, self.id_menu, self.date)
-
 
     def setDate(self):
         cm = 1
@@ -31,11 +28,10 @@ class Reserve:
         date = str(day) + '-' + str(month) + '-' + str(year)
         self.date = date
 
-
     def setId_user(self):
-        user = input("Enter the new user id(dni) for the reservation")
+        user = input("Enter the new user id(dni) for the reservation: ")
         self.id_user = user
 
     def setId_menu(self):
-        menu = input("Enter the new menu for the reservation")
+        menu = input("Enter the new menu for the reservation: ")
         self.id_menu = menu
