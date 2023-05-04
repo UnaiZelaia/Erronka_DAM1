@@ -1,9 +1,9 @@
 <?php
 class MySQLPDO {
-    private static $host = "192.168.122.160"; //o la IP del servidor de BBBDD remoto
+    private static $host = "localhost"; //o la IP del servidor de BBBDD remoto
     private static $database = "canteen";
-    private static $username = "unai";
-    private static $password = "123";
+    private static $username = "root";
+    private static $password = "";
     private static $base;
     
     public static function connect() {

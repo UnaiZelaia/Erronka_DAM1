@@ -1,36 +1,36 @@
 // Validation functions for the sing up form 
-function validatePassword(){
+function validatePassword() {
     let pass = document.forms["signupForm"]["password"].value;
-    let newpass1 = document.forms["newpasswd"]["newPassword1"].value;
-    let newpass2 = document.forms["newpasswd"]["newPassword2"].value;
+    let newpass1 = getElementById["newpasswd"]["newPassword1"].value;
+    let newpass2 = getElementById["newpasswd"]["newPassword2"].value;
 
     let pattern = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,15}$");
 
-    if(!pattern.test(newpass1 && newpass2)){
+    if (!pattern.test(newpass1 && newpass2)) {
         alert("Your password must be between 8 and 15 character and contain at least one uppercase, lowercase, number and special character.")
     }
 }
 
-function validateEmptyName(){
+function validateEmptyName() {
     let name = document.forms["signupForm"]["name"].value;
 
-    if(name == ""){
+    if (name == "") {
         alert("Name cannot be empty");
     }
 }
 
-function validateEmptySurname(){
+function validateEmptySurname() {
     let surname = document.forms["signupForm"]["surname"].value;
 
-    if(surname == ""){
+    if (surname == "") {
         alert("Surname cannot be empty");
     }
 }
 
-function validateEmptyBirthdate(){
+function validateEmptyBirthdate() {
     let birthdate = document.forms["signupForm"]["birthdate"].value;
 
-    if(birthdate == ""){
+    if (birthdate == "") {
         alert("Name cannot be empty");
     }
 }
@@ -81,8 +81,8 @@ function TDate() {
     var ToDate = new Date();
 
     if (new Date(UserDate).getTime() <= ToDate.getTime()) {
-          alert("The Date must be Bigger or Equal to today date");
-          return false;
-     }
+        alert("The Date must be Bigger or Equal to today date");
+        return false;
+    }
     return true;
 }

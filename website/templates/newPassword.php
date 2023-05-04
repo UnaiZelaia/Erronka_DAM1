@@ -114,7 +114,7 @@ if (isset($_SESSION["user"]) && $_SESSION["loged"] == "ok") {
         <div class="col-10 rounded-3 mt-5 m-auto" id="centro">
         <h3>Change my password</h3>
 
-        <form class="rounded-3 bg-uni p-4" method="POST" action="../modules/updatePassword.php" onsubmit="return validatePassword()" id="newpasswd" name="newpasswd">
+        <form class="rounded-3 bg-uni p-4" method="POST" action="../modules/updatePassword.php" onsubmit="return validatePassword()" id="newpasswd">
           <div class="form-group mt-3 col-6 m-auto text-light">
               <label for="oldPassword">Old password</label><br>
               <input type="password" name="oldPassword" id="oldPassword" >
