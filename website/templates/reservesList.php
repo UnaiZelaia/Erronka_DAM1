@@ -21,33 +21,8 @@ if (isset($_SESSION["user"]) && $_SESSION["loged"] == "ok") {
     <title>TEMPLATE</title>
     <link rel="stylesheet" href="../style/style.css">
     <script src="../js/calendar.js"></script>
-    <script src="../js/alerts.js"></script>
   </head>
 
-  <?php
-  if(isset($_GET["a"])){
-    $a = $_GET["a"];
-    if($a == 1){
-      //success
-      ?><script>
-        $(document).ready(function() {
-        $(this).createAlert("The reservation was cancelled successfully")
-        });
-      </script>
-      <?php
-    }
-    elseif($a == 0){
-      //error   
-      ?>
-      <script>
-      $(document).ready(function() {
-      $(this).createAlert("There was an error with your reservation cancel. Please try again.")
-        });
-      </script>
-      <?php 
-  }
-}
-  ?>
   <body onload="javascript:setHtmlWeek()">
     <!--Start of the navbar-->
     <nav class="navbar navbar-expand-sm navbar-dark container-fluid bg-uni">
@@ -154,7 +129,7 @@ if (isset($_SESSION["user"]) && $_SESSION["loged"] == "ok") {
                   </form>
                   </td>
                 </tr>
-
+                    
               <?php
               }
             }

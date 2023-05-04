@@ -1,9 +1,9 @@
 <?php
 class MySQLPDO {
-    private static $host = "127.0.0.1"; //o la IP del servidor de BBBDD remoto
+    private static $host = "192.168.122.160"; //o la IP del servidor de BBBDD remoto
     private static $database = "canteen";
-    private static $username = "root";
-    private static $password = "";
+    private static $username = "unai";
+    private static $password = "123";
     private static $base;
     
     public static function connect() {
@@ -65,11 +65,12 @@ class MySQLPDO {
     public static function lastOfMealType($meal, $date){
         $sql = "SELECT m.id_menu FROM menu m 
                     INNER JOIN reserve r ON m.id_menu = r.id_menu
-                        WHERE UPPER(m.meal) = ? AND r.menu_date = ?";
+                        WHERE UPPER(m.meal) = ? AND r.menu_date = ?
+                            LIMIT 1";
 
         $params = array(strtoupper($meal), $date);
         $result = MySQLPDO::select($sql, $params);
-        return $result[0];
+        return $result;
     }
 
 
