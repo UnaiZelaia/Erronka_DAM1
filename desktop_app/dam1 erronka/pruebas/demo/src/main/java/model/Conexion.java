@@ -6,9 +6,9 @@ import java.sql.SQLException;
 
 public class Conexion {
     private Connection connection;
-    private String url = "jdbc:mysql://192.168.122.160/canteen"; // Reemplazar por url de base de datos en uso
-    private String usuario = "unai"; // Reemplazar por usuario de base de datos
-    private String contraseña = "123"; // Reemplazar por contraseña de usuario
+    private String url =  "jdbc:mysql://localhost/canteen" /* "jdbc:mysql://192.168.72.205/canteen_database" */;
+    private String usuario = "root" /* javaUser */;
+    private String contraseña = "" /* adminJava */;
 
     public Connection getConnection() {
         return connection;
@@ -22,10 +22,13 @@ public class Conexion {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             connection = DriverManager.getConnection(url, usuario, contraseña);
+
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
+            
         } catch (SQLException e) {
             e.printStackTrace();
+            
         }
     }
     public void cerrarConexion(){
