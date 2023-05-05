@@ -4,8 +4,13 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
-    
-        
+        {
+            "type": "java",
+            "name": "App",
+            "request": "launch",
+            "mainClass": "dambat/dambat.App",
+            "projectName": "dambat-demo"
+        },
         {
             "name": "Launch built-in server and debug",
             "type": "php",
