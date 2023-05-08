@@ -20,7 +20,7 @@ public class LogInController {
 
         if(email.equals("admin") && pass.equals("123")){
             // Si el usuario ha iniciado sesión correctamente, redirigir al usuario a la pantalla "CreateTransaction"
-            App.setRoot("Menu");
+            App.setRoot("ManageUsers");
         }else{
             // Si el usuario no ha iniciado sesión correctamente, mostrar una alerta con un mensaje de error
             Alert mensaje = new Alert(AlertType.ERROR);

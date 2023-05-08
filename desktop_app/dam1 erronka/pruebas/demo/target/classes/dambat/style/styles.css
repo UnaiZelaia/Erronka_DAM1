@@ -42,8 +42,13 @@
     -fx-background-color: linear-gradient(to bottom, #eb8db5, #72a9e8), radial-gradient(center 50% -40%, radius 200%, #eb8db5 45%, #72a9e8);
 }
 
-.vboxx{
+.vboxx1{
     -fx-background-color: linear-gradient(to bottom, #176191, #179060), radial-gradient(center 50% -40%, radius 200%, #176191 45%, #179060);
+    -fx-background-blur: 10px;
+}
+
+.vboxx{
+    -fx-background-color: linear-gradient(to bottom, #6f4c8b, #826699), radial-gradient(center 50% -40%, radius 200%, #6f4c8b 45%, #826699);
     -fx-background-blur: 10px;
 }
 

@@ -5,6 +5,9 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -16,9 +19,9 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="401.0" prefWidth="847.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dambat.MUsersController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="401.0" prefWidth="847.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dambat.MUsersController">
    <children>
-      <SplitPane dividerPositions="0.37751479289940826" prefHeight="401.0" prefWidth="847.0" styleClass="vboxx" stylesheets="@../../java/dambat/style/styles.css">
+      <SplitPane dividerPositions="0.37751479289940826" layoutY="27.0" prefHeight="374.0" prefWidth="847.0" styleClass="vboxx" stylesheets="@../../java/dambat/style/styles.css">
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <children>
@@ -37,37 +40,37 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Label alignment="CENTER" contentDisplay="CENTER" text="BALANCE:" GridPane.rowIndex="6">
+                        <Label alignment="CENTER" contentDisplay="CENTER" text="BALANCE:" textFill="WHITE" GridPane.rowIndex="6">
                            <padding>
                               <Insets right="5.0" />
                            </padding>
                         </Label>
-                        <Label alignment="CENTER" contentDisplay="CENTER" text="ROLE:" GridPane.rowIndex="5">
+                        <Label alignment="CENTER" contentDisplay="CENTER" text="ROLE:" textFill="WHITE" GridPane.rowIndex="5">
                            <padding>
                               <Insets right="5.0" />
                            </padding>
                         </Label>
-                        <Label alignment="CENTER" contentDisplay="CENTER" text="BIRDTHDATE:" GridPane.rowIndex="4">
+                        <Label alignment="CENTER" contentDisplay="CENTER" text="BIRDTHDATE:" textFill="WHITE" GridPane.rowIndex="4">
                            <padding>
                               <Insets right="5.0" />
                            </padding>
                         </Label>
-                        <Label alignment="CENTER" contentDisplay="CENTER" text="EMAIL:" GridPane.rowIndex="3">
+                        <Label alignment="CENTER" contentDisplay="CENTER" text="EMAIL:" textFill="WHITE" GridPane.rowIndex="3">
                            <padding>
                               <Insets right="5.0" />
                            </padding>
                         </Label>
-                        <Label alignment="CENTER" contentDisplay="CENTER" text="SURNAME:" GridPane.rowIndex="2">
+                        <Label alignment="CENTER" contentDisplay="CENTER" text="SURNAME:" textFill="WHITE" GridPane.rowIndex="2">
                            <padding>
                               <Insets right="5.0" />
                            </padding>
                         </Label>
-                        <Label alignment="CENTER" contentDisplay="CENTER" text="NAME:" GridPane.rowIndex="1">
+                        <Label alignment="CENTER" contentDisplay="CENTER" text="NAME:" textFill="WHITE" GridPane.rowIndex="1">
                            <padding>
                               <Insets right="5.0" />
                            </padding>
                         </Label>
-                        <Label alignment="CENTER" contentDisplay="CENTER" text="ID:">
+                        <Label alignment="CENTER" contentDisplay="CENTER" text="ID:" textFill="WHITE">
                            <padding>
                               <Insets right="5.0" />
                            </padding>
@@ -94,12 +97,11 @@
                         <Button mnemonicParsing="false" onAction="#eliminarRegistro" styleClass="buttonn2" text="DELETE" />
                      </children>
                   </HBox>
-                  <Button layoutX="115.0" layoutY="372.0" mnemonicParsing="false" onAction="#pasoPag" styleClass="buttonn2" text="GO BACK" />
                </children>
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="398.0" prefWidth="333.0">
                <children>
-                  <TableView fx:id="tablaUsuario" layoutY="-1.0" prefHeight="400.0" prefWidth="523.0">
+                  <TableView fx:id="tablaUsuario" layoutY="-2.0" prefHeight="401.0" prefWidth="523.0">
                     <columns>
                       <TableColumn fx:id="clmNombre" prefWidth="76.0" text="Name" />
                       <TableColumn fx:id="clmApellido" prefWidth="83.0" text="Surname" />
@@ -113,5 +115,25 @@
             </AnchorPane>
         </items>
       </SplitPane>
+      <MenuBar layoutY="2.0" prefHeight="25.0" prefWidth="847.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="Users">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#goMUsers" text="Manage Users" />
+                  <MenuItem mnemonicParsing="false" onAction="#goCUsers" text="Create Users" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Transactions">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#goTransaction" text="Create Transaction" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Reports">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#goReports" text="Transaction" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
    </children>
 </AnchorPane>

@@ -48,8 +48,23 @@ public class ReportsController implements Initializable{
 
 
     @FXML
-    private void pasoPag() throws IOException {
-        App.setRoot("Menu");
+    private void goCUsers() throws IOException {
+            App.setRoot("CreateUsers");
+    }
+
+    @FXML
+    private void goMUsers() throws IOException {
+            App.setRoot("ManageUsers");
+    }
+
+    @FXML
+    private void goTransaction() throws IOException {
+            App.setRoot("CreateTransaction");  
+    }
+
+    @FXML
+    private void goReports() throws IOException {
+            App.setRoot("Reports");  
     }
 
 }
