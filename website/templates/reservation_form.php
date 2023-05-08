@@ -22,6 +22,7 @@ if(isset($_SESSION["user"]) && $_SESSION["loged"] == "ok"){
   <title>TEMPLATE</title>
   <link rel="stylesheet" href="../style/style.css">
   <script src="../js/calendar.js"></script>
+  <script src="../js/validation.js"></script>
 </head>
 
 <body onload="javascript:setHtmlWeek()">
@@ -91,7 +92,7 @@ if(isset($_SESSION["user"]) && $_SESSION["loged"] == "ok"){
 
         <div class="form-group mt-5">
           <label class="text-light" for="reservationDate">Date for the reservation</label>
-          <input type="date" name="reservationDate" id="reservationDate" />
+          <input type="date" name="reservationDate" id="reservationDate" onchange="TDate()"/>
         </div>
 
         <div class="form-group mt-5">

@@ -31,7 +31,7 @@ $resultMenuItems = MySQLPDO::selectMenusWeek();
         <div class="collapse navbar-collapse" id="collapsibleNavbar">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="index.html">HOME</a>
+                    <a class="nav-link" href="../index.html">HOME</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="calendario.html">CALENDAR</a>
@@ -323,7 +323,7 @@ $resultMenuItems = MySQLPDO::selectMenusWeek();
           <div class="col-sm-4">
             <h5>Links</h5>
             <ul class="list-unstyled">
-              <li><a href="index.html">HOME</a></li>
+              <li><a href="../index.html">HOME</a></li>
               <li><a href="menu.html">MENU</a></li>
               <li><a href="reservas.html">RESERVAS</a></li>
               <li><a href="calendario.html">CALENDARIO</a></li>

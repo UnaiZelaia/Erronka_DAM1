@@ -50,7 +50,7 @@
         <div class="collapse navbar-collapse" id="collapsibleNavbar">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="index.html">HOME</a>
+                    <a class="nav-link" href="../index.html">HOME</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="calendario.php">CALENDAR</a>
@@ -119,7 +119,7 @@
                     <div class="col-sm-4">
                         <h5>Links</h5>
                         <ul class="list-unstyled">
-                            <li><a href="index.html">HOME</a></li>
+                            <li><a href="../index.html">HOME</a></li>
                             <li><a href="calendario.php">CALENDAR</a></li>.
                             <li><a href="aboutUs.html">ABOUT US</a></li>
                         </ul>

@@ -129,7 +129,7 @@ if (isset($_SESSION["user"]) && $_SESSION["loged"] == "ok") {
                 <?php
                 foreach ($resultMenuItems as $menu) {
                   extract($menu);
-                  if ($meal == "Breakfast") {
+                  if (strtoupper($meal) == "BREAKFAST") {
                     if (date("w", strtotime($menu_date)) == 1) {
 
                       echo "-" . $item_description . "<br>";
@@ -138,7 +138,7 @@ if (isset($_SESSION["user"]) && $_SESSION["loged"] == "ok") {
                 }
                 foreach ($resultMenu as $menus) {
                   extract($menus);
-                  if ($meal == "Breakfast") {
+                  if (strtoupper($meal) == "BREAKFAST") {
                     if (date("w", strtotime($menu_date)) == 1) {
                       ?>
                       <form method="POST" action="../modules/reservationAction.php">
@@ -159,7 +159,7 @@ if (isset($_SESSION["user"]) && $_SESSION["loged"] == "ok") {
                 <?php
                 foreach ($resultMenuItems as $menu) {
                   extract($menu);
-                  if ($meal == "Breakfast") {
+                  if (strtoupper($meal) == "BREAKFAST") {
                     if (date("w", strtotime($menu_date)) == 2) {
 
                       echo "-" . $item_description . "<br>";
@@ -168,7 +168,7 @@ if (isset($_SESSION["user"]) && $_SESSION["loged"] == "ok") {
                 }
                 foreach ($resultMenu as $menus) {
                   extract($menus);
-                  if ($meal == "Breakfast") {
+                  if (strtoupper($meal) == "BREAKFAST") {
                     if (date("w", strtotime($menu_date)) == 2) {
                       ?>
                       <form method="POST" action="../modules/reservationAction.php">
@@ -189,7 +189,7 @@ if (isset($_SESSION["user"]) && $_SESSION["loged"] == "ok") {
                 <?php
                 foreach ($resultMenuItems as $menu) {
                   extract($menu);
-                  if ($meal == "Breakfast") {
+                  if (strtoupper($meal) == "BREAKFAST") {
                     if (date("w", strtotime($menu_date)) == 3) {
 
                       echo "-" . $item_description . "<br>";
@@ -198,7 +198,7 @@ if (isset($_SESSION["user"]) && $_SESSION["loged"] == "ok") {
                 }
                 foreach ($resultMenu as $menus) {
                   extract($menus);
-                  if ($meal == "Breakfast") {
+                  if (strtoupper($meal) == "BREAKFAST") {
                     if (date("w", strtotime($menu_date)) == 3) {
                       ?>
                       <form method="POST" action="../modules/reservationAction.php">
@@ -219,7 +219,7 @@ if (isset($_SESSION["user"]) && $_SESSION["loged"] == "ok") {
                 <?php
                 foreach ($resultMenuItems as $menu) {
                   extract($menu);
-                  if ($meal == "Breakfast") {
+                  if (strtoupper($meal) == "BREAKFAST") {
                     if (date("w", strtotime($menu_date)) == 4) {
 
                       echo "-" . $item_description . "<br>";
@@ -228,7 +228,7 @@ if (isset($_SESSION["user"]) && $_SESSION["loged"] == "ok") {
                 }
                 foreach ($resultMenu as $menus) {
                   extract($menus);
-                  if ($meal == "Breakfast") {
+                  if (strtoupper($meal) == "BREAKFAST") {
                     if (date("w", strtotime($menu_date)) == 4) {
                       ?>
                       <form method="POST" action="../modules/reservationAction.php">
@@ -249,7 +249,7 @@ if (isset($_SESSION["user"]) && $_SESSION["loged"] == "ok") {
                 <?php
                 foreach ($resultMenuItems as $menu) {
                   extract($menu);
-                  if ($meal == "Breakfast") {
+                  if (strtoupper($meal) == "BREAKFAST") {
                     if (date("w", strtotime($menu_date)) == 5) {
 
                       echo "-" . $item_description . "<br>";
@@ -258,7 +258,7 @@ if (isset($_SESSION["user"]) && $_SESSION["loged"] == "ok") {
                 }
                 foreach ($resultMenu as $menus) {
                   extract($menus);
-                  if ($meal == "Breakfast") {
+                  if (strtoupper($meal) == "BREAKFAST") {
                     if (date("w", strtotime($menu_date)) == 5) {
                       ?>
                       <form method="POST" action="../modules/reservationAction.php">
@@ -282,7 +282,7 @@ if (isset($_SESSION["user"]) && $_SESSION["loged"] == "ok") {
                 <?php
                 foreach ($resultMenuItems as $menu) {
                   extract($menu);
-                  if ($meal == "Lunch") {
+                  if (strtoupper($meal) == "LUNCH") {
                     if (date("w", strtotime($menu_date)) == 1) {
 
                       echo "-" . $item_description . "<br>";
@@ -291,7 +291,7 @@ if (isset($_SESSION["user"]) && $_SESSION["loged"] == "ok") {
                 }
                 foreach ($resultMenu as $menus) {
                   extract($menus);
-                  if ($meal == "Lunch") {
+                  if (strtoupper($meal) == "LUNCH") {
                     if (date("w", strtotime($menu_date)) == 1) {
                       ?>
                       <form method="POST" action="../modules/reservationAction.php">
@@ -312,7 +312,7 @@ if (isset($_SESSION["user"]) && $_SESSION["loged"] == "ok") {
                 <?php
                 foreach ($resultMenuItems as $menu) {
                   extract($menu);
-                  if ($meal == "Lunch") {
+                  if (strtoupper($meal) == "LUNCH") {
                     if (date("w", strtotime($menu_date)) == 2) {
 
                       echo "-" . $item_description . "<br>";
@@ -321,7 +321,7 @@ if (isset($_SESSION["user"]) && $_SESSION["loged"] == "ok") {
                 }
                 foreach ($resultMenu as $menus) {
                   extract($menus);
-                  if ($meal == "Lunch") {
+                  if (strtoupper($meal) == "LUNCH") {
                     if (date("w", strtotime($menu_date)) == 2) {
                       ?>
                       <form method="POST" action="../modules/reservationAction.php">
@@ -342,7 +342,7 @@ if (isset($_SESSION["user"]) && $_SESSION["loged"] == "ok") {
                 <?php
                 foreach ($resultMenuItems as $menu) {
                   extract($menu);
-                  if ($meal == "Lunch") {
+                  if (strtoupper($meal) == "LUNCH") {
                     if (date("w", strtotime($menu_date)) == 3) {
 
                       echo "-" . $item_description . "<br>";
@@ -351,7 +351,7 @@ if (isset($_SESSION["user"]) && $_SESSION["loged"] == "ok") {
                 }
                 foreach ($resultMenu as $menus) {
                   extract($menus);
-                  if ($meal == "Lunch") {
+                  if (strtoupper($meal) == "LUNCH") {
                     if (date("w", strtotime($menu_date)) == 3) {
                       ?>
                       <form method="POST" action="../modules/reservationAction.php">
@@ -372,7 +372,7 @@ if (isset($_SESSION["user"]) && $_SESSION["loged"] == "ok") {
                 <?php
                 foreach ($resultMenuItems as $menu) {
                   extract($menu);
-                  if ($meal == "Lunch") {
+                  if (strtoupper($meal) == "LUNCH") {
                     if (date("w", strtotime($menu_date)) == 4) {
 
                       echo "-" . $item_description . "<br>";
@@ -381,7 +381,7 @@ if (isset($_SESSION["user"]) && $_SESSION["loged"] == "ok") {
                 }
                 foreach ($resultMenu as $menus) {
                   extract($menus);
-                  if ($meal == "Lunch") {
+                  if (strtoupper($meal) == "LUNCH") {
                     if (date("w", strtotime($menu_date)) == 4) {
                       ?>
                       <form method="POST" action="../modules/reservationAction.php">
@@ -402,7 +402,7 @@ if (isset($_SESSION["user"]) && $_SESSION["loged"] == "ok") {
                 <?php
                 foreach ($resultMenuItems as $menu) {
                   extract($menu);
-                  if ($meal == "Lunch") {
+                  if (strtoupper($meal) == "LUNCH") {
                     if (date("w", strtotime($menu_date)) == 5) {
 
                       echo "-" . $item_description . "<br>";
@@ -411,7 +411,7 @@ if (isset($_SESSION["user"]) && $_SESSION["loged"] == "ok") {
                 }
                 foreach ($resultMenu as $menus) {
                   extract($menus);
-                  if ($meal == "Lunch") {
+                  if (strtoupper($meal) == "LUNCH") {
                     if (date("w", strtotime($menu_date)) == 5) {
                       ?>
                       <form method="POST" action="../modules/reservationAction.php">
@@ -435,7 +435,7 @@ if (isset($_SESSION["user"]) && $_SESSION["loged"] == "ok") {
                 <?php
                 foreach ($resultMenuItems as $menu) {
                   extract($menu);
-                  if ($meal == "Dinner") {
+                  if (strtoupper($meal) == "DINNER") {
                     if (date("w", strtotime($menu_date)) == 1) {
 
                       echo "-" . $item_description . "<br>";
@@ -444,7 +444,7 @@ if (isset($_SESSION["user"]) && $_SESSION["loged"] == "ok") {
                 }
                 foreach ($resultMenu as $menus) {
                   extract($menus);
-                  if ($meal == "Dinner") {
+                  if (strtoupper($meal) == "DINNER") {
                     if (date("w", strtotime($menu_date)) == 1) {
                       ?>
                       <form method="POST" action="../modules/reservationAction.php">
@@ -465,7 +465,7 @@ if (isset($_SESSION["user"]) && $_SESSION["loged"] == "ok") {
                 <?php
                 foreach ($resultMenuItems as $menu) {
                   extract($menu);
-                  if ($meal == "Dinner") {
+                  if (strtoupper($meal) == "DINNER") {
                     if (date("w", strtotime($menu_date)) == 2) {
 
                       echo "-" . $item_description . "<br>";
@@ -474,7 +474,7 @@ if (isset($_SESSION["user"]) && $_SESSION["loged"] == "ok") {
                 }
                 foreach ($resultMenu as $menus) {
                   extract($menus);
-                  if ($meal == "Dinner") {
+                  if (strtoupper($meal) == "DINNER") {
                     if (date("w", strtotime($menu_date)) == 2) {
                       ?>
                       <form method="POST" action="../modules/reservationAction.php">
@@ -495,7 +495,7 @@ if (isset($_SESSION["user"]) && $_SESSION["loged"] == "ok") {
                 <?php
                 foreach ($resultMenuItems as $menu) {
                   extract($menu);
-                  if ($meal == "Dinner") {
+                  if (strtoupper($meal) == "DINNER") {
                     if (date("w", strtotime($menu_date)) == 3) {
 
                       echo "-" . $item_description . "<br>";
@@ -504,7 +504,7 @@ if (isset($_SESSION["user"]) && $_SESSION["loged"] == "ok") {
                 }
                 foreach ($resultMenu as $menus) {
                   extract($menus);
-                  if ($meal == "Dinner") {
+                  if (strtoupper($meal) == "DINNER") {
                     if (date("w", strtotime($menu_date)) == 3) {
                       ?>
                       <form method="POST" action="../modules/reservationAction.php">
@@ -525,7 +525,7 @@ if (isset($_SESSION["user"]) && $_SESSION["loged"] == "ok") {
                 <?php
                 foreach ($resultMenuItems as $menu) {
                   extract($menu);
-                  if ($meal == "Dinner") {
+                  if (strtoupper($meal) == "DINNER") {
                     if (date("w", strtotime($menu_date)) == 4) {
 
                       echo "-" . $item_description . "<br>";
@@ -534,7 +534,7 @@ if (isset($_SESSION["user"]) && $_SESSION["loged"] == "ok") {
                 }
                 foreach ($resultMenu as $menus) {
                   extract($menus);
-                  if ($meal == "Dinner") {
+                  if (strtoupper($meal) == "DINNER") {
                     if (date("w", strtotime($menu_date)) == 4) {
                       ?>
                       <form method="POST" action="../modules/reservationAction.php">
@@ -555,7 +555,7 @@ if (isset($_SESSION["user"]) && $_SESSION["loged"] == "ok") {
                 <?php
                 foreach ($resultMenuItems as $menu) {
                   extract($menu);
-                  if ($meal == "Dinner") {
+                  if (strtoupper($meal) == "DINNER") {
                     if (date("w", strtotime($menu_date)) == 5) {
 
                       echo "-" . $item_description . "<br>";
@@ -564,7 +564,7 @@ if (isset($_SESSION["user"]) && $_SESSION["loged"] == "ok") {
                 }
                 foreach ($resultMenu as $menus) {
                   extract($menus);
-                  if ($meal == "Dinner") {
+                  if (strtoupper($meal) == "DINNER") {
                     if (date("w", strtotime($menu_date)) == 5) {
                       ?>
                       <form method="POST" action="../modules/reservationAction.php">
