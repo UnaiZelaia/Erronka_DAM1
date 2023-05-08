@@ -33,37 +33,37 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label alignment="CENTER" contentDisplay="CENTER" text="BALANCE:" GridPane.rowIndex="7">
+            <Label alignment="CENTER" contentDisplay="CENTER" text="BALANCE:" textFill="WHITE" GridPane.rowIndex="7">
                <padding>
                   <Insets right="5.0" />
                </padding>
             </Label>
-            <Label alignment="CENTER" contentDisplay="CENTER" text="ROLE:" GridPane.rowIndex="6">
+            <Label alignment="CENTER" contentDisplay="CENTER" text="ROLE:" textFill="WHITE" GridPane.rowIndex="6">
                <padding>
                   <Insets right="5.0" />
                </padding>
             </Label>
-            <Label alignment="CENTER" contentDisplay="CENTER" text="BIRDTHDATE:" GridPane.rowIndex="5">
+            <Label alignment="CENTER" contentDisplay="CENTER" text="BIRDTHDATE:" textFill="WHITE" GridPane.rowIndex="5">
                <padding>
                   <Insets right="5.0" />
                </padding>
             </Label>
-            <Label alignment="CENTER" contentDisplay="CENTER" text="EMAIL:" GridPane.rowIndex="3">
+            <Label alignment="CENTER" contentDisplay="CENTER" text="EMAIL:" textFill="WHITE" GridPane.rowIndex="3">
                <padding>
                   <Insets right="5.0" />
                </padding>
             </Label>
-            <Label alignment="CENTER" contentDisplay="CENTER" text="SURNAME:" GridPane.rowIndex="2">
+            <Label alignment="CENTER" contentDisplay="CENTER" text="SURNAME:" textFill="WHITE" GridPane.rowIndex="2">
                <padding>
                   <Insets right="5.0" />
                </padding>
             </Label>
-            <Label alignment="CENTER" contentDisplay="CENTER" text="NAME:" GridPane.rowIndex="1">
+            <Label alignment="CENTER" contentDisplay="CENTER" text="NAME:" textFill="WHITE" GridPane.rowIndex="1">
                <padding>
                   <Insets right="5.0" />
                </padding>
             </Label>
-            <Label alignment="CENTER" contentDisplay="CENTER" text="ID:">
+            <Label alignment="CENTER" contentDisplay="CENTER" text="ID:" textFill="WHITE">
                <padding>
                   <Insets right="5.0" />
                </padding>
@@ -79,7 +79,7 @@
                </children>
             </HBox>
             <TextField fx:id="tPassword" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <Label alignment="CENTER" contentDisplay="CENTER" text="PASSWORD" GridPane.rowIndex="4">
+            <Label alignment="CENTER" contentDisplay="CENTER" text="PASSWORD" textFill="WHITE" GridPane.rowIndex="4">
                <padding>
                   <Insets right="5.0" />
                </padding>

@@ -37,22 +37,22 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Label alignment="CENTER" contentDisplay="CENTER" text="QUANTITY:" GridPane.rowIndex="4">
+                        <Label alignment="CENTER" contentDisplay="CENTER" text="QUANTITY:" textFill="WHITE" GridPane.rowIndex="4">
                            <padding>
                               <Insets right="5.0" />
                            </padding>
                         </Label>
-                        <Label alignment="CENTER" contentDisplay="CENTER" text="PAYMENT:" GridPane.rowIndex="3">
+                        <Label alignment="CENTER" contentDisplay="CENTER" text="PAYMENT:" textFill="WHITE" GridPane.rowIndex="3">
                            <padding>
                               <Insets right="5.0" />
                            </padding>
                         </Label>
-                        <Label alignment="CENTER" contentDisplay="CENTER" text="SURNAME:" GridPane.rowIndex="2">
+                        <Label alignment="CENTER" contentDisplay="CENTER" text="SURNAME:" textFill="WHITE" GridPane.rowIndex="2">
                            <padding>
                               <Insets right="5.0" />
                            </padding>
                         </Label>
-                        <Label alignment="CENTER" contentDisplay="CENTER" text="NAME:" GridPane.rowIndex="1">
+                        <Label alignment="CENTER" contentDisplay="CENTER" text="NAME:" textFill="WHITE" GridPane.rowIndex="1">
                            <padding>
                               <Insets right="5.0" />
                            </padding>
@@ -62,7 +62,7 @@
                         <TextField fx:id="tMony" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                         <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                            <children>
-                              <RadioButton fx:id="rbtCash" accessibleRoleDescription="RB" mnemonicParsing="false" text="CASH">
+                              <RadioButton fx:id="rbtCash" accessibleRoleDescription="RB" mnemonicParsing="false" text="CASH" textFill="WHITE">
                                  <padding>
                                     <Insets left="15.0" right="15.0" />
                                  </padding>
@@ -70,10 +70,10 @@
                                     <ToggleGroup fx:id="pay" />
                                  </toggleGroup>
                               </RadioButton>
-                              <RadioButton fx:id="rbtCard" accessibleRoleDescription="RB" mnemonicParsing="false" text="CARD" toggleGroup="$pay" />
+                              <RadioButton fx:id="rbtCard" accessibleRoleDescription="RB" mnemonicParsing="false" text="CARD" textFill="WHITE" toggleGroup="$pay" />
                            </children>
                         </HBox>
-                        <Label alignment="CENTER" contentDisplay="CENTER" text="ID:">
+                        <Label alignment="CENTER" contentDisplay="CENTER" text="ID:" textFill="WHITE">
                            <padding>
                               <Insets right="5.0" />
                            </padding>
